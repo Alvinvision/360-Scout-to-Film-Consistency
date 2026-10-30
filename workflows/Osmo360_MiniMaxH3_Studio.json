@@ -92,7 +92,7 @@
           "widget": {
             "name": "model.prompt"
           },
-          "link": 1
+          "link": null
         },
         {
           "localized_name": "resolution",
@@ -239,10 +239,6 @@
         "Node name for S&R": "MinimaxHailuo03ReferenceNode",
         "osmo360Managed": true,
         "osmo360Bindings": {
-          "model.prompt": {
-            "node": 2030,
-            "slot": 4
-          },
           "model.reference_images.image_1": {
             "node": 2040,
             "slot": 0
@@ -275,7 +271,7 @@
       },
       "widgets_values": [
         "MiniMax H3",
-        "",
+        "Create one 10-second cinematic video with exactly four shots and three cuts. Images 1–5 are overlapping directions of one location. Preserve its architecture, vehicles, props and daylight. Image 6 is Talent A and image 7 is Talent B; each identity sheet describes one person. Match their faces and wardrobe. Keep both people on fixed marks facing each other. Shot 1, 0–3s: wide two-person establishing pan. Shot 2, 3–5s: three-quarter over Talent A's shoulder onto Talent B. Shot 3, 5–7s: reverse over Talent B's shoulder onto Talent A. Shot 4, 7–10s: one continuous camera arc across their dialogue axis, ending in a wider environment pan with both people still visible. Keep the same physical location and actor positions through every cut. Full-frame live-action footage, no collage or text.",
         "768P",
         "16:9",
         10,
@@ -285,7 +281,7 @@
       ],
       "widgets_values_named": {
         "model": "MiniMax H3",
-        "model.prompt": "",
+        "model.prompt": "Create one 10-second cinematic video with exactly four shots and three cuts. Images 1–5 are overlapping directions of one location. Preserve its architecture, vehicles, props and daylight. Image 6 is Talent A and image 7 is Talent B; each identity sheet describes one person. Match their faces and wardrobe. Keep both people on fixed marks facing each other. Shot 1, 0–3s: wide two-person establishing pan. Shot 2, 3–5s: three-quarter over Talent A's shoulder onto Talent B. Shot 3, 5–7s: reverse over Talent B's shoulder onto Talent A. Shot 4, 7–10s: one continuous camera arc across their dialogue axis, ending in a wider environment pan with both people still visible. Keep the same physical location and actor positions through every cut. Full-frame live-action footage, no collage or text.",
         "model.resolution": "768P",
         "model.ratio": "16:9",
         "model.duration": 10,
@@ -360,7 +356,7 @@
           "localized_name": "video",
           "name": "video",
           "type": "VIDEO",
-          "links": null
+          "links": []
         }
       ],
       "title": "FINAL VIDEO / MiniMax H3 / playback + download",
@@ -387,7 +383,7 @@
       ],
       "size": [
         400,
-        1000
+        780
       ],
       "flags": {},
       "order": 1,
@@ -674,51 +670,24 @@
           "name": "contact_sheet",
           "shape": 6,
           "type": "IMAGE",
-          "links": null
+          "links": []
         },
         {
           "localized_name": "reference_prompt",
           "name": "reference_prompt",
           "shape": 6,
           "type": "STRING",
-          "links": null
+          "links": []
         },
         {
           "localized_name": "manifest",
           "name": "manifest",
           "shape": 6,
           "type": "STRING",
-          "links": null
-        },
-        {
-          "localized_name": "dialogue_prompt",
-          "name": "dialogue_prompt",
-          "shape": 6,
-          "type": "STRING",
-          "links": [
-            1
-          ]
-        },
-        {
-          "localized_name": "talent_a",
-          "name": "talent_a",
-          "shape": 6,
-          "type": "IMAGE",
-          "links": [
-            15
-          ]
-        },
-        {
-          "localized_name": "talent_b",
-          "name": "talent_b",
-          "shape": 6,
-          "type": "IMAGE",
-          "links": [
-            16
-          ]
+          "links": []
         }
       ],
-      "title": "360 EXTRACTOR / controls + local preview refresh",
+      "title": "360 LOCATION EXTRACTOR / image and lens controls",
       "properties": {
         "Node name for S&R": "Osmo360ReferencePack"
       },
@@ -744,15 +713,7 @@
         "",
         false,
         false,
-        "[]",
-        "",
-        "",
-        216,
-        70,
-        50,
-        1.6,
-        60,
-        ""
+        "[]"
       ],
       "widgets_values_named": {
         "panorama": "osmo360/CAM_20260924124608_0036_D.JPG",
@@ -776,15 +737,7 @@
         "pair_secondary": "",
         "pair_same_position": false,
         "process_all": false,
-        "queue_json": "[{\"filename\": \"CAM_20260924124608_0036_D.JPG\", \"width\": 15520, \"height\": 7760, \"profile\": \"120MP DETAIL\", \"hdr_status\": \"unknown\", \"hdr_evidence\": null, \"orientation\": 1, \"projection\": \"equirectangular\", \"path\": \"osmo360/CAM_20260924124608_0036_D.JPG\", \"display_name\": \"CAM_20260924124608_0036_D.JPG\", \"yaw_zero\": 0}]",
-        "talent_a": "osmo360/Alex friend \u2014 Brais.png",
-        "talent_b": "osmo360/Alex friend \u2014 Noa.png",
-        "scene_yaw": 216,
-        "wide_fov": 70,
-        "ots_fov": 50,
-        "camera_height": 1.6,
-        "cross_fov": 60,
-        "osmo360_panel": ""
+        "queue_json": "[{\"filename\": \"CAM_20260924124608_0036_D.JPG\", \"width\": 15520, \"height\": 7760, \"profile\": \"120MP DETAIL\", \"hdr_status\": \"unknown\", \"hdr_evidence\": null, \"orientation\": 1, \"projection\": \"equirectangular\", \"path\": \"osmo360/CAM_20260924124608_0036_D.JPG\", \"display_name\": \"CAM_20260924124608_0036_D.JPG\", \"yaw_zero\": 0}]"
       }
     },
     {
@@ -828,7 +781,7 @@
           ]
         }
       ],
-      "title": "TILE 01 / yaw 000\u00b0",
+      "title": "TILE 01 / yaw 000°",
       "properties": {
         "Node name for S&R": "Osmo360SelectView"
       },
@@ -880,7 +833,7 @@
           ]
         }
       ],
-      "title": "TILE 02 / yaw 072\u00b0",
+      "title": "TILE 02 / yaw 072°",
       "properties": {
         "Node name for S&R": "Osmo360SelectView"
       },
@@ -932,7 +885,7 @@
           ]
         }
       ],
-      "title": "TILE 03 / yaw 144\u00b0",
+      "title": "TILE 03 / yaw 144°",
       "properties": {
         "Node name for S&R": "Osmo360SelectView"
       },
@@ -984,7 +937,7 @@
           ]
         }
       ],
-      "title": "TILE 04 / yaw 216\u00b0",
+      "title": "TILE 04 / yaw 216°",
       "properties": {
         "Node name for S&R": "Osmo360SelectView"
       },
@@ -1036,7 +989,7 @@
           ]
         }
       ],
-      "title": "TILE 05 / yaw 288\u00b0",
+      "title": "TILE 05 / yaw 288°",
       "properties": {
         "Node name for S&R": "Osmo360SelectView"
       },
@@ -1049,106 +1002,84 @@
     },
     {
       "id": 2045,
-      "type": "Osmo360SelectView",
+      "type": "LocationReferenceImage",
       "pos": [
         480,
         870
       ],
       "size": [
         320,
-        270
+        300
       ],
       "flags": {},
       "order": 7,
       "mode": 0,
-      "inputs": [
-        {
-          "localized_name": "references",
-          "name": "references",
-          "type": "IMAGE",
-          "link": 15
-        },
-        {
-          "localized_name": "view_index",
-          "name": "view_index",
-          "type": "INT",
-          "widget": {
-            "name": "view_index"
-          },
-          "link": null
-        }
-      ],
+      "inputs": [],
       "outputs": [
         {
-          "localized_name": "reference_image",
-          "name": "reference_image",
+          "name": "IMAGE",
           "type": "IMAGE",
           "links": [
             201
           ]
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": []
         }
       ],
-      "title": "BRAIS / supplied identity reference",
+      "title": "TALENT 1 / upload identity reference",
       "properties": {
-        "Node name for S&R": "Osmo360SelectView"
+        "Node name for S&R": "LocationReferenceImage"
       },
       "widgets_values": [
-        0
+        "osmo360/Alex friend — Brais.png",
+        "image"
       ],
       "widgets_values_named": {
-        "view_index": 0
+        "image": "osmo360/Alex friend — Brais.png"
       }
     },
     {
       "id": 2046,
-      "type": "Osmo360SelectView",
+      "type": "LocationReferenceImage",
       "pos": [
         820,
         870
       ],
       "size": [
         320,
-        270
+        300
       ],
       "flags": {},
       "order": 8,
       "mode": 0,
-      "inputs": [
-        {
-          "localized_name": "references",
-          "name": "references",
-          "type": "IMAGE",
-          "link": 16
-        },
-        {
-          "localized_name": "view_index",
-          "name": "view_index",
-          "type": "INT",
-          "widget": {
-            "name": "view_index"
-          },
-          "link": null
-        }
-      ],
+      "inputs": [],
       "outputs": [
         {
-          "localized_name": "reference_image",
-          "name": "reference_image",
+          "name": "IMAGE",
           "type": "IMAGE",
           "links": [
             202
           ]
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": []
         }
       ],
-      "title": "NOA / supplied identity reference",
+      "title": "TALENT 2 / upload identity reference",
       "properties": {
-        "Node name for S&R": "Osmo360SelectView"
+        "Node name for S&R": "LocationReferenceImage"
       },
       "widgets_values": [
-        0
+        "osmo360/Alex friend — Noa.png",
+        "image"
       ],
       "widgets_values_named": {
-        "view_index": 0
+        "image": "osmo360/Alex friend — Noa.png"
       }
     }
   ],
@@ -1194,22 +1125,6 @@
       "IMAGE"
     ],
     [
-      15,
-      2030,
-      5,
-      2045,
-      0,
-      "IMAGE"
-    ],
-    [
-      16,
-      2030,
-      6,
-      2046,
-      0,
-      "IMAGE"
-    ],
-    [
       200,
       2025,
       0,
@@ -1224,14 +1139,6 @@
       2020,
       0,
       "VIDEO"
-    ],
-    [
-      1,
-      2030,
-      4,
-      2010,
-      1,
-      "STRING"
     ],
     [
       2,
@@ -1292,7 +1199,7 @@
   ],
   "groups": [
     {
-      "title": "1 \u00b7 ORIGINAL PANORAMA / SWAP SOURCE",
+      "title": "1 · ORIGINAL PANORAMA / SWAP SOURCE",
       "bounding": [
         -20,
         -70,
@@ -1304,19 +1211,19 @@
       "flags": {}
     },
     {
-      "title": "2 \u00b7 FIVE TILES + TWO TALENT REFERENCES",
+      "title": "2: LOCATION REFERENCE TILES",
       "bounding": [
         460,
         -70,
         700,
-        1240
+        925
       ],
       "color": "#54785b",
       "font_size": 26,
       "flags": {}
     },
     {
-      "title": "3 \u00b7 GENERATE AND REVIEW VIDEO",
+      "title": "4: VIDEO PROMPT AND GENERATION",
       "bounding": [
         1160,
         -70,
@@ -1325,6 +1232,18 @@
       ],
       "color": "#896b3f",
       "font_size": 26,
+      "flags": {}
+    },
+    {
+      "title": "3: TALENT INPUTS / VIDEO STAGE",
+      "bounding": [
+        460,
+        830,
+        700,
+        360
+      ],
+      "color": "#665b76",
+      "font_size": 22,
       "flags": {}
     }
   ],
@@ -1336,7 +1255,8 @@
         100,
         150
       ]
-    }
+    },
+    "location_extractor_version": "0.2.0"
   },
   "version": 0.4
 }

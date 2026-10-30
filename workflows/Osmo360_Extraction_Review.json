@@ -13,7 +13,7 @@
       ],
       "size": [
         410,
-        1000
+        780
       ],
       "flags": {},
       "order": 0,
@@ -49,27 +49,6 @@
           "links": [],
           "slot_index": 3,
           "shape": 6
-        },
-        {
-          "name": "dialogue_prompt",
-          "type": "STRING",
-          "links": [],
-          "slot_index": 4,
-          "shape": 6
-        },
-        {
-          "name": "talent_a",
-          "type": "IMAGE",
-          "links": [],
-          "slot_index": 5,
-          "shape": 6
-        },
-        {
-          "name": "talent_b",
-          "type": "IMAGE",
-          "links": [],
-          "slot_index": 6,
-          "shape": 6
         }
       ],
       "properties": {
@@ -97,15 +76,33 @@
         "",
         false,
         false,
-        "[]",
-        "",
-        "",
-        216,
-        70,
-        50,
-        1.6,
-        60
-      ]
+        "[]"
+      ],
+      "widgets_values_named": {
+        "panorama": "osmo360/demo_panorama.png",
+        "preset": "Seedance Landscape",
+        "yaw_zero": 0,
+        "fov": 100,
+        "pitch": 0,
+        "roll": 0,
+        "projection": "Rectilinear",
+        "strength": 100,
+        "width": 2048,
+        "height": 1152,
+        "view_count": 5,
+        "spacing": 72,
+        "starting_yaw": 0,
+        "upscale": false,
+        "profile": "Auto Detect",
+        "hdr_capture": false,
+        "include_original": false,
+        "location": "Demo",
+        "pair_secondary": "",
+        "pair_same_position": false,
+        "process_all": false,
+        "queue_json": "[]"
+      },
+      "title": "360 LOCATION EXTRACTOR / image and lens controls"
     },
     {
       "id": 60,
@@ -155,7 +152,8 @@
         80
       ]
     },
-    "frontendVersion": "1.57.4"
+    "frontendVersion": "1.57.4",
+    "location_extractor_version": "0.2.0"
   },
   "version": 0.4
 }
