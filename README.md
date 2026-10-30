@@ -4,7 +4,13 @@ Turn one stitched 360 panorama into overlapping perspective references, then dir
 
 Built by Alvin Cruz for the Open Source Higgsfield challenge, October 2026.
 
-[Watch the 64-second captioned demonstration](https://github.com/Alvinvision/osmo360-reference-studio/blob/main/assets/demo.mp4) · [Download the demo](https://github.com/Alvinvision/osmo360-reference-studio/raw/refs/heads/main/assets/demo.mp4)
+## Demo
+
+64-second captioned walkthrough: the extractor interface, overlapping reference export, ComfyUI workflow wiring, and completed Seedance 2.5 and MiniMax H3 clips.
+
+https://github.com/user-attachments/assets/2b4903ff-5f03-4450-870f-c5276b74c5e2
+
+[Open the video](https://github.com/user-attachments/assets/2b4903ff-5f03-4450-870f-c5276b74c5e2) · [Download the MP4](https://github.com/Alvinvision/360-Scout-to-Film-Consistency/raw/refs/heads/main/assets/demo.mp4)
 
 ![Interactive extractor](assets/extractor.jpg)
 
