@@ -20,7 +20,7 @@ try:
 except ImportError:
     pass  # HEIC import reports an image-decoder error if this optional dependency is absent.
 
-VERSION = "0.1.0"
+VERSION = "0.2.0"
 PRESETS = {
     "Seedance Landscape": (5, 72, 100, 2048, 1152),
     "Compact Landscape": (4, 90, 110, 2048, 1152),
@@ -362,7 +362,7 @@ def extract(paths, settings, preview_edge=None, cancel=None, progress=None):
             if progress:
                 progress(len(views), len(paths) * len(cameras))
         del source
-    manifest = {"schemaVersion": 1, "applicationName": "Osmo360 ComfyUI",
+    manifest = {"schemaVersion": 1, "applicationName": "360 Location Extractor",
                 "applicationVersion": VERSION, "geometryBaseline": "360 Reference Extractor V3 3.0 build 3",
                 "camera": asdict(actual), "views": views, "sources": metas,
                 "neighborOverlaps": overlaps, "uniformYawSpacing": uniform,

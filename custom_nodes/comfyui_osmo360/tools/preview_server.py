@@ -17,8 +17,6 @@ def main():
     parser.add_argument("--panorama", type=Path, required=True)
     parser.add_argument("--data", type=Path, required=True)
     parser.add_argument("--port", type=int, default=8767)
-    parser.add_argument("--talent-a", type=Path)
-    parser.add_argument("--talent-b", type=Path)
     args = parser.parse_args()
     source_root = args.data / "input"
     source_root.mkdir(parents=True, exist_ok=True)
@@ -27,14 +25,7 @@ def main():
         shutil.copy2(args.panorama, target)
     settings = Settings(location="L001").__dict__.copy()
     settings["panorama"] = target.name
-    settings.update(pair_secondary="", pair_same_position=False, process_all=False,
-                    scene_yaw=216, wide_fov=70, ots_fov=50, cross_fov=60, camera_height=1.6)
-    for option, key in [(args.talent_a, "talent_a"), (args.talent_b, "talent_b")]:
-        if option:
-            dest = source_root / option.name
-            if not dest.exists():
-                shutil.copy2(option, dest)
-            settings[key] = dest.name
+    settings.update(pair_secondary="", pair_same_position=False, process_all=False)
     queue = [dict(metadata(target), path=target.name, display_name=target.name, yaw_zero=0)]
     settings["queue_json"] = json.dumps(queue)
     service = Service(source_root, args.data / "output")
@@ -43,10 +34,10 @@ def main():
 
     @routes.get("/")
     async def index(request):
-        html = """<!doctype html><html><head><meta charset="utf-8"><title>Osmo360 custom frontend QA</title>
+        html = """<!doctype html><html><head><meta charset="utf-8"><title>360 Location Extractor</title>
 <style>html,body{margin:0;height:100%;background:#17191d}#qa{height:100%}</style></head><body>
 <div id="qa"></div><script type="module">
-import {mountExtractor} from '/js/extractor_ui_v2.js';
+import {mountExtractor} from '/js/extractor_ui_v3.js';
 const response=await fetch('/qa/bootstrap');const data=await response.json();
 let state=data.settings,queue=data.queue;
 mountExtractor(document.querySelector('#qa'),{

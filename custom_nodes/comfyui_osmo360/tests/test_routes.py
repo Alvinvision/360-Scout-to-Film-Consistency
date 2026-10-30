@@ -40,7 +40,10 @@ class PreviewRouteTests(unittest.IsolatedAsyncioTestCase):
             data = json.loads(response.text)
             self.assertEqual(len(data["previews"]), 5)
             self.assertTrue(data["previews"][0]["image"].startswith("data:image/jpeg;base64,"))
-            self.assertIn("over-Noa-shoulder", data["dialogue_prompt"])
+            self.assertNotIn("dialogue_prompt", data)
+            self.assertIn("Horizontal FOV", data["prompt"])
+            self.assertNotIn("Brais", data["prompt"])
+            self.assertNotIn("Noa", data["prompt"])
 
     async def test_export_job_receipt_and_download(self):
         response = await self.service.export(Request(self.settings))

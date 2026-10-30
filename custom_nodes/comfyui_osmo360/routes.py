@@ -13,7 +13,7 @@ from urllib.parse import quote
 
 from aiohttp import web
 
-from .core import Settings, dialogue_prompt, extract, export_pack, metadata, safe_name
+from .core import Settings, extract, export_pack, metadata, safe_name
 
 
 class CancelledExport(Exception):
@@ -61,14 +61,7 @@ class Service:
                     if size > 500 * 1024 * 1024:
                         raise ValueError("Source file exceeds the 500MB upload limit.")
                     stream.write(chunk)
-            if request.query.get("kind") == "talent":
-                from PIL import Image
-                with Image.open(path) as im:
-                    if im.width * im.height > 30_000_000:
-                        raise ValueError("Talent reference exceeds 30MP.")
-                    meta = {"width": im.width, "height": im.height, "profile": "Talent reference"}
-            else:
-                meta = await asyncio.to_thread(metadata, path)
+            meta = await asyncio.to_thread(metadata, path)
             return web.json_response(dict(meta, path=str(path.relative_to(self.input_root)),
                                           display_name=Path(item.filename).name))
         except BaseException:
@@ -91,7 +84,6 @@ class Service:
             previews.append(dict(view, image="data:image/jpeg;base64," +
                                  base64.b64encode(buffer.getvalue()).decode("ascii")))
         return web.json_response({"previews": previews, "prompt": prompt,
-                                  "dialogue_prompt": dialogue_prompt(prompt, dict(data, reference_count=len(manifest["views"]))),
                                   "manifest": manifest, "camera": manifest["camera"]})
 
     async def export(self, request):

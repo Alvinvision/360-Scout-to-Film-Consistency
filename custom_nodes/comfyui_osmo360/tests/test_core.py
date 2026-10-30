@@ -5,6 +5,8 @@ import sys
 import tempfile
 import unittest
 import zipfile
+import types
+from unittest.mock import patch
 from dataclasses import replace
 from pathlib import Path
 
@@ -16,11 +18,36 @@ from comfyui_osmo360.core import (
     Settings, camera_plan, classify, dialogue_prompt, effective_settings,
     export_pack, metadata, render, source_coordinates,
 )
-from comfyui_osmo360.nodes import Osmo360SelectView, tensor
+from comfyui_osmo360.nodes import Osmo360ReferencePack, Osmo360SelectView, tensor
 from comfyui_osmo360.routes import Service
 
 
 class GeometryTests(unittest.TestCase):
+    def test_extractor_has_only_location_outputs_and_ignores_legacy_casting(self):
+        node = Osmo360ReferencePack()
+        self.assertEqual(node.RETURN_NAMES, ("references", "contact_sheet", "reference_prompt", "manifest"))
+        self.assertTrue(set(node.INPUT_TYPES()["required"]).isdisjoint(
+            {"talent_a", "talent_b", "scene_yaw", "wide_fov", "ots_fov", "camera_height", "cross_fov"}))
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            Image.new("RGB", (512, 256), "#7389b2").save(root / "source.png")
+            folders = types.ModuleType("folder_paths")
+            folders.get_input_directory = lambda: str(root)
+            folders.get_output_directory = lambda: str(root / "output")
+            management = types.ModuleType("comfy.model_management")
+            management.throw_exception_if_processing_interrupted = lambda: None
+            with patch.dict(sys.modules, {"folder_paths": folders, "comfy.model_management": management}):
+                result = node.execute("source.png", width=128, height=72,
+                                      talent_a="does-not-exist.png", talent_b="../private.png")
+                changed = node.IS_CHANGED("source.png", talent_a="does-not-exist.png")
+                self.assertEqual(changed, node.IS_CHANGED("source.png"))
+            self.assertEqual(len(result["result"]), 4)
+            self.assertEqual(tuple(result["result"][0][0].shape), (5, 72, 128, 3))
+            self.assertNotIn("Brais", result["result"][2][0])
+            manifest = json.loads(result["result"][3][0])
+            self.assertEqual(manifest["applicationName"], "360 Location Extractor")
+            self.assertNotIn("talent_a", manifest["camera"])
+
     def test_ring_matches_v3_manifest_contract(self):
         settings = Settings()
         cameras, overlaps, uniform = camera_plan(settings)

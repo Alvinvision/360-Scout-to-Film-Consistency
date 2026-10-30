@@ -1,7 +1,7 @@
 {
   "id": "0e00e87a-8cd2-4034-b770-78ad9d9a8f28",
   "revision": 0,
-  "last_node_id": 44,
+  "last_node_id": 46,
   "last_link_id": 110,
   "nodes": [
     {
@@ -13,7 +13,7 @@
       ],
       "size": [
         410,
-        1000
+        780
       ],
       "flags": {},
       "order": 0,
@@ -53,33 +53,6 @@
           "links": [],
           "slot_index": 3,
           "shape": 6
-        },
-        {
-          "name": "dialogue_prompt",
-          "type": "STRING",
-          "links": [
-            110
-          ],
-          "slot_index": 4,
-          "shape": 6
-        },
-        {
-          "name": "talent_a",
-          "type": "IMAGE",
-          "links": [
-            6
-          ],
-          "slot_index": 5,
-          "shape": 6
-        },
-        {
-          "name": "talent_b",
-          "type": "IMAGE",
-          "links": [
-            7
-          ],
-          "slot_index": 6,
-          "shape": 6
         }
       ],
       "properties": {
@@ -107,15 +80,33 @@
         "",
         false,
         false,
-        "[]",
-        "",
-        "",
-        216,
-        70,
-        50,
-        1.6,
-        60
-      ]
+        "[]"
+      ],
+      "widgets_values_named": {
+        "panorama": "",
+        "preset": "Seedance Landscape",
+        "yaw_zero": 0,
+        "fov": 100,
+        "pitch": 0,
+        "roll": 0,
+        "projection": "Rectilinear",
+        "strength": 100,
+        "width": 2048,
+        "height": 1152,
+        "view_count": 5,
+        "spacing": 72,
+        "starting_yaw": 0,
+        "upscale": false,
+        "profile": "Auto Detect",
+        "hdr_capture": false,
+        "include_original": false,
+        "location": "Location",
+        "pair_secondary": "",
+        "pair_same_position": false,
+        "process_all": false,
+        "queue_json": "[]"
+      },
+      "title": "360 LOCATION EXTRACTOR / image and lens controls"
     },
     {
       "id": 10,
@@ -143,7 +134,7 @@
         {
           "name": "model.prompt",
           "type": "STRING",
-          "link": 110,
+          "link": null,
           "widget": {
             "name": "model.prompt"
           }
@@ -337,7 +328,10 @@
       ],
       "color": "#432",
       "bgcolor": "#653",
-      "title": "L001 / seedance25_Brais_Noa_4shots_10s"
+      "title": "L001 / seedance25_Brais_Noa_4shots_10s",
+      "widgets_values_named": {
+        "model.prompt": "The following five reference images are overlapping perspective views of one continuous physical environment:\n\nCAM_20260924124608_0036_D_000.png — yaw 000°\nCAM_20260924124608_0036_D_072.png — yaw 072°\nCAM_20260924124608_0036_D_144.png — yaw 144°\nCAM_20260924124608_0036_D_216.png — yaw 216°\nCAM_20260924124608_0036_D_288.png — yaw 288°\n\nAll five images were extracted from the same 360-degree panorama and represent the exact same physical camera position and camera height.\n\nThey rotate horizontally around that single position.\n\nEach view is a rectilinear perspective view with a 100-degree horizontal field of view and a 67.7-degree vertical field of view.\n\nAdjacent images intentionally overlap by approximately 28 degrees.\n\nRepeated doors, walls, windows, vegetation, furniture, objects, surfaces, architectural elements and landmarks visible in neighboring images represent the SAME physical structures.\n\nUse those repeated features to understand how the views connect spatially.\n\nTreat all five references collectively as one continuous physical environment, not as five separate locations or rooms.\n\nPreserve the architecture, scale, spatial relationships, materials, lighting relationships and overall location identity when generating new viewpoints.\n\nCAST: Image 6 is Brais: ONE man shown in front/detail/back views on one identity sheet; short dark hair, moustache, dark jacket, light T-shirt, dark trousers and boots. Image 7 is Noa: ONE woman shown in front/detail/back views; close-cropped hair, grey overshirt, grey top, dark trousers and boots. Match their reference faces and clothing. Use the sheets only for identity and wardrobe, not their white studio backgrounds.\n\nBLOCKING: Place Brais and Noa facing one another about 1.5 metres apart on the existing paved forecourt outside the brick workshop. Brais is nearer the building; Noa is nearer the road. They remain on those marks in every shot. The line between them is the dialogue axis. The building, road, containers, vehicles and vegetation keep their real relationships.\n\nCreate ONE 10-second video containing EXACTLY FOUR shots. The actors, their marks, and the location remain continuous across the whole sequence. Hard cuts separate shots 1, 2, 3 and 4; there is no additional cut inside any shot.\nSHOT 1, 0–3 seconds — Establish both performers in the middle of the frame on the real forecourt, looking approximately toward relative panorama yaw 216.0 degrees with a 70.0-degree horizontal FOV. Make a controlled pan with a short lateral arc, revealing the workshop entrance, brick facade and adjacent road while keeping both performers in central framing. Show enough background to establish the geography.\nSHOT 2, 3–5 seconds — Hard cut to a three-quarter over-Brais-shoulder view of Noa, from behind and slightly to the side of Brais. Brais's matching dark jacket and back of head form one foreground shoulder, while Noa's face is clearly visible and her eyeline reaches Brais. Use approximately 50.0-degree horizontal FOV at 1.60m camera height.\nSHOT 3, 5–7 seconds — Hard cut to a matching three-quarter reverse over-Noa-shoulder view of Brais, from behind and slightly to the side of Noa. Noa's matching grey shoulder and close-cropped head are in the foreground; Brais's face and moustache are clearly visible. Use the same 50.0-degree FOV and 1.60m height. The corresponding side of the captured environment is visible with correct landmark relationships.\nSHOT 4, 7–10 seconds — Cut into one uninterrupted, smooth camera arc that visibly crosses the physical dialogue axis between the two fixed performers. Use approximately 60.0-degree horizontal FOV. Let the changing foreground shoulders, eyelines and rotating background reveal that the camera has moved to the opposite side. There is NO cut or teleportation within shot 4. The camera changes sides; the performers never swap positions. Brickwork, workshop opening, road, containers and vehicles remain the same objects in the same places throughout the arc. As the crossing completes, continue the same unbroken move into a concluding pan around the location, revealing the surrounding workshop, road, containers and vegetation so the environment is clearly readable at the end. This concluding pan belongs to shot 4; do not add a fifth shot.\n\nKeep the photographed daylight, scale and materials coherent across all three cuts. Natural restrained performance and a small breeze, silent scene. Maintain exactly two performers with consistent identity, wardrobe and eyelines. Render full-frame images, not a collage or reference sheet. The output contains four shots, not three and not a single uncut take."
+      }
     },
     {
       "id": 20,
@@ -364,7 +358,7 @@
         {
           "name": "video",
           "type": "VIDEO",
-          "links": null
+          "links": []
         }
       ],
       "properties": {},
@@ -564,6 +558,88 @@
       "widgets_values": [
         4
       ]
+    },
+    {
+      "id": 45,
+      "pos": [
+        500,
+        850
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "properties": {
+        "Node name for S&R": "LocationReferenceImage"
+      },
+      "type": "LocationReferenceImage",
+      "title": "TALENT 1 / upload identity reference",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            6
+          ]
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": []
+        }
+      ],
+      "widgets_values": [
+        "",
+        "image"
+      ],
+      "widgets_values_named": {
+        "image": ""
+      },
+      "size": [
+        320,
+        300
+      ]
+    },
+    {
+      "id": 46,
+      "pos": [
+        500,
+        1190
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "properties": {
+        "Node name for S&R": "LocationReferenceImage"
+      },
+      "type": "LocationReferenceImage",
+      "title": "TALENT 2 / upload identity reference",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            7
+          ]
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": []
+        }
+      ],
+      "widgets_values": [
+        "",
+        "image"
+      ],
+      "widgets_values_named": {
+        "image": ""
+      },
+      "size": [
+        320,
+        300
+      ]
     }
   ],
   "links": [
@@ -657,30 +733,35 @@
     ],
     [
       6,
-      30,
-      5,
+      45,
+      0,
       10,
       13,
       "IMAGE"
     ],
     [
       7,
-      30,
-      6,
+      46,
+      0,
       10,
       14,
       "IMAGE"
-    ],
-    [
-      110,
-      30,
-      4,
-      10,
-      1,
-      "STRING"
     ]
   ],
-  "groups": [],
+  "groups": [
+    {
+      "title": "3: TALENT INPUTS / VIDEO STAGE",
+      "bounding": [
+        480,
+        810,
+        360,
+        700
+      ],
+      "color": "#665b76",
+      "font_size": 22,
+      "flags": {}
+    }
+  ],
   "config": {},
   "extra": {
     "ds": {
@@ -714,7 +795,8 @@
       "final_shot": "Continuous axis crossing ending in environment pan",
       "requires_custom_pack": true,
       "reference_pack_preset": "Seedance Landscape: five views required"
-    }
+    },
+    "location_extractor_version": "0.2.0"
   },
   "version": 0.4
 }
