@@ -1,6 +1,10 @@
-# 360 Scout to Film Consistency
+# One location, many viewpoints
 
-Turn one stitched 360 panorama into overlapping perspective references, then direct a multi-shot scene with Seedance 2.5 or MiniMax H3.
+**360 Scout to Film Consistency** helps filmmakers and creators develop connected AI shots from a single 360° panorama, without building and managing a complex 3D scene.
+
+Start with a **2:1 equirectangular (lat-long) panorama**: capture it with a 360 camera, stitch it from traditional photographs, or create it digitally. Inside ComfyUI, the tool turns that image into overlapping perspective references, giving different POVs and generations a shared visual foundation for the location’s layout, architecture, props, and styling.
+
+Adjust the viewing direction and field of view, then use the references with **Seedance 2.5 or MiniMax H3** to explore your scene. Try it with your own location or designed set, and share your experiments, feedback, and ideas for what comes next.
 
 Built by Alvin Cruz for the Open Source Higgsfield challenge, October 2026.
 
