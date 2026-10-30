@@ -1,0 +1,14 @@
+Title: 360 Scout to Film Consistency
+
+Short description: Turn a real 360 location capture into overlapping, camera-controlled references and multi-shot AI video, directly inside ComfyUI.
+
+How it was built: A Python/NumPy/Pillow custom node pack performs spherical projection. A JavaScript panel shares its camera state with local previews and exports. The ComfyUI graph routes five location views and two identity references into Seedance 2.5 or MiniMax H3, then saves the generated video.
+
+Innovation: It treats the location as a continuous panoramic reference rather than a collection of unrelated stills. One shared camera plan controls orientation, FOV, pitch, projection and reference overlap. An open reference-preparation tool connects real locations with creative video workflows.
+
+Eligible positioning: Best Overall; Most Innovative; MiniMax H3 bonus via its dedicated workflow. Not Open Weights Only. No LTX bonus claimed.
+
+Try-it link: Not publicly deployed. Clone the repository and follow README.md. Localhost links are not judge-accessible.
+
+Draft social post:
+I built Osmo 360 Reference Studio for #OpenSourceHiggsfield: one 360 location capture becomes overlapping, camera-controlled reference views inside ComfyUI. Add two talent references, then direct a multi-shot scene with Seedance 2.5 or MiniMax H3. Open-source nodes, workflows and setup guide. Demo + source: https://github.com/Alvinvision/osmo360-reference-studio
