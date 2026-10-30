@@ -1,0 +1,1733 @@
+{
+  "id": "49793252-526f-47f9-9358-c2f791286590",
+  "revision": 0,
+  "last_node_id": 5090,
+  "last_link_id": 30,
+  "nodes": [
+    {
+      "id": 5010,
+      "type": "ByteDance2ReferenceNodeV2",
+      "pos": [
+        1840,
+        10
+      ],
+      "size": [
+        520,
+        682
+      ],
+      "flags": {},
+      "order": 10,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "model",
+          "name": "model",
+          "type": "COMFY_DYNAMICCOMBO_V3",
+          "widget": {
+            "name": "model"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "prompt",
+          "name": "model.prompt",
+          "type": "STRING",
+          "widget": {
+            "name": "model.prompt"
+          },
+          "link": 7
+        },
+        {
+          "localized_name": "resolution",
+          "name": "model.resolution",
+          "type": "COMBO",
+          "widget": {
+            "name": "model.resolution"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "ratio",
+          "name": "model.ratio",
+          "type": "COMBO",
+          "widget": {
+            "name": "model.ratio"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "duration",
+          "name": "model.duration",
+          "type": "INT",
+          "widget": {
+            "name": "model.duration"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "generate_audio",
+          "name": "model.generate_audio",
+          "type": "BOOLEAN",
+          "widget": {
+            "name": "model.generate_audio"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "task_type",
+          "name": "model.task_type",
+          "type": "COMBO",
+          "widget": {
+            "name": "model.task_type"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "output_format",
+          "name": "model.output_format",
+          "type": "COMBO",
+          "widget": {
+            "name": "model.output_format"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "image_1",
+          "name": "model.reference_images.image_1",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 8
+        },
+        {
+          "localized_name": "image_2",
+          "name": "model.reference_images.image_2",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 9
+        },
+        {
+          "localized_name": "image_3",
+          "name": "model.reference_images.image_3",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 10
+        },
+        {
+          "localized_name": "image_4",
+          "name": "model.reference_images.image_4",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 11
+        },
+        {
+          "localized_name": "image_5",
+          "name": "model.reference_images.image_5",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 12
+        },
+        {
+          "localized_name": "image_6",
+          "name": "model.reference_images.image_6",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 13
+        },
+        {
+          "localized_name": "image_7",
+          "name": "model.reference_images.image_7",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 14
+        },
+        {
+          "localized_name": "image_8",
+          "name": "model.reference_images.image_8",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "localized_name": "video_1",
+          "name": "model.reference_videos.video_1",
+          "shape": 7,
+          "type": "VIDEO",
+          "link": null
+        },
+        {
+          "localized_name": "video_2",
+          "name": "model.reference_videos.video_2",
+          "shape": 7,
+          "type": "VIDEO",
+          "link": null
+        },
+        {
+          "localized_name": "audio_1",
+          "name": "model.reference_audios.audio_1",
+          "shape": 7,
+          "type": "AUDIO",
+          "link": null
+        },
+        {
+          "localized_name": "audio_2",
+          "name": "model.reference_audios.audio_2",
+          "shape": 7,
+          "type": "AUDIO",
+          "link": null
+        },
+        {
+          "localized_name": "asset_1",
+          "name": "model.reference_assets.asset_1",
+          "shape": 7,
+          "type": "STRING",
+          "link": null
+        },
+        {
+          "localized_name": "asset_2",
+          "name": "model.reference_assets.asset_2",
+          "shape": 7,
+          "type": "STRING",
+          "link": null
+        },
+        {
+          "localized_name": "auto_downscale",
+          "name": "model.auto_downscale",
+          "shape": 7,
+          "type": "BOOLEAN",
+          "widget": {
+            "name": "model.auto_downscale"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "auto_upscale",
+          "name": "model.auto_upscale",
+          "shape": 7,
+          "type": "BOOLEAN",
+          "widget": {
+            "name": "model.auto_upscale"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "seed",
+          "name": "seed",
+          "type": "INT",
+          "widget": {
+            "name": "seed"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "watermark",
+          "name": "watermark",
+          "type": "BOOLEAN",
+          "widget": {
+            "name": "watermark"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "VIDEO",
+          "name": "VIDEO",
+          "type": "VIDEO",
+          "links": [
+            23
+          ]
+        },
+        {
+          "localized_name": "draft_task_id",
+          "name": "draft_task_id",
+          "type": "STRING",
+          "links": []
+        }
+      ],
+      "title": "Seedance 2.5 / shared images + shared prompt",
+      "properties": {
+        "Node name for S&R": "ByteDance2ReferenceNodeV2",
+        "osmo360Managed": true,
+        "osmo360Bindings": {
+          "model.prompt": {
+            "node": 5090,
+            "slot": 0
+          },
+          "model.reference_images.image_1": {
+            "node": 5040,
+            "slot": 0
+          },
+          "model.reference_images.image_2": {
+            "node": 5041,
+            "slot": 0
+          },
+          "model.reference_images.image_3": {
+            "node": 5042,
+            "slot": 0
+          },
+          "model.reference_images.image_4": {
+            "node": 5043,
+            "slot": 0
+          },
+          "model.reference_images.image_5": {
+            "node": 5044,
+            "slot": 0
+          },
+          "model.reference_images.image_6": {
+            "node": 5045,
+            "slot": 0
+          },
+          "model.reference_images.image_7": {
+            "node": 5046,
+            "slot": 0
+          }
+        }
+      },
+      "widgets_values": [
+        "Seedance 2.5",
+        "Four-shot live-action scene in the supplied location. Images 1–5 are overlapping directions of ONE continuous environment. Preserve its layout, architecture, vehicles, props, plants and lighting across shots. Image 6 is Character A and image 7 is Character B. Match these two identities and their wardrobe; each reference sheet represents ONE person. The two people face each other on fixed marks in the location.\n\nSHOT 1, 0–3 seconds: wide two-person establishing shot. Start with both characters visible. Track sideways and pan to hold them near the middle while revealing the environment.\nSHOT 2, 3–5 seconds: cut to three-quarter behind Character A, over their shoulder onto Character B's face. Show the corresponding location behind Character B.\nSHOT 3, 5–7 seconds: cut to the reverse three-quarter behind Character B, over their shoulder onto Character A's face. Show the correct opposite direction of the same environment.\nSHOT 4, 7–10 seconds: cut to a wide two-shot. In one continuous move, arc across their dialogue axis, then pan and widen to reveal more of the environment while keeping both people clearly visible through the final frame.\n\nExactly four shots and three cuts. Keep the two performers on fixed marks and preserve the location through each cut. Full-frame cinematic realism, natural movement, rigid architecture and stationary props. Silent footage, clean frame.",
+        "720p",
+        "16:9",
+        10,
+        false,
+        "reference",
+        "mp4",
+        true,
+        false,
+        1742454472,
+        "randomize",
+        false
+      ],
+      "color": "#432",
+      "bgcolor": "#653"
+    },
+    {
+      "id": 5020,
+      "type": "SaveVideo",
+      "pos": [
+        1840,
+        830
+      ],
+      "size": [
+        520,
+        430
+      ],
+      "flags": {},
+      "order": 12,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "video",
+          "name": "video",
+          "type": "VIDEO",
+          "link": 23
+        },
+        {
+          "localized_name": "filename_prefix",
+          "name": "filename_prefix",
+          "type": "STRING",
+          "widget": {
+            "name": "filename_prefix"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "format",
+          "name": "format",
+          "type": "COMFY_DYNAMICCOMBO_V3",
+          "widget": {
+            "name": "format"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "codec",
+          "name": "format.codec",
+          "type": "COMFY_DYNAMICCOMBO_V3",
+          "widget": {
+            "name": "format.codec"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "codec",
+          "name": "codec",
+          "shape": 7,
+          "type": "COMFY_DYNAMICCOMBO_V3",
+          "widget": {
+            "name": "codec"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "video",
+          "name": "video",
+          "type": "VIDEO",
+          "links": []
+        }
+      ],
+      "title": "Seedance 2.5 VIDEO / playback + download",
+      "properties": {},
+      "widgets_values": [
+        "360Location/Compare/Seedance25",
+        "auto",
+        "auto",
+        "auto"
+      ]
+    },
+    {
+      "id": 5025,
+      "type": "Osmo360PanoramaInput",
+      "pos": [
+        0,
+        10
+      ],
+      "size": [
+        440,
+        330
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "image",
+          "name": "image",
+          "type": "COMBO",
+          "widget": {
+            "name": "image"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "upload",
+          "name": "upload",
+          "type": "IMAGEUPLOAD",
+          "widget": {
+            "name": "upload"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "panorama_path",
+          "name": "panorama_path",
+          "type": "STRING",
+          "links": [
+            1
+          ]
+        }
+      ],
+      "title": "1 · SOURCE PANORAMA / upload or swap",
+      "properties": {
+        "Node name for S&R": "Osmo360PanoramaInput"
+      },
+      "widgets_values": [
+        "osmo360/demo_panorama.png",
+        "image"
+      ]
+    },
+    {
+      "id": 5030,
+      "type": "Osmo360ReferencePack",
+      "pos": [
+        0,
+        390
+      ],
+      "size": [
+        440,
+        910
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "panorama",
+          "name": "panorama",
+          "type": "STRING",
+          "widget": {
+            "name": "panorama"
+          },
+          "link": 1
+        },
+        {
+          "localized_name": "preset",
+          "name": "preset",
+          "type": "COMBO",
+          "widget": {
+            "name": "preset"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "yaw_zero",
+          "name": "yaw_zero",
+          "type": "FLOAT",
+          "widget": {
+            "name": "yaw_zero"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "fov",
+          "name": "fov",
+          "type": "FLOAT",
+          "widget": {
+            "name": "fov"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "pitch",
+          "name": "pitch",
+          "type": "FLOAT",
+          "widget": {
+            "name": "pitch"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "roll",
+          "name": "roll",
+          "type": "FLOAT",
+          "widget": {
+            "name": "roll"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "projection",
+          "name": "projection",
+          "type": "COMBO",
+          "widget": {
+            "name": "projection"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "strength",
+          "name": "strength",
+          "type": "FLOAT",
+          "widget": {
+            "name": "strength"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "width",
+          "name": "width",
+          "type": "INT",
+          "widget": {
+            "name": "width"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "height",
+          "name": "height",
+          "type": "INT",
+          "widget": {
+            "name": "height"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "view_count",
+          "name": "view_count",
+          "type": "INT",
+          "widget": {
+            "name": "view_count"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "spacing",
+          "name": "spacing",
+          "type": "FLOAT",
+          "widget": {
+            "name": "spacing"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "starting_yaw",
+          "name": "starting_yaw",
+          "type": "FLOAT",
+          "widget": {
+            "name": "starting_yaw"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "upscale",
+          "name": "upscale",
+          "type": "BOOLEAN",
+          "widget": {
+            "name": "upscale"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "profile",
+          "name": "profile",
+          "type": "COMBO",
+          "widget": {
+            "name": "profile"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "hdr_capture",
+          "name": "hdr_capture",
+          "type": "BOOLEAN",
+          "widget": {
+            "name": "hdr_capture"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "include_original",
+          "name": "include_original",
+          "type": "BOOLEAN",
+          "widget": {
+            "name": "include_original"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "location",
+          "name": "location",
+          "type": "STRING",
+          "widget": {
+            "name": "location"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "pair_secondary",
+          "name": "pair_secondary",
+          "type": "STRING",
+          "widget": {
+            "name": "pair_secondary"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "pair_same_position",
+          "name": "pair_same_position",
+          "type": "BOOLEAN",
+          "widget": {
+            "name": "pair_same_position"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "process_all",
+          "name": "process_all",
+          "type": "BOOLEAN",
+          "widget": {
+            "name": "process_all"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "queue_json",
+          "name": "queue_json",
+          "type": "STRING",
+          "widget": {
+            "name": "queue_json"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "references",
+          "name": "references",
+          "shape": 6,
+          "type": "IMAGE",
+          "links": [
+            2,
+            3,
+            4,
+            5,
+            6
+          ]
+        },
+        {
+          "localized_name": "contact_sheet",
+          "name": "contact_sheet",
+          "shape": 6,
+          "type": "IMAGE",
+          "links": []
+        },
+        {
+          "localized_name": "reference_prompt",
+          "name": "reference_prompt",
+          "shape": 6,
+          "type": "STRING",
+          "links": []
+        },
+        {
+          "localized_name": "manifest",
+          "name": "manifest",
+          "shape": 6,
+          "type": "STRING",
+          "links": []
+        }
+      ],
+      "title": "360 LOCATION EXTRACTOR / image and lens controls",
+      "properties": {
+        "Node name for S&R": "Osmo360ReferencePack"
+      },
+      "widgets_values": [
+        "",
+        "Seedance Landscape",
+        0,
+        100,
+        0,
+        0,
+        "Rectilinear",
+        100,
+        2048,
+        1152,
+        5,
+        72,
+        0,
+        false,
+        "Auto Detect",
+        false,
+        false,
+        "MyLocation",
+        "",
+        false,
+        false,
+        "[]",
+        ""
+      ]
+    },
+    {
+      "id": 5040,
+      "type": "Osmo360SelectView",
+      "pos": [
+        520,
+        10
+      ],
+      "size": [
+        320,
+        270
+      ],
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "references",
+          "name": "references",
+          "type": "IMAGE",
+          "link": 2
+        },
+        {
+          "localized_name": "view_index",
+          "name": "view_index",
+          "type": "INT",
+          "widget": {
+            "name": "view_index"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "reference_image",
+          "name": "reference_image",
+          "type": "IMAGE",
+          "links": [
+            8,
+            16
+          ]
+        }
+      ],
+      "title": "VIEW 01 / yaw 000°",
+      "properties": {
+        "Node name for S&R": "Osmo360SelectView"
+      },
+      "widgets_values": [
+        0
+      ]
+    },
+    {
+      "id": 5041,
+      "type": "Osmo360SelectView",
+      "pos": [
+        870,
+        10
+      ],
+      "size": [
+        320,
+        270
+      ],
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "references",
+          "name": "references",
+          "type": "IMAGE",
+          "link": 3
+        },
+        {
+          "localized_name": "view_index",
+          "name": "view_index",
+          "type": "INT",
+          "widget": {
+            "name": "view_index"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "reference_image",
+          "name": "reference_image",
+          "type": "IMAGE",
+          "links": [
+            9,
+            17
+          ]
+        }
+      ],
+      "title": "VIEW 02 / yaw 072°",
+      "properties": {
+        "Node name for S&R": "Osmo360SelectView"
+      },
+      "widgets_values": [
+        1
+      ]
+    },
+    {
+      "id": 5042,
+      "type": "Osmo360SelectView",
+      "pos": [
+        520,
+        310
+      ],
+      "size": [
+        320,
+        270
+      ],
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "references",
+          "name": "references",
+          "type": "IMAGE",
+          "link": 4
+        },
+        {
+          "localized_name": "view_index",
+          "name": "view_index",
+          "type": "INT",
+          "widget": {
+            "name": "view_index"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "reference_image",
+          "name": "reference_image",
+          "type": "IMAGE",
+          "links": [
+            10,
+            18
+          ]
+        }
+      ],
+      "title": "VIEW 03 / yaw 144°",
+      "properties": {
+        "Node name for S&R": "Osmo360SelectView"
+      },
+      "widgets_values": [
+        2
+      ]
+    },
+    {
+      "id": 5043,
+      "type": "Osmo360SelectView",
+      "pos": [
+        870,
+        310
+      ],
+      "size": [
+        320,
+        270
+      ],
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "references",
+          "name": "references",
+          "type": "IMAGE",
+          "link": 5
+        },
+        {
+          "localized_name": "view_index",
+          "name": "view_index",
+          "type": "INT",
+          "widget": {
+            "name": "view_index"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "reference_image",
+          "name": "reference_image",
+          "type": "IMAGE",
+          "links": [
+            11,
+            19
+          ]
+        }
+      ],
+      "title": "VIEW 04 / yaw 216°",
+      "properties": {
+        "Node name for S&R": "Osmo360SelectView"
+      },
+      "widgets_values": [
+        3
+      ]
+    },
+    {
+      "id": 5044,
+      "type": "Osmo360SelectView",
+      "pos": [
+        695,
+        610
+      ],
+      "size": [
+        320,
+        270
+      ],
+      "flags": {},
+      "order": 9,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "references",
+          "name": "references",
+          "type": "IMAGE",
+          "link": 6
+        },
+        {
+          "localized_name": "view_index",
+          "name": "view_index",
+          "type": "INT",
+          "widget": {
+            "name": "view_index"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "reference_image",
+          "name": "reference_image",
+          "type": "IMAGE",
+          "links": [
+            12,
+            20
+          ]
+        }
+      ],
+      "title": "VIEW 05 / yaw 288°",
+      "properties": {
+        "Node name for S&R": "Osmo360SelectView"
+      },
+      "widgets_values": [
+        4
+      ]
+    },
+    {
+      "id": 5045,
+      "type": "LocationReferenceImage",
+      "pos": [
+        520,
+        980
+      ],
+      "size": [
+        320,
+        314
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "image",
+          "name": "image",
+          "type": "COMBO",
+          "widget": {
+            "name": "image"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "upload",
+          "name": "upload",
+          "type": "IMAGEUPLOAD",
+          "widget": {
+            "name": "upload"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "IMAGE",
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            13,
+            29
+          ]
+        },
+        {
+          "localized_name": "MASK",
+          "name": "MASK",
+          "type": "MASK",
+          "links": []
+        }
+      ],
+      "title": "CHARACTER A / upload reference",
+      "properties": {
+        "Node name for S&R": "LocationReferenceImage"
+      },
+      "widgets_values": [
+        "character_A.png",
+        "image"
+      ]
+    },
+    {
+      "id": 5046,
+      "type": "LocationReferenceImage",
+      "pos": [
+        870,
+        980
+      ],
+      "size": [
+        320,
+        314
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "image",
+          "name": "image",
+          "type": "COMBO",
+          "widget": {
+            "name": "image"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "upload",
+          "name": "upload",
+          "type": "IMAGEUPLOAD",
+          "widget": {
+            "name": "upload"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "IMAGE",
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            14,
+            30
+          ]
+        },
+        {
+          "localized_name": "MASK",
+          "name": "MASK",
+          "type": "MASK",
+          "links": []
+        }
+      ],
+      "title": "CHARACTER B / upload reference",
+      "properties": {
+        "Node name for S&R": "LocationReferenceImage"
+      },
+      "widgets_values": [
+        "character_B.png",
+        "image"
+      ]
+    },
+    {
+      "id": 2010,
+      "type": "MinimaxHailuo03ReferenceNode",
+      "pos": [
+        2420,
+        10
+      ],
+      "size": [
+        520,
+        620
+      ],
+      "flags": {},
+      "order": 11,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "model",
+          "name": "model",
+          "type": "COMFY_DYNAMICCOMBO_V3",
+          "widget": {
+            "name": "model"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "prompt",
+          "name": "model.prompt",
+          "type": "STRING",
+          "widget": {
+            "name": "model.prompt"
+          },
+          "link": 15
+        },
+        {
+          "localized_name": "resolution",
+          "name": "model.resolution",
+          "type": "COMBO",
+          "widget": {
+            "name": "model.resolution"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "ratio",
+          "name": "model.ratio",
+          "type": "COMBO",
+          "widget": {
+            "name": "model.ratio"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "duration",
+          "name": "model.duration",
+          "type": "INT",
+          "widget": {
+            "name": "model.duration"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "image_1",
+          "name": "model.reference_images.image_1",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 16
+        },
+        {
+          "localized_name": "image_2",
+          "name": "model.reference_images.image_2",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 17
+        },
+        {
+          "localized_name": "image_3",
+          "name": "model.reference_images.image_3",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 18
+        },
+        {
+          "localized_name": "image_4",
+          "name": "model.reference_images.image_4",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 19
+        },
+        {
+          "localized_name": "image_5",
+          "name": "model.reference_images.image_5",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 20
+        },
+        {
+          "localized_name": "image_6",
+          "name": "model.reference_images.image_6",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 29
+        },
+        {
+          "localized_name": "image_7",
+          "name": "model.reference_images.image_7",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 30
+        },
+        {
+          "localized_name": "image_8",
+          "name": "model.reference_images.image_8",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "localized_name": "video_1",
+          "name": "model.reference_videos.video_1",
+          "shape": 7,
+          "type": "VIDEO",
+          "link": null
+        },
+        {
+          "localized_name": "video_2",
+          "name": "model.reference_videos.video_2",
+          "shape": 7,
+          "type": "VIDEO",
+          "link": null
+        },
+        {
+          "localized_name": "audio_1",
+          "name": "model.reference_audios.audio_1",
+          "shape": 7,
+          "type": "AUDIO",
+          "link": null
+        },
+        {
+          "localized_name": "audio_2",
+          "name": "model.reference_audios.audio_2",
+          "shape": 7,
+          "type": "AUDIO",
+          "link": null
+        },
+        {
+          "localized_name": "seed",
+          "name": "seed",
+          "type": "INT",
+          "widget": {
+            "name": "seed"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "watermark",
+          "name": "watermark",
+          "type": "BOOLEAN",
+          "widget": {
+            "name": "watermark"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "VIDEO",
+          "name": "VIDEO",
+          "type": "VIDEO",
+          "links": [
+            24
+          ]
+        }
+      ],
+      "title": "MiniMax H3 / shared images + shared prompt",
+      "properties": {
+        "Node name for S&R": "MinimaxHailuo03ReferenceNode",
+        "osmo360Managed": true,
+        "osmo360Bindings": {
+          "model.prompt": {
+            "node": 5090,
+            "slot": 0
+          },
+          "model.reference_images.image_1": {
+            "node": 5040,
+            "slot": 0
+          },
+          "model.reference_images.image_2": {
+            "node": 5041,
+            "slot": 0
+          },
+          "model.reference_images.image_3": {
+            "node": 5042,
+            "slot": 0
+          },
+          "model.reference_images.image_4": {
+            "node": 5043,
+            "slot": 0
+          },
+          "model.reference_images.image_5": {
+            "node": 5044,
+            "slot": 0
+          },
+          "model.reference_images.image_6": {
+            "node": 5045,
+            "slot": 0
+          },
+          "model.reference_images.image_7": {
+            "node": 5046,
+            "slot": 0
+          }
+        }
+      },
+      "widgets_values": [
+        "MiniMax H3",
+        "Four-shot live-action scene in the supplied location. Images 1–5 are overlapping directions of ONE continuous environment. Preserve its layout, architecture, vehicles, props, plants and lighting across shots. Image 6 is Character A and image 7 is Character B. Match these two identities and their wardrobe; each reference sheet represents ONE person. The two people face each other on fixed marks in the location.\n\nSHOT 1, 0–3 seconds: wide two-person establishing shot. Start with both characters visible. Track sideways and pan to hold them near the middle while revealing the environment.\nSHOT 2, 3–5 seconds: cut to three-quarter behind Character A, over their shoulder onto Character B's face. Show the corresponding location behind Character B.\nSHOT 3, 5–7 seconds: cut to the reverse three-quarter behind Character B, over their shoulder onto Character A's face. Show the correct opposite direction of the same environment.\nSHOT 4, 7–10 seconds: cut to a wide two-shot. In one continuous move, arc across their dialogue axis, then pan and widen to reveal more of the environment while keeping both people clearly visible through the final frame.\n\nExactly four shots and three cuts. Keep the two performers on fixed marks and preserve the location through each cut. Full-frame cinematic realism, natural movement, rigid architecture and stationary props. Silent footage, clean frame.",
+        "768P",
+        "16:9",
+        10,
+        2272207264,
+        "randomize",
+        false
+      ],
+      "color": "#432",
+      "bgcolor": "#653"
+    },
+    {
+      "id": 2020,
+      "type": "SaveVideo",
+      "pos": [
+        2420,
+        830
+      ],
+      "size": [
+        520,
+        430
+      ],
+      "flags": {},
+      "order": 13,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "video",
+          "name": "video",
+          "type": "VIDEO",
+          "link": 24
+        },
+        {
+          "localized_name": "filename_prefix",
+          "name": "filename_prefix",
+          "type": "STRING",
+          "widget": {
+            "name": "filename_prefix"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "format",
+          "name": "format",
+          "type": "COMFY_DYNAMICCOMBO_V3",
+          "widget": {
+            "name": "format"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "codec",
+          "name": "format.codec",
+          "type": "COMFY_DYNAMICCOMBO_V3",
+          "widget": {
+            "name": "format.codec"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "codec",
+          "name": "codec",
+          "shape": 7,
+          "type": "COMFY_DYNAMICCOMBO_V3",
+          "widget": {
+            "name": "codec"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "video",
+          "name": "video",
+          "type": "VIDEO",
+          "links": []
+        }
+      ],
+      "title": "MiniMax H3 VIDEO / playback + download",
+      "properties": {},
+      "widgets_values": [
+        "360Location/Compare/MiniMaxH3",
+        "auto",
+        "auto",
+        "auto"
+      ]
+    },
+    {
+      "id": 5090,
+      "type": "PrimitiveStringMultiline",
+      "pos": [
+        1240,
+        10
+      ],
+      "size": [
+        520,
+        760
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "value",
+          "name": "value",
+          "type": "STRING",
+          "widget": {
+            "name": "value"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "STRING",
+          "name": "STRING",
+          "type": "STRING",
+          "links": [
+            7,
+            15
+          ]
+        }
+      ],
+      "title": "4 · SHARED VIDEO PROMPT / edit once for both models",
+      "properties": {
+        "Node name for S&R": "PrimitiveStringMultiline"
+      },
+      "widgets_values": [
+        "Four-shot live-action scene in the supplied location. Images 1–5 are overlapping directions of ONE continuous environment. Preserve its layout, architecture, vehicles, props, plants and lighting across shots. Image 6 is Character A and image 7 is Character B. Match these two identities and their wardrobe; each reference sheet represents ONE person. The two people face each other on fixed marks in the location.\n\nSHOT 1, 0–3 seconds: wide two-person establishing shot. Start with both characters visible. Track sideways and pan to hold them near the middle while revealing the environment.\nSHOT 2, 3–5 seconds: cut to three-quarter behind Character A, over their shoulder onto Character B's face. Show the corresponding location behind Character B.\nSHOT 3, 5–7 seconds: cut to the reverse three-quarter behind Character B, over their shoulder onto Character A's face. Show the correct opposite direction of the same environment.\nSHOT 4, 7–10 seconds: cut to a wide two-shot. In one continuous move, arc across their dialogue axis, then pan and widen to reveal more of the environment while keeping both people clearly visible through the final frame.\n\nExactly four shots and three cuts. Keep the two performers on fixed marks and preserve the location through each cut. Full-frame cinematic realism, natural movement, rigid architecture and stationary props. Silent footage, clean frame.",
+        ""
+      ]
+    }
+  ],
+  "links": [
+    [
+      1,
+      5025,
+      0,
+      5030,
+      0,
+      "STRING"
+    ],
+    [
+      2,
+      5030,
+      0,
+      5040,
+      0,
+      "IMAGE"
+    ],
+    [
+      3,
+      5030,
+      0,
+      5041,
+      0,
+      "IMAGE"
+    ],
+    [
+      4,
+      5030,
+      0,
+      5042,
+      0,
+      "IMAGE"
+    ],
+    [
+      5,
+      5030,
+      0,
+      5043,
+      0,
+      "IMAGE"
+    ],
+    [
+      6,
+      5030,
+      0,
+      5044,
+      0,
+      "IMAGE"
+    ],
+    [
+      23,
+      5010,
+      0,
+      5020,
+      0,
+      "VIDEO"
+    ],
+    [
+      24,
+      2010,
+      0,
+      2020,
+      0,
+      "VIDEO"
+    ],
+    [
+      7,
+      5090,
+      0,
+      5010,
+      1,
+      "STRING"
+    ],
+    [
+      8,
+      5040,
+      0,
+      5010,
+      8,
+      "IMAGE"
+    ],
+    [
+      9,
+      5041,
+      0,
+      5010,
+      9,
+      "IMAGE"
+    ],
+    [
+      10,
+      5042,
+      0,
+      5010,
+      10,
+      "IMAGE"
+    ],
+    [
+      11,
+      5043,
+      0,
+      5010,
+      11,
+      "IMAGE"
+    ],
+    [
+      12,
+      5044,
+      0,
+      5010,
+      12,
+      "IMAGE"
+    ],
+    [
+      13,
+      5045,
+      0,
+      5010,
+      13,
+      "IMAGE"
+    ],
+    [
+      14,
+      5046,
+      0,
+      5010,
+      14,
+      "IMAGE"
+    ],
+    [
+      15,
+      5090,
+      0,
+      2010,
+      1,
+      "STRING"
+    ],
+    [
+      16,
+      5040,
+      0,
+      2010,
+      5,
+      "IMAGE"
+    ],
+    [
+      17,
+      5041,
+      0,
+      2010,
+      6,
+      "IMAGE"
+    ],
+    [
+      18,
+      5042,
+      0,
+      2010,
+      7,
+      "IMAGE"
+    ],
+    [
+      19,
+      5043,
+      0,
+      2010,
+      8,
+      "IMAGE"
+    ],
+    [
+      20,
+      5044,
+      0,
+      2010,
+      9,
+      "IMAGE"
+    ],
+    [
+      29,
+      5045,
+      0,
+      2010,
+      10,
+      "IMAGE"
+    ],
+    [
+      30,
+      5046,
+      0,
+      2010,
+      11,
+      "IMAGE"
+    ]
+  ],
+  "groups": [
+    {
+      "id": 1,
+      "title": "1 · LOCATION SOURCE + LENS SETTINGS",
+      "bounding": [
+        -20,
+        -60,
+        480,
+        1390
+      ],
+      "color": "#3f789e",
+      "flags": {}
+    },
+    {
+      "id": 2,
+      "title": "2 · FIVE SHARED LOCATION VIEWS",
+      "bounding": [
+        500,
+        -60,
+        710,
+        960
+      ],
+      "color": "#54785b",
+      "flags": {}
+    },
+    {
+      "id": 3,
+      "title": "3 · SHARED CHARACTER REFERENCES",
+      "bounding": [
+        500,
+        910,
+        710,
+        410
+      ],
+      "color": "#665b76",
+      "flags": {}
+    },
+    {
+      "id": 4,
+      "title": "4 · SHARED PROMPT + RUN CONTROLS",
+      "bounding": [
+        1220,
+        -60,
+        560,
+        860
+      ],
+      "color": "#667f8f",
+      "flags": {}
+    },
+    {
+      "id": 5,
+      "title": "5 · SEEDANCE 2.5 / VIDEO + PLAYBACK",
+      "bounding": [
+        1820,
+        -60,
+        560,
+        1390
+      ],
+      "color": "#896b3f",
+      "flags": {}
+    },
+    {
+      "id": 6,
+      "title": "6 · MINIMAX H3 / VIDEO + PLAYBACK",
+      "bounding": [
+        2400,
+        -60,
+        560,
+        1390
+      ],
+      "color": "#785b80",
+      "flags": {}
+    }
+  ],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 0.42,
+      "offset": [
+        240,
+        320
+      ]
+    },
+    "location_extractor_version": "0.2.0",
+    "location_comparison": {
+      "version": 1,
+      "prompt_node": 5090,
+      "preview_nodes": [
+        5025,
+        5030,
+        5040,
+        5041,
+        5042,
+        5043,
+        5044,
+        5045,
+        5046
+      ],
+      "seedance": {
+        "model": 5010,
+        "output": 5020
+      },
+      "minimax": {
+        "model": 2010,
+        "output": 2020
+      }
+    }
+  },
+  "version": 0.4
+}

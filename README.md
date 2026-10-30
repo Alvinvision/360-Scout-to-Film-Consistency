@@ -4,7 +4,7 @@
 
 Start with a **2:1 equirectangular (lat-long) panorama**: capture it with a 360 camera, stitch it from traditional photographs, or create it digitally. Inside ComfyUI, the tool turns that image into overlapping perspective references, giving different POVs and generations a shared visual foundation for the location’s layout, architecture, props, and styling.
 
-Adjust the viewing direction and field of view, then use the references with **Seedance 2.5 or MiniMax H3** to explore your scene. Try it with your own location or designed set, and share your experiments, feedback, and ideas for what comes next.
+Adjust the viewing direction and field of view, then use the references with **Seedance 2.5 and MiniMax H3 in one workflow**, running either model or both to explore your scene. Try it with your own location or designed set, and share your experiments, feedback, and ideas for what comes next.
 
 Built by Alvin Cruz for the Open Source Higgsfield challenge, October 2026.
 
@@ -16,11 +16,9 @@ The extractor handles **only the location image and lens settings**. It does not
 
 Add your own **character references or talent references** in the separate image-input nodes at the video stage. These inputs connect directly to the video model, alongside the location tiles. The people and location shown in the demo are examples; you can replace them with your own references after downloading and installing the tool.
 
-Edit the **video prompt** on the video node before generating. Change the action, scene, camera movement and shot directions to match what you want to make. The included four-shot prompt is a starting point. Keep its image numbers aligned with the references you connect, and use durations and input counts supported by the selected model.
+Edit **SHARED VIDEO PROMPT** in the combined workflow before generating. In the optional single-model workflows, edit the prompt on the video node. Change the action, scene, camera movement and shot directions to match what you want to make. The included four-shot prompt is a starting point. Keep its image numbers aligned with the references you connect, and use durations and input counts supported by the selected model.
 
 You can also make an environment-only video. Disconnect character references from the video model, remove or mute unused character image-input nodes, and remove character directions from the video prompt. Local panorama extraction does not require character references or video generation.
-
-
 
 ## Demo
 
@@ -40,7 +38,7 @@ The walkthrough and screenshots show the earlier interface. Version 0.2 removes 
 - A location-only **360 Location** extractor: front direction, horizontal FOV, pitch, roll, view count and output size.
 - Rectilinear and General Panini (Natural Wide) projections using the same planner for previews and exports.
 - Batch processing, paired captures, overlap review, clean PNGs, contact sheets, prompts, manifests and ZIP downloads.
-- Separate Seedance 2.5 and MiniMax H3 graphs: five location tiles plus two independent talent image-reference inputs at the video stage.
+- A combined Seedance 2.5 + MiniMax H3 workflow: the same five location tiles, two character references and one editable video prompt feed both models. Separate model workflows remain available.
 - Completed ten-second model demonstrations; generated spatial consistency varies by run.
 
 ## Install in an existing ComfyUI
@@ -64,7 +62,23 @@ python scripts/make_demo_panorama.py /path/to/ComfyUI/input/osmo360/demo_panoram
 
 6. Drag `workflows/Osmo360_Extraction_Review.json` onto ComfyUI. Run it to extract five views and a contact sheet. Open **360 Reference Extractor** on its extractor node to change camera settings, import your own 2:1 panorama and export a ZIP. This extraction-only graph makes no paid API call.
 
-## Generate video
+## Compare both video models in one workflow
+
+Import [360Location_Seedance25_MiniMaxH3_Compare.json](workflows/360Location_Seedance25_MiniMaxH3_Compare.json). Follow the numbered groups from left to right: panorama and lens settings, five location views, character references, shared video prompt, Seedance 2.5 and MiniMax H3. Each model has its own video player and output filename.
+
+1. Upload your panorama once and choose its angles and FOV in the location extractor.
+2. Upload your own character references in **CHARACTER A** and **CHARACTER B**. Both models receive these exact same two images after the same five location tiles, in the same order. This graph uses seven image inputs per model.
+3. Edit **SHARED VIDEO PROMPT** once. It feeds both models. Keep images 1–5 for the location, image 6 for Character A and image 7 for Character B. The four-shot, ten-second scene is an editable example.
+4. Use **Preview inputs · local** on the shared prompt node to refresh the panorama, tiles and character thumbnails without requesting video generation.
+5. Choose **Run Seedance · credits**, **Run MiniMax · credits** or **Run both · credits**. The standard ComfyUI **Run** button runs the full workflow, including both model branches. Both models use the currently selected Comfy workspace account. Model requests consume credits and upload the shared references and prompt to their providers.
+
+The model controls use partial execution to target only the selected video output and its dependencies. Running both submits one workflow with two separate video outputs. Local ComfyUI uses its job queue and may execute the model branches sequentially; this update does not add concurrent execution queues. Change the shared prompt or references to explore another scene; each model retains its own resolution, duration and seed controls. Seeds randomize after a run by default. Matching seed values across different models do not make their results equivalent.
+
+Each video player keeps its latest completed output visible when another model or an input preview is run. Save the workflow after a render to retain the output previews when reopening it. A saved video reflects its original render settings; editing the inputs or prompt does not regenerate it.
+
+The portable workflow contains no private panorama, character files, screenshots or completed videos. Generate the synthetic panorama described above or upload your own, then upload and select both character references before running. Generation can change identities or spatial details despite shared references.
+
+## Optional single-model workflows
 
 Import either `Osmo360_Seedance25_Studio.json` or `Osmo360_MiniMaxH3_Studio.json`. Select or upload your panorama in the original panorama node. Use the independent **TALENT 1** and **TALENT 2** image-reference nodes to upload identity references. The extractor processes only the location panorama; edit casting, blocking and shot directions on the video node. Keep five location views first, followed by talent A and talent B. Do not run the video graph with missing talent inputs.
 
@@ -76,6 +90,8 @@ The video nodes use Comfy's current dynamic input schema. The included frontend 
 
 ## Upgrade existing workflows
 
+For the combined workflow and its run controls, replace the custom node folder with this version and refresh the ComfyUI browser after restarting. Importing the new workflow JSON alone does not update the frontend extension.
+
 Version 0.2 automatically separates talent and video prompts when older UI workflows load. Location extraction has four outputs: references, contact sheet, location/lens prompt and manifest. Talent images connect to the video model through independent image-reference nodes. Re-save the migrated graph. Internal node identifiers and the `comfyui_osmo360` installation directory stay stable for compatibility.
 
 ## Verify
@@ -85,6 +101,14 @@ From the repository root, with dependencies and ComfyUI's torch/aiohttp availabl
 ```sh
 PYTHONDONTWRITEBYTECODE=1 python -m unittest discover -s custom_nodes/comfyui_osmo360/tests -v
 ```
+
+Check the combined workflow wiring and model selections with Node.js:
+
+```sh
+node custom_nodes/comfyui_osmo360/tests/test_comparison_workflow.mjs workflows/360Location_Seedance25_MiniMaxH3_Compare.json
+```
+
+The combined workflow checks cover identical image references, the shared prompt, valid links and separate execution targets for input previews, each model and both models. Local input-only execution and both completed video players were also verified without starting an additional paid render.
 
 Fourteen backend checks passed on the development Mac. Tests cover projection, seams, profiles, tensor selection, complete exports, source preservation, confined paths, concurrent previews, cancellation and a location-only extractor contract. Real-image comparisons against the native V3 renderer had mean RGB errors below 0.36/255 across seven cases.
 

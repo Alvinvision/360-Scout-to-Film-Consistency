@@ -3,6 +3,7 @@ import { api } from "../../scripts/api.js";
 import { mountExtractor } from "./extractor_ui_v3.js";
 
 import { migrateLocationWorkflow } from "./location_workflow_v2.mjs";
+import { installComparisonControls } from "./comparison_controls_v1.mjs";
 
 async function restoreOsmoBindings(){
     const graph=app.graph;
@@ -35,9 +36,35 @@ app.registerExtension({
       if(result){restored[String(node.id)]=result;node.onExecuted?.(result);}
     }
     if(Object.keys(restored).length)app.nodeOutputs={...app.nodeOutputs,...restored};
+    installComparisonControls(app);
     app.graph.setDirtyCanvas(true,true);
   },
   async beforeRegisterNodeDef(nodeType,nodeData){
+    if(nodeData.name==="SaveVideo"){
+      const created=nodeType.prototype.onNodeCreated;
+      nodeType.prototype.onNodeCreated=function(){
+        created?.apply(this,arguments);
+        const executed=this.onExecuted, started=this.onExecutionStart;
+        this.onExecuted=function(result){
+          if(result?.images?.some(item=>item.metadata?.kind==="video" || /\.(mp4|webm|mov|mkv)$/i.test(item.filename||""))){
+            this.properties ||= {};
+            this.properties.osmo360Result=result;
+          }
+          return executed?.apply(this,arguments);
+        };
+        this.onExecutionStart=function(){
+          const result=this.properties?.osmo360Result;
+          const returned=started?.apply(this,arguments);
+          // A partial run must not blank the other model's completed player.
+          if(this.graph?.extra?.location_comparison && result){
+            app.nodeOutputs={...app.nodeOutputs,[String(this.id)]:result};
+            this.onExecuted(result);
+          }
+          return returned;
+        };
+      };
+      return;
+    }
     if(["Osmo360SelectView","Osmo360PanoramaInput"].includes(nodeData.name)){
       const created=nodeType.prototype.onNodeCreated;
       nodeType.prototype.onNodeCreated=function(){created?.apply(this,arguments);this.setSize(nodeData.name==="Osmo360PanoramaInput"?[450,360]:[320,270]);};
