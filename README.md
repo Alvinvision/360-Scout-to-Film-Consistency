@@ -28,7 +28,7 @@ https://github.com/user-attachments/assets/2b4903ff-5f03-4450-870f-c5276b74c5e2
 
 [Open the video](https://github.com/user-attachments/assets/2b4903ff-5f03-4450-870f-c5276b74c5e2) · [Download the MP4](https://github.com/Alvinvision/360-Scout-to-Film-Consistency/raw/refs/heads/main/assets/demo.mp4)
 
-The walkthrough and screenshots show the earlier interface. Version 0.2 removes casting and shot controls from the extractor; those now live downstream in the video workflow.
+The walkthrough and extractor screenshot show the earlier interface. Version 0.2 removes casting and shot controls from the extractor; those now live downstream in the video workflow.
 
 ![Earlier extractor interface](assets/extractor.jpg)
 
@@ -78,6 +78,8 @@ Each video player keeps its latest completed output visible when another model o
 
 The portable workflow contains no private panorama, character files, screenshots or completed videos. Generate the synthetic panorama described above or upload your own, then upload and select both character references before running. Generation can change identities or spatial details despite shared references.
 
+![Combined Seedance 2.5 and MiniMax H3 workflow with shared location tiles, character references, prompt and both video previews](assets/workflow.jpg)
+
 ## Optional single-model workflows
 
 Import either `Osmo360_Seedance25_Studio.json` or `Osmo360_MiniMaxH3_Studio.json`. Select or upload your panorama in the original panorama node. Use the independent **TALENT 1** and **TALENT 2** image-reference nodes to upload identity references. The extractor processes only the location panorama; edit casting, blocking and shot directions on the video node. Keep five location views first, followed by talent A and talent B. Do not run the video graph with missing talent inputs.
@@ -85,8 +87,6 @@ Import either `Osmo360_Seedance25_Studio.json` or `Osmo360_MiniMaxH3_Studio.json
 Click **Refresh image previews** to check the local reference path. Authenticate with ComfyUI and use a funded workspace before pressing **Run** for the full graph. Partner model generation requires internet access and consumes Comfy credits. Image references and prompts are sent to the selected provider. Model availability and pricing are controlled by Comfy and its providers.
 
 The video nodes use Comfy's current dynamic input schema. The included frontend restores the serialized reference connections after loading. If a graph reports a missing partner node, update ComfyUI and verify partner-node availability for your account. Use the standard Save Video node to play or download the result.
-
-![Working graph and completed output](assets/workflow.jpg)
 
 ## Upgrade existing workflows
 
