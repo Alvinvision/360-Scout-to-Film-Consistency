@@ -1,4 +1,4 @@
-# One location, many viewpoints
+# Scout Once. Create Every Shot.
 
 **360 Scout to Film Consistency** helps filmmakers and creators develop connected AI shots from a single 360° panorama, without building and managing a complex 3D scene.
 
