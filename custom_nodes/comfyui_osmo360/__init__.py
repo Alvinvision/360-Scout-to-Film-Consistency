@@ -1,16 +1,18 @@
-from .nodes import Osmo360DialoguePrompt, Osmo360ReferencePack, Osmo360SelectView, Osmo360PanoramaInput
+from .nodes import LocationReferenceImage, Osmo360DialoguePrompt, Osmo360ReferencePack, Osmo360SelectView, Osmo360PanoramaInput
 
 NODE_CLASS_MAPPINGS = {
+    "LocationReferenceImage": LocationReferenceImage,
     "Osmo360PanoramaInput": Osmo360PanoramaInput,
     "Osmo360ReferencePack": Osmo360ReferencePack,
     "Osmo360SelectView": Osmo360SelectView,
     "Osmo360DialoguePrompt": Osmo360DialoguePrompt,
 }
 NODE_DISPLAY_NAME_MAPPINGS = {
-    "Osmo360PanoramaInput": "Osmo 360 Original Panorama / Upload and Swap",
-    "Osmo360ReferencePack": "Osmo 360 Reference Extractor",
-    "Osmo360SelectView": "Osmo 360 Select Reference View",
-    "Osmo360DialoguePrompt": "Osmo 360 Dialogue and Reverse OTS Prompt",
+    "LocationReferenceImage": "Image Reference / Upload",
+    "Osmo360PanoramaInput": "360 Location / Original Panorama",
+    "Osmo360ReferencePack": "360 Location Extractor",
+    "Osmo360SelectView": "360 Location / Select Reference View",
+    "Osmo360DialoguePrompt": "Video / Dialogue and Reverse OTS Prompt",
 }
 WEB_DIRECTORY = "./js"
 

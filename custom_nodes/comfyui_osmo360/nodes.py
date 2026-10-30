@@ -35,7 +35,7 @@ class Osmo360PanoramaInput:
     RETURN_TYPES = ("STRING",)
     RETURN_NAMES = ("panorama_path",)
     FUNCTION = "select"
-    CATEGORY = "Osmo360/Location"
+    CATEGORY = "360 Location/Images"
     OUTPUT_NODE = True
     DESCRIPTION = "Original lat-long panorama preview. Upload or choose another 2:1 panorama to change the extractor source."
 
@@ -55,6 +55,25 @@ class Osmo360PanoramaInput:
         preview.thumbnail((2048,1024),Image.Resampling.LANCZOS)
         ui = PreviewImage().save_images(tensor([preview]))["ui"]
         return {"ui":ui,"result":(image,)}
+
+
+class LocationReferenceImage:
+    """Independent image input for downstream generation, including nested uploads."""
+    @classmethod
+    def INPUT_TYPES(cls):
+        return Osmo360PanoramaInput.INPUT_TYPES()
+
+    RETURN_TYPES = ("IMAGE", "MASK")
+    RETURN_NAMES = ("IMAGE", "MASK")
+    FUNCTION = "load"
+    CATEGORY = "image"
+    OUTPUT_NODE = True
+    DESCRIPTION = "Upload a separate image reference for downstream generation. This input does not process the panorama."
+
+    def load(self, image):
+        from nodes import LoadImage, PreviewImage
+        images, mask = LoadImage().load_image(image)
+        return {"ui": PreviewImage().save_images(images)["ui"], "result": (images, mask)}
 
 
 class Osmo360ReferencePack:
@@ -83,28 +102,20 @@ class Osmo360ReferencePack:
             "pair_same_position": ("BOOLEAN", {"default": False}),
             "process_all": ("BOOLEAN", {"default": False}),
             "queue_json": ("STRING", {"default": "[]", "multiline": True}),
-            "talent_a": ("STRING", {"default": ""}),
-            "talent_b": ("STRING", {"default": ""}),
-            "scene_yaw": ("FLOAT", {"default": 216, "min": 0, "max": 360}),
-            "wide_fov": ("FLOAT", {"default": 70, "min": 10, "max": 150}),
-            "ots_fov": ("FLOAT", {"default": 50, "min": 10, "max": 150}),
-            "camera_height": ("FLOAT", {"default": 1.6, "min": 0.3, "max": 3}),
-            "cross_fov": ("FLOAT", {"default": 60, "min": 10, "max": 150}),
         }}
 
-    RETURN_TYPES = ("IMAGE", "IMAGE", "STRING", "STRING", "STRING", "IMAGE", "IMAGE")
-    RETURN_NAMES = ("references", "contact_sheet", "reference_prompt", "manifest",
-                    "dialogue_prompt", "talent_a", "talent_b")
-    OUTPUT_IS_LIST = (True, True, True, True, True, True, True)
+    RETURN_TYPES = ("IMAGE", "IMAGE", "STRING", "STRING")
+    RETURN_NAMES = ("references", "contact_sheet", "reference_prompt", "manifest")
+    OUTPUT_IS_LIST = (True, True, True, True)
     FUNCTION = "execute"
-    CATEGORY = "Osmo360/Location"
+    CATEGORY = "360 Location/Images"
     OUTPUT_NODE = True
-    DESCRIPTION = "V3 camera controls and reference export. Requires this custom pack to be installed on the Comfy server."
+    DESCRIPTION = "Extract location reference images from a 2:1 lat-long panorama. Controls viewing direction, lens projection, FOV and output size."
 
     @classmethod
     def IS_CHANGED(cls, panorama="", pair_secondary="", queue_json="[]", **kwargs):
         import hashlib
-        names = [panorama, pair_secondary, kwargs.get("talent_a", ""), kwargs.get("talent_b", "")]
+        names = [panorama, pair_secondary]
         if kwargs.get("process_all"):
             names += [item.get("path", "") for item in json.loads(queue_json)]
         digest = hashlib.sha256()
@@ -126,15 +137,7 @@ class Osmo360ReferencePack:
             raise ValueError("Import at least one panorama.")
         if len(jobs) > 100:
             raise ValueError("Limit a batch to 100 panoramas.")
-        from PIL import Image, ImageOps
-        identities = []
-        for key in ("talent_a", "talent_b"):
-            if kwargs.get(key):
-                with Image.open(resolve_input(kwargs[key])) as image:
-                    identities.append(tensor([ImageOps.exif_transpose(image).convert("RGB")]))
-            else:
-                identities.append(torch.zeros((1, 1, 1, 3), dtype=torch.float32))
-        refs, sheets, prompts, manifests, packs, dialogues, previews = [], [], [], [], [], [], []
+        refs, sheets, prompts, manifests, packs, previews = [], [], [], [], [], []
         for entry in jobs:
             throw_exception_if_processing_interrupted()
             config = dict(kwargs)
@@ -152,15 +155,13 @@ class Osmo360ReferencePack:
             refs.append(tensor(images))
             sheets.append(tensor([sheet]))
             prompts.append(prompt)
-            dialogues.append(dialogue_prompt(prompt, dict(kwargs, reference_count=len(manifest["views"]))))
             manifests.append(json.dumps(manifest, ensure_ascii=False))
             packs.append({"folder": folder.name, "zip": archive.name,
                           "url": "/osmo360/download/" + folder.name + "/" + archive.name})
             previews.append({"filename":next(folder.glob("*_CONTACTSHEET.jpg")).name,
                              "subfolder":"osmo360/"+folder.name,"type":"output"})
         return {"ui": {"osmo360_packs": packs, "images":previews},
-                "result": (refs, sheets, prompts, manifests, dialogues,
-                           [identities[0] for _ in refs], [identities[1] for _ in refs])}
+                "result": (refs, sheets, prompts, manifests)}
 
 
 class Osmo360SelectView:
@@ -173,7 +174,7 @@ class Osmo360SelectView:
     RETURN_TYPES = ("IMAGE",)
     RETURN_NAMES = ("reference_image",)
     FUNCTION = "select"
-    CATEGORY = "Osmo360/Location"
+    CATEGORY = "360 Location/Images"
 
     def select(self, references, view_index):
         if not 0 <= view_index < references.shape[0]:
@@ -205,7 +206,7 @@ class Osmo360DialoguePrompt:
     RETURN_TYPES = ("STRING",)
     RETURN_NAMES = ("dialogue_prompt",)
     FUNCTION = "build"
-    CATEGORY = "Osmo360/Prompts"
+    CATEGORY = "360 Location/Video prompts"
 
     def build(self, reference_prompt, **kwargs):
         return (dialogue_prompt(reference_prompt, kwargs),)
