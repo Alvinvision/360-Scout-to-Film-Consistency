@@ -40,7 +40,7 @@ Review the overlapping previews, then adjust the front direction and framing for
 
 ## Demo
 
-58-second narrated explainer: turn a 360° panorama into shared location references for connected AI shots.
+🔊 58-second narrated explainer: turn a 360° panorama into shared location references for connected AI shots.
 
 https://github.com/user-attachments/assets/dcf139a5-4235-41dc-b86b-271f78a25c73
 
