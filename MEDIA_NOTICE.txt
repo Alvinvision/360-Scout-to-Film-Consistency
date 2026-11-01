@@ -1,1 +1,3 @@
 Screenshots and demonstration video: copyright 2026 Alvin Cruz. Provided for viewing and evaluation of this project; not included in the MIT software license. Third-party model/provider terms also apply.
+
+Example panorama assets/CAM_20260924124608_0036_D.JPG: copyright 2026 Alvin Cruz. Provided for download, local testing and evaluation of this project, including extracting reference views and trying the supplied workflows. The panorama is not included in the MIT software license.
