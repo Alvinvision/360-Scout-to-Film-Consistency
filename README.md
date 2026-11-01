@@ -10,7 +10,7 @@ Built by Alvin Cruz for the Open Source Higgsfield challenge, October 2026.
 
 ## Use your own location, references and prompt
 
-Start with your own **2:1 lat-long 360 panorama**. It can be photographed, stitched or digitally created. Upload it in the panorama input, then choose the front direction, field of view and other extraction settings. The default pack creates **five overlapping location views**. You can adjust the views and output size to suit your project.
+Start with your own **2:1 lat-long 360 panorama**. It can be photographed, stitched or digitally created. Upload it in the panorama input, then use the [recommended extractor starting settings](#recommended-extractor-starting-settings) below and choose the front direction. The default pack creates **five overlapping location views**. You can adjust the views and output size to suit your project.
 
 The extractor handles **only the location image and lens settings**. It does not choose the cast or direct the video. Its outputs are location tiles, a contact sheet, a location/lens reference prompt and a manifest.
 
@@ -20,6 +20,20 @@ Edit **SHARED VIDEO PROMPT** in the combined workflow before generating. In the 
 
 You can also make an environment-only video. Disconnect character references from the video model, remove or mute unused character image-input nodes, and remove character directions from the video prompt. Local panorama extraction does not require character references or video generation.
 
+## Recommended extractor starting settings
+
+Choose your reference pack, then start with these settings in **360 Reference Extractor**:
+
+| Control | Recommended starting value |
+| --- | --- |
+| Horizontal field of view | **150°** |
+| Projection style | **Natural Wide** |
+| Natural Wide edge-stretch reduction | **100** |
+
+Enter **150** directly in the FOV number field if the slider stops at 120°. Recheck these values after changing the reference pack or using Reset, since those actions can restore different preset values.
+
+Use this as a starting point, then review the overlapping previews and adjust the front direction, framing and output size for your scene.
+
 ## Demo
 
 58-second narrated explainer: turn a 360° panorama into shared location references for connected AI shots.
@@ -27,8 +41,6 @@ You can also make an environment-only video. Disconnect character references fro
 https://github.com/user-attachments/assets/dcf139a5-4235-41dc-b86b-271f78a25c73
 
 [Open the video](https://github.com/user-attachments/assets/dcf139a5-4235-41dc-b86b-271f78a25c73) · [Download the MP4](https://github.com/user-attachments/assets/dcf139a5-4235-41dc-b86b-271f78a25c73)
-
-![Earlier extractor interface](assets/extractor.jpg)
 
 ## What works
 
@@ -64,7 +76,7 @@ python scripts/make_demo_panorama.py /path/to/ComfyUI/input/osmo360/demo_panoram
 
 Import [360Location_Seedance25_MiniMaxH3_Compare.json](workflows/360Location_Seedance25_MiniMaxH3_Compare.json). Follow the numbered groups from left to right: panorama and lens settings, five location views, character references, shared video prompt, Seedance 2.5 and MiniMax H3. Each model has its own video player and output filename.
 
-1. Upload your panorama once and choose its angles and FOV in the location extractor.
+1. Upload your panorama once and apply the [recommended extractor starting settings](#recommended-extractor-starting-settings): **150° horizontal FOV**, **Natural Wide**, and **edge-stretch reduction 100**. Choose the front direction and review the overlapping views.
 2. Upload your own character references in **CHARACTER A** and **CHARACTER B**. Both models receive these exact same two images after the same five location tiles, in the same order. This graph uses seven image inputs per model.
 3. Edit **SHARED VIDEO PROMPT** once. It feeds both models. Keep images 1–5 for the location, image 6 for Character A and image 7 for Character B. The four-shot, ten-second scene is an editable example.
 4. Use **Preview inputs · local** on the shared prompt node to refresh the panorama, tiles and character thumbnails without requesting video generation.
