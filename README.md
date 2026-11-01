@@ -28,6 +28,14 @@ The extractor handles the location and lens settings. Character identity, action
 
 The extractor also produces a contact sheet, a location/lens reference prompt and a JSON manifest describing the views. The location prompt is available to read or copy; it is **not automatically added to the video prompt** in the supplied workflows.
 
+## Download the example panorama
+
+Try the same source panorama used in the demo: **15,520 × 7,760 pixels, 2:1 JPEG, about 13 MB**.
+
+[**Download the example panorama**](https://github.com/Alvinvision/360-Scout-to-Film-Consistency/raw/refs/heads/main/assets/CAM_20260924124608_0036_D.JPG)
+
+Upload the downloaded JPEG in **SOURCE PANORAMA / upload or swap**, or use **Add panoramas** inside the extractor. Then apply the recommended settings below. Character reference images are not included; use your own when running the video workflows. The panorama is provided for trying and evaluating this project; see [MEDIA_NOTICE.txt](MEDIA_NOTICE.txt).
+
 ## Recommended extractor starting settings
 
 In **Open 360 Reference Extractor**, choose the **Seedance Landscape** reference pack, then apply these recommended values:
@@ -71,7 +79,7 @@ The pack was tested on Apple Silicon macOS with ComfyUI 0.43.0, frontend 1.57.4 
 | [Osmo360_Seedance25_Studio.json](workflows/Osmo360_Seedance25_Studio.json) | A separate Seedance video workflow. |
 | [Osmo360_MiniMaxH3_Studio.json](workflows/Osmo360_MiniMaxH3_Studio.json) | A separate MiniMax video workflow. |
 
-The workflow files contain example filenames and prompts. Source panoramas, character images and completed videos are not included. Replace the image selections with your own files before running. The people and location in the demo are examples, not required inputs.
+The workflow JSON files contain example filenames and prompts; they do not embed images or videos. Use the downloadable example panorama above or your own 2:1 source, and select your own character images before running. The people and location in the demo are examples, not required inputs.
 
 ## Use the combined video workflow
 
@@ -98,7 +106,7 @@ Close the panel and run this extraction-only graph to produce the reference imag
 
 Exports are saved under ComfyUI’s `output/osmo360/` folder. A pack contains clean PNG references, a contact sheet, a location/lens prompt and a JSON manifest. Enable **Include the original 360 panorama in the pack** only if you want a source copy included. The uploaded source stays unchanged. Running the extractor node also writes a pack to disk.
 
-For a first test without your own panorama, run the included generator from the repository folder using ComfyUI’s Python. Replace `/path/to/ComfyUI` with your installation path:
+For a small synthetic setup test, run the included generator from the repository folder using ComfyUI’s Python. Replace `/path/to/ComfyUI` with your installation path:
 
 ```sh
 python scripts/make_demo_panorama.py /path/to/ComfyUI/input/osmo360/demo_panorama.png
