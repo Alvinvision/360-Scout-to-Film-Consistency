@@ -2,29 +2,35 @@
 
 **360 Scout to Film Consistency** helps filmmakers and creators develop connected AI shots from a single 360° panorama, without building and managing a complex 3D scene.
 
-Start with a **2:1 equirectangular (lat-long) panorama**: capture it with a 360 camera, stitch it from traditional photographs, or create it digitally. Inside ComfyUI, the tool turns that image into overlapping perspective references, giving different POVs and generations a shared visual foundation for the location’s layout, architecture, props, and styling.
+Start with a **2:1 equirectangular (lat-long) panorama** captured with a 360 camera, stitched from traditional photographs, or created digitally. Inside ComfyUI, the extractor turns it into overlapping perspective references. Different shots and POVs can use those references to help preserve the location’s layout, architecture, props and visual identity.
 
-Adjust the viewing direction and field of view, then use the references with **Seedance 2.5 and MiniMax H3 in one workflow**, running either model or both to explore your scene. Try it with your own location or designed set, and share your experiments, feedback, and ideas for what comes next.
+The combined workflow sends the same location views, character references and video prompt to **Seedance 2.5 and MiniMax H3**. Run either model or both, then compare the results. Try your own location or designed set and share your experiments, feedback and ideas.
+
+> **Before you run:** Please read the setup and workflow instructions below. The downloaded workflows may open with different extractor values. Apply the [recommended starting settings](#recommended-extractor-starting-settings), select your own images and edit the video prompt before generating.
 
 Built by Alvin Cruz for the Open Source Higgsfield challenge, October 2026.
 
-## Use your own location, references and prompt
+## Demo
 
-Start with your own **2:1 lat-long 360 panorama**. It can be photographed, stitched or digitally created. Upload it in the panorama input, then use the [recommended extractor starting settings](#recommended-extractor-starting-settings) below and choose the front direction. The default pack creates **five overlapping location views**. You can adjust the views and output size to suit your project.
+🔊 58-second narrated explainer: turn a 360° panorama into shared location references for connected AI shots.
+
+https://github.com/user-attachments/assets/dcf139a5-4235-41dc-b86b-271f78a25c73
+
+[Open the video](https://github.com/user-attachments/assets/dcf139a5-4235-41dc-b86b-271f78a25c73) · [Download the MP4](https://github.com/user-attachments/assets/dcf139a5-4235-41dc-b86b-271f78a25c73)
+
+## How it works
+
+The tool has two stages. **Location extraction** runs locally: choose the panorama, viewing direction and lens settings, then preview or export the reference images. **Video generation** uses those images, your character references and your prompt through Comfy’s partner model nodes. Video generation requires internet access, a signed-in Comfy account and workspace credits.
 
 The **source panorama is 2:1**. With the recommended settings below, the **extracted reference images are 16:9 (2048 × 1152)**.
 
-The extractor handles **only the location image and lens settings**. It does not choose the cast or direct the video. Its outputs are location tiles, a contact sheet, a location/lens reference prompt and a manifest.
+The extractor handles the location and lens settings. Character identity, action, camera movement and shot directions belong in the video stage. The supplied video workflows connect **five location views**, followed by **two separate character images**, directly to the model. You do not need to download a ZIP or upload the extracted views again to use them in these workflows.
 
-Add your own **character references or talent references** in the separate image-input nodes at the video stage. These inputs connect directly to the video model, alongside the location tiles. The people and location shown in the demo are examples; you can replace them with your own references after downloading and installing the tool.
-
-Edit **SHARED VIDEO PROMPT** in the combined workflow before generating. In the optional single-model workflows, edit the prompt on the video node. Change the action, scene, camera movement and shot directions to match what you want to make. The included four-shot prompt is a starting point. Keep its image numbers aligned with the references you connect, and use durations and input counts supported by the selected model.
-
-You can also make an environment-only video. Disconnect character references from the video model, remove or mute unused character image-input nodes, and remove character directions from the video prompt. Local panorama extraction does not require character references or video generation.
+The extractor also produces a contact sheet, a location/lens reference prompt and a JSON manifest describing the views. The location prompt is available to read or copy; it is **not automatically added to the video prompt** in the supplied workflows.
 
 ## Recommended extractor starting settings
 
-Choose your reference pack, then start with these settings in **360 Reference Extractor**:
+In **Open 360 Reference Extractor**, choose the **Seedance Landscape** reference pack, then apply these recommended values:
 
 | Control | Recommended starting value |
 | --- | --- |
@@ -36,98 +42,113 @@ Choose your reference pack, then start with these settings in **360 Reference Ex
 | Output size per reference | **2048 × 1152 (16:9)** |
 | Show overlap | **On** |
 
-Review the overlapping previews, then adjust the front direction and framing for your scene.
+Apply these settings yourself after opening a workflow; they may differ from its saved values. Recheck them after changing the reference pack or using **Reset to preset**. Review the overlapping previews, then adjust the front direction and framing for your scene. The overlap guides help you inspect the views; they are not burned into the exported reference PNGs.
 
-## Demo
-
-🔊 58-second narrated explainer: turn a 360° panorama into shared location references for connected AI shots.
-
-https://github.com/user-attachments/assets/dcf139a5-4235-41dc-b86b-271f78a25c73
-
-[Open the video](https://github.com/user-attachments/assets/dcf139a5-4235-41dc-b86b-271f78a25c73) · [Download the MP4](https://github.com/user-attachments/assets/dcf139a5-4235-41dc-b86b-271f78a25c73)
-
-## What works
-
-- Five custom nodes and an interactive browser panel inside ComfyUI.
-- A location-only **360 Location** extractor: front direction, horizontal FOV, pitch, roll, view count and output size.
-- Rectilinear and General Panini (Natural Wide) projections using the same planner for previews and exports.
-- Batch processing, paired captures, overlap review, clean PNGs, contact sheets, prompts, manifests and ZIP downloads.
-- A combined Seedance 2.5 + MiniMax H3 workflow: the same five location tiles, two character references and one editable video prompt feed both models. Separate model workflows remain available.
-- Completed ten-second model demonstrations; generated spatial consistency varies by run.
+Keep **five views** when using the supplied video workflows. Other view counts and output sizes are available for extraction, but changing the number of references used by a video model also requires updating its connections and prompt.
 
 ## Install in an existing ComfyUI
 
-Use a recent ComfyUI installation that includes the Seedance 2.5 and MiniMax H3 partner nodes. Tested with ComfyUI 0.43.0, frontend 1.57.4, Python 3.12.16 on Apple Silicon macOS. The extractor uses CPU projection and does not require a local video model or GPU. Other platforms have not been tested.
+The extractor runs on the CPU and does not require a local generative model. To generate video, your ComfyUI installation must also include the **Seedance 2.5** and **MiniMax H3** partner nodes.
 
 1. Download or clone this repository.
 2. Copy `custom_nodes/comfyui_osmo360` into your `ComfyUI/custom_nodes/` directory.
-3. Install its requirements with the Python interpreter used by ComfyUI:
+3. Install the requirements with the Python interpreter used by ComfyUI. Run this from the repository folder, or replace the requirements path with its installed location:
 
 ```sh
 python -m pip install -r custom_nodes/comfyui_osmo360/requirements.txt
 ```
 
-4. Restart ComfyUI, then refresh its browser page.
-5. Generate the included synthetic example, replacing `/path/to/ComfyUI` with your actual installation:
+4. Restart ComfyUI, then refresh its browser page. Drag one of the workflow JSON files below onto the ComfyUI canvas.
+
+The pack was tested on Apple Silicon macOS with ComfyUI 0.43.0, frontend 1.57.4 and Python 3.12.16. Other platforms have not been tested. It is intended for local or self-hosted ComfyUI; importing the JSON into Comfy Cloud alone does not install this custom node pack.
+
+## Choose a workflow
+
+| Workflow | Use it for |
+| --- | --- |
+| [360Location_Seedance25_MiniMaxH3_Compare.json](workflows/360Location_Seedance25_MiniMaxH3_Compare.json) | One set of images and one editable prompt, with controls to run Seedance, MiniMax or both. |
+| [Osmo360_Extraction_Review.json](workflows/Osmo360_Extraction_Review.json) | Local panorama extraction and a contact sheet, without character inputs or video generation. |
+| [Osmo360_Seedance25_Studio.json](workflows/Osmo360_Seedance25_Studio.json) | A separate Seedance video workflow. |
+| [Osmo360_MiniMaxH3_Studio.json](workflows/Osmo360_MiniMaxH3_Studio.json) | A separate MiniMax video workflow. |
+
+The workflow files contain example filenames and prompts. Source panoramas, character images and completed videos are not included. Replace the image selections with your own files before running. The people and location in the demo are examples, not required inputs.
+
+## Use the combined video workflow
+
+Open **360Location_Seedance25_MiniMaxH3_Compare.json** and follow its numbered groups from left to right.
+
+1. **Choose the location.** Upload or select your 2:1 panorama in **SOURCE PANORAMA / upload or swap**. On the extractor node, click **Open 360 Reference Extractor**. You can also use **Add panoramas** inside that panel. Select your source, apply the recommended settings and drag the panorama preview to choose the front direction. Close the extractor when ready; its settings stay on the workflow node.
+2. **Add the characters.** Upload and select an image in both **CHARACTER A** and **CHARACTER B**. Each should describe the person you want in the scene. Both models receive the same seven images: location views in slots 1–5, Character A in slot 6 and Character B in slot 7. The combined input preview also needs both character files to be selected.
+3. **Write the scene.** Edit **SHARED VIDEO PROMPT**. It feeds both models, so change the scene there rather than in the connected prompt fields on each video node. Describe your action, framing, camera movement and cuts. Keep the image numbers consistent with the reference slots. The included four-shot, ten-second scene is an editable example, not a guarantee of exact shot timing.
+4. **Check the inputs locally.** Click **Preview inputs · local** on the shared prompt node. It refreshes the original panorama, five location tiles and two character previews without requesting video generation. To check only the location, use **Refresh image previews** on the extractor node instead.
+5. **Generate a video.** Sign in to Comfy and select a workspace with credits. Use **Run Seedance · credits**, **Run MiniMax · credits** or **Run both · credits** on the shared prompt node. Review each model’s resolution, duration and seed before running. The supplied combined graph starts at ten seconds for both models; their resolution settings are independent.
+6. **Review and save.** Each model has its own **Save Video** player and output filename. Play or download the completed result, then save the workflow to retain its settings and preview references. Saved previews need their video files to remain available on the ComfyUI instance. Editing the prompt or images does not change an earlier render; run the selected model again to generate a new result.
+
+**The standard ComfyUI Run button runs the full combined workflow, including both video models.** Use the model-specific buttons when you want only one. Video requests send the connected references and prompt to the selected provider and consume the selected Comfy workspace’s credits. Running both queues both outputs; they may execute one after the other.
+
+The combined workflow randomizes each model’s seed after a run by default. You can change that behavior on the video nodes. Matching seed numbers across different models does not make their results equivalent.
+
+![Combined Seedance 2.5 and MiniMax H3 workflow with shared location tiles, character references, prompt and both video previews](assets/workflow.jpg)
+
+## Extract references without generating video
+
+Open **Osmo360_Extraction_Review.json**. On the extractor node, click **Open 360 Reference Extractor**, add your panorama and apply the recommended settings. The panel updates its location previews as you adjust the controls. No character images or Comfy credits are needed for local extraction.
+
+Close the panel and run this extraction-only graph to produce the reference images and contact sheet in ComfyUI. You can also use **Export references** inside the panel to create a pack and show its download link. Downloading the ZIP is optional.
+
+Exports are saved under ComfyUI’s `output/osmo360/` folder. A pack contains clean PNG references, a contact sheet, a location/lens prompt and a JSON manifest. Enable **Include the original 360 panorama in the pack** only if you want a source copy included. The uploaded source stays unchanged. Running the extractor node also writes a pack to disk.
+
+For a first test without your own panorama, run the included generator from the repository folder using ComfyUI’s Python. Replace `/path/to/ComfyUI` with your installation path:
 
 ```sh
 python scripts/make_demo_panorama.py /path/to/ComfyUI/input/osmo360/demo_panorama.png
 ```
 
-6. Drag `workflows/Osmo360_Extraction_Review.json` onto ComfyUI. Open **360 Reference Extractor** on its extractor node to import your own 2:1 panorama and adjust the camera settings. Extract and preview your location references locally. Use **Export references** to download a ZIP if needed. Video generation with Seedance or MiniMax uses Comfy credits.
+Then select `osmo360/demo_panorama.png` in the extractor. This synthetic image is for checking the setup, not a finished location.
 
-## Compare both video models in one workflow
+## Use a separate video workflow
 
-Import [360Location_Seedance25_MiniMaxH3_Compare.json](workflows/360Location_Seedance25_MiniMaxH3_Compare.json). Follow the numbered groups from left to right: panorama and lens settings, five location views, character references, shared video prompt, Seedance 2.5 and MiniMax H3. Each model has its own video player and output filename.
+Open **Osmo360_Seedance25_Studio.json** or **Osmo360_MiniMaxH3_Studio.json**. Select your panorama in **ORIGINAL 360 / upload or swap panorama**, apply the recommended extractor settings, and upload your two character images in **TALENT 1** and **TALENT 2**. Edit the scene prompt directly on the video model node. These graphs do not use the combined workflow’s shared prompt or four run buttons.
 
-1. Upload your panorama once and apply the [recommended extractor starting settings](#recommended-extractor-starting-settings): **115° horizontal FOV**, **Natural Wide**, and **edge-stretch reduction 100**. Choose the front direction and review the overlapping views.
-2. Upload your own character references in **CHARACTER A** and **CHARACTER B**. Both models receive these exact same two images after the same five location tiles, in the same order. This graph uses seven image inputs per model.
-3. Edit **SHARED VIDEO PROMPT** once. It feeds both models. Keep images 1–5 for the location, image 6 for Character A and image 7 for Character B. The four-shot, ten-second scene is an editable example.
-4. Use **Preview inputs · local** on the shared prompt node to refresh the panorama, tiles and character thumbnails without requesting video generation.
-5. Choose **Run Seedance · credits**, **Run MiniMax · credits** or **Run both · credits**. The standard ComfyUI **Run** button runs the full workflow, including both model branches. Both models use the currently selected Comfy workspace account. Model requests consume credits and upload the shared references and prompt to their providers.
+Use **Refresh image previews** on the extractor to check the location locally. Once all image inputs and the prompt are ready, the standard **Run** button generates video with that workflow’s one model and uses Comfy credits. Review the seed behavior on that model node; it can differ between the separate workflows.
 
-The model controls use partial execution to target only the selected video output and its dependencies. Running both submits one workflow with two separate video outputs. Local ComfyUI uses its job queue and may execute the model branches sequentially; this update does not add concurrent execution queues. Change the shared prompt or references to explore another scene; each model retains its own resolution, duration and seed controls. Seeds randomize after a run by default. Matching seed values across different models do not make their results equivalent.
+For an environment-only video, adapt a copy of a separate video workflow: disconnect and delete the two talent input nodes, and remove the character directions from the video prompt. Keep the location references connected. Save the adapted graph separately.
 
-Each video player keeps its latest completed output visible when another model or an input preview is run. Save the workflow after a render to retain the output previews when reopening it. A saved video reflects its original render settings; editing the inputs or prompt does not regenerate it.
+## More extractor options
 
-The portable workflow contains no private panorama, character files, screenshots or completed videos. Generate the synthetic panorama described above or upload your own, then upload and select both character references before running. Generation can change identities or spatial details despite shared references.
+The extractor supports Rectilinear and Natural Wide projections, roll, custom view counts, source profiles and output sizes. **Advanced settings and paired captures** contains the view count, yaw spacing and output dimensions. The supplied five-view layout uses 72° spacing around the panorama.
 
-![Combined Seedance 2.5 and MiniMax H3 workflow with shared location tiles, character references, prompt and both video previews](assets/workflow.jpg)
+Use **Add folder** and **Process every panorama in the queue** for batch exports. Paired capture mode requires two panoramas taken from the same physical camera position and confirmation of that in the panel. Turn off batch mode before using a pair. These options are best explored in the extraction-only workflow; the supplied video graphs are wired for five selected location views.
 
-## Optional single-model workflows
+## Updating and troubleshooting
 
-Import either `Osmo360_Seedance25_Studio.json` or `Osmo360_MiniMaxH3_Studio.json`. Select or upload your panorama in the original panorama node. Use the independent **TALENT 1** and **TALENT 2** image-reference nodes to upload identity references. The extractor processes only the location panorama; edit casting, blocking and shot directions on the video node. Keep five location views first, followed by talent A and talent B. Do not run the video graph with missing talent inputs.
+When updating, replace the installed `comfyui_osmo360` folder, restart ComfyUI and refresh the browser. Importing a newer workflow JSON does not update the extension itself.
 
-Click **Refresh image previews** to check the local reference path. Authenticate with ComfyUI and use a funded workspace before pressing **Run** for the full graph. Partner model generation requires internet access and consumes Comfy credits. Image references and prompts are sent to the selected provider. Model availability and pricing are controlled by Comfy and its providers.
+If **Open 360 Reference Extractor** or the combined run buttons are missing, check that the current custom node pack loaded successfully and refresh the browser. If a partner video node is missing, update ComfyUI and check that the model is available to your account. If an image is missing, upload your own file and select it in the corresponding node; the example filenames do not include the files.
 
-The video nodes use Comfy's current dynamic input schema. The included frontend restores the serialized reference connections after loading. If a graph reports a missing partner node, update ComfyUI and verify partner-node availability for your account. Use the standard Save Video node to play or download the result.
+Version 0.2 moves casting and shot direction out of the extractor when supported older workflows load. Character images connect through separate image inputs, and video prompts stay editable downstream. Save the migrated workflow after checking its inputs. The package directory and internal node names retain `osmo360` for compatibility; the visible extractor is named **360 Location**.
 
-## Upgrade existing workflows
+## Verification
 
-For the combined workflow and its run controls, replace the custom node folder with this version and refresh the ComfyUI browser after restarting. Importing the new workflow JSON alone does not update the frontend extension.
-
-Version 0.2 automatically separates talent and video prompts when older UI workflows load. Location extraction has four outputs: references, contact sheet, location/lens prompt and manifest. Talent images connect to the video model through independent image-reference nodes. Re-save the migrated graph. Internal node identifiers and the `comfyui_osmo360` installation directory stay stable for compatibility.
-
-## Verify
-
-From the repository root, with dependencies and ComfyUI's torch/aiohttp available:
+From the repository folder, using a Python environment with the pack’s dependencies, PyTorch and aiohttp:
 
 ```sh
 PYTHONDONTWRITEBYTECODE=1 python -m unittest discover -s custom_nodes/comfyui_osmo360/tests -v
 ```
 
-Check the combined workflow wiring and model selections with Node.js:
+With Node.js installed:
 
 ```sh
 node custom_nodes/comfyui_osmo360/tests/test_comparison_workflow.mjs workflows/360Location_Seedance25_MiniMaxH3_Compare.json
+node custom_nodes/comfyui_osmo360/tests/test_workflow_migration.mjs
 ```
 
-The combined workflow checks cover identical image references, the shared prompt, valid links and separate execution targets for input previews, each model and both models. Local input-only execution and both completed video players were also verified without starting an additional paid render.
+All 14 backend tests and the comparison and migration checks passed during the README review. The comparison checks confirm that both models receive identical image connections and the same prompt, that each model can be targeted separately, and that the input-preview targets exclude video generation. All four supplied workflows also passed link and reference-connection checks after migration.
 
-Fourteen backend checks passed on the development Mac. Tests cover projection, seams, profiles, tensor selection, complete exports, source preservation, confined paths, concurrent previews, cancellation and a location-only extractor contract. Real-image comparisons against the native V3 renderer had mean RGB errors below 0.36/255 across seven cases.
+Earlier local ComfyUI checks confirmed that input previews ran without executing a video model and that saved video previews could be restored. No new paid video generation was run for this README review.
 
 ## Limits and licenses
 
-This is a local/self-hosted custom pack. It has not been deployed to official Comfy Cloud; importing a workflow does not install a custom node pack there. Panoramas supply image references, not measured 3D geometry. Camera translation, performer identity, exact shot timing and unseen surfaces remain generative. HDR metadata is not automatically detected; exports are SDR RGB and pairing does not fuse HDR.
+The references guide the video models; they are not a measured 3D reconstruction. Layout, identity, hidden surfaces, camera translation and exact cuts can still vary between generations. HDR metadata is not automatically detected, exports are SDR RGB, and paired captures do not fuse HDR.
 
-Original code is MIT licensed; adapted Comfy workflow templates retain their MIT notice in `TEMPLATE_LICENSE`. Third-party models and services retain their own licenses and terms. Example screenshots and the demonstration video are review media and are excluded from the software MIT grant. Private source panoramas and performer source images are not distributed. Use your own permitted inputs or the included synthetic panorama.
+Original code is MIT licensed. Adapted Comfy templates retain their MIT notice in `TEMPLATE_LICENSE`; third-party models and services retain their own terms. Screenshots and demo videos are viewing and evaluation media excluded from the software MIT grant; see [MEDIA_NOTICE.txt](MEDIA_NOTICE.txt). Use your own permitted source images and character references, or the synthetic panorama for a local test.
