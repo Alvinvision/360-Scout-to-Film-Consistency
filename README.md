@@ -12,6 +12,8 @@ Built by Alvin Cruz for the Open Source Higgsfield challenge, October 2026.
 
 Start with your own **2:1 lat-long 360 panorama**. It can be photographed, stitched or digitally created. Upload it in the panorama input, then use the [recommended extractor starting settings](#recommended-extractor-starting-settings) below and choose the front direction. The default pack creates **five overlapping location views**. You can adjust the views and output size to suit your project.
 
+The **2:1 ratio applies to the source panorama**, not the extracted perspective references. The recommended output below is **2048 × 1152 (16:9)** per reference. Check each source panorama’s pixel dimensions before importing: its width should be twice its height.
+
 The extractor handles **only the location image and lens settings**. It does not choose the cast or direct the video. Its outputs are location tiles, a contact sheet, a location/lens reference prompt and a manifest.
 
 Add your own **character references or talent references** in the separate image-input nodes at the video stage. These inputs connect directly to the video model, alongside the location tiles. The people and location shown in the demo are examples; you can replace them with your own references after downloading and installing the tool.
@@ -26,11 +28,14 @@ Choose your reference pack, then start with these settings in **360 Reference Ex
 
 | Control | Recommended starting value |
 | --- | --- |
-| Horizontal field of view | **150°** |
+| Horizontal field of view | **115°** |
 | Projection style | **Natural Wide** |
 | Natural Wide edge-stretch reduction | **100** |
+| Pitch | **0°** |
+| View count | **5** |
+| Output size per reference | **2048 × 1152 (16:9)** |
 
-Enter **150** directly in the FOV number field if the slider stops at 120°. Recheck these values after changing the reference pack or using Reset, since those actions can restore different preset values.
+Select **115°** using the FOV quick button or number field. Turn on **Show overlap** to inspect the shared areas between views. Recheck the settings after changing the reference pack or using Reset.
 
 Use this as a starting point, then review the overlapping previews and adjust the front direction, framing and output size for your scene.
 
@@ -76,7 +81,7 @@ python scripts/make_demo_panorama.py /path/to/ComfyUI/input/osmo360/demo_panoram
 
 Import [360Location_Seedance25_MiniMaxH3_Compare.json](workflows/360Location_Seedance25_MiniMaxH3_Compare.json). Follow the numbered groups from left to right: panorama and lens settings, five location views, character references, shared video prompt, Seedance 2.5 and MiniMax H3. Each model has its own video player and output filename.
 
-1. Upload your panorama once and apply the [recommended extractor starting settings](#recommended-extractor-starting-settings): **150° horizontal FOV**, **Natural Wide**, and **edge-stretch reduction 100**. Choose the front direction and review the overlapping views.
+1. Upload your panorama once and apply the [recommended extractor starting settings](#recommended-extractor-starting-settings): **115° horizontal FOV**, **Natural Wide**, and **edge-stretch reduction 100**. Choose the front direction and review the overlapping views.
 2. Upload your own character references in **CHARACTER A** and **CHARACTER B**. Both models receive these exact same two images after the same five location tiles, in the same order. This graph uses seven image inputs per model.
 3. Edit **SHARED VIDEO PROMPT** once. It feeds both models. Keep images 1–5 for the location, image 6 for Character A and image 7 for Character B. The four-shot, ten-second scene is an editable example.
 4. Use **Preview inputs · local** on the shared prompt node to refresh the panorama, tiles and character thumbnails without requesting video generation.
