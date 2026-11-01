@@ -1,41 +1,58 @@
 # 360 Location Extractor for ComfyUI
 
-Turn any stitched **2:1 equirectangular (lat-long) panorama** into overlapping perspective references. The source can come from any 360 camera, a stitched photographic panorama, or a digitally created environment.
+Turn a stitched **2:1 equirectangular (lat-long) panorama** into overlapping perspective references inside ComfyUI. The source can come from a 360 camera, stitched traditional photographs or a digitally created environment. With the recommended settings, extracted references are **2048 × 1152 (16:9)**.
 
-The extractor processes the location image only: panorama/folder import, source queue, front direction, FOV, pitch, roll, projection, Natural Wide strength, overlap review, source profiles, paired captures, output sizing and batch export. Preview and export share the same camera planner. Originals remain unchanged.
+**Please read the [main README](../../README.md) before running a workflow.** It contains installation steps, the recommended **115° FOV / Natural Wide / edge-stretch reduction 100** settings, and instructions for the local preview and paid video controls. The workflow files may open with different extractor values; apply the recommendations yourself.
 
-## Install
+## Install and open
 
-Copy `comfyui_osmo360` into `ComfyUI/custom_nodes/`, install `requirements.txt` with ComfyUI's Python, and restart ComfyUI and refresh the browser. Open **360 Location → Images → 360 Location Extractor**, then **Open 360 Reference Extractor**. Torch and aiohttp come from ComfyUI. HEIC requires pillow-heif and supported platform dependencies. This is a local/self-hosted custom pack; importing a workflow into official Comfy Cloud does not install it there.
+Copy `comfyui_osmo360` into `ComfyUI/custom_nodes/`, install its `requirements.txt` with ComfyUI’s Python, restart ComfyUI and refresh the browser. PyTorch and aiohttp are supplied by ComfyUI. HEIC support depends on pillow-heif and its platform decoder.
+
+Import a workflow from the repository’s `workflows/` folder. On **360 Location Extractor**, click **Open 360 Reference Extractor** to add a panorama, choose the front direction, adjust lens settings and inspect overlapping previews. The panel can also export reference packs. The original source stays unchanged.
 
 ## Location outputs
 
-`Osmo360ReferencePack` returns exactly four outputs:
+`Osmo360ReferencePack` has four outputs:
 
-- `references`: a batch of clean perspective images.
-- `contact_sheet`: a visual overview of the location views.
-- `reference_prompt`: viewing directions, lens/FOV information, and relationships between the location references.
-- `manifest`: camera geometry, source metadata and view filenames as JSON.
+| Output | Contents |
+| --- | --- |
+| `references` | Clean perspective images, grouped per panorama. |
+| `contact_sheet` | An overview of the extracted views. |
+| `reference_prompt` | Location viewing directions and lens information as text. |
+| `manifest` | Camera settings, source metadata and view filenames as JSON. |
 
-`Osmo360PanoramaInput` previews the original panorama and supports upload/file selection. `Osmo360SelectView` selects a zero-based tile and displays it inline. Batch processing maps outputs per panorama.
+`Osmo360PanoramaInput` selects and previews the source panorama. `Osmo360SelectView` selects a reference by its zero-based index. `LocationReferenceImage` loads a separate image for the video stage. The optional `Osmo360DialoguePrompt` is a legacy video-prompt helper, not part of the supplied combined workflow.
 
-Talent, casting, actor blocking and shot timing belong to the **video stage**. The Seedance 2.5 and MiniMax H3 examples use independent **Image Reference / Upload** nodes for talent A and B, connected directly to model reference slots after the five location tiles. Edit the shot prompt on the video node. The extractor neither reads talent files nor generates a talent/shot prompt. Its **Refresh image previews** button runs only local location processing.
+The extractor does not choose the cast or direct the video. In the supplied video graphs, five location views connect directly to the video model, followed by two independent character images. A ZIP download is not needed to pass those images downstream. The extractor’s location prompt is available to copy; the video graphs do not automatically include it in their generation prompt.
 
-## Upgrade from 0.1
+## Preview and generate
 
-Version 0.2 migrates older saved UI workflows when they load: old extractor talent outputs become independent image-reference nodes, and old shot-prompt links move to editable video-node text. Existing inline prompts, identity file selections and saved render previews are retained. Re-save the migrated graph. Internal node IDs, package directory and API routes keep their original names for workflow compatibility; displayed branding is **360 Location**. The optional legacy dialogue helper is a separate video-prompt node. The independent image input accepts existing files in Comfy input subfolders as well as new uploads.
+**Refresh image previews** on the extractor runs the local location nodes. In the combined workflow, **Preview inputs · local** on **SHARED VIDEO PROMPT** also previews both character inputs, so those files must be selected first. Neither action requests video generation.
 
-## Export and verification
+For the combined workflow, edit **SHARED VIDEO PROMPT** and use **Run Seedance · credits**, **Run MiniMax · credits** or **Run both · credits**. Standard ComfyUI **Run** executes both branches. In the separate model workflows, edit the prompt on the video node and use standard **Run** for that one model. Video generation requires Comfy sign-in, internet access and workspace credits; connected references and prompts are sent to the provider.
 
-Exports go beneath Comfy's output `osmo360/` directory. ZIPs contain clean PNGs, contact sheet, location/lens prompt, manifest and optional exact source copies. Uploads stay inside Comfy input. Incomplete exports are marked `INCOMPLETE.txt`. No API key is stored in the extension.
+## Exports and advanced options
+
+Packs are saved under ComfyUI’s `output/osmo360/` directory. They contain clean PNGs, a contact sheet, a location/lens prompt, a manifest and optional source copies. Use **Export references** in the panel to create a pack and show its download link. Executing the extractor node also writes a pack to disk. Incomplete exports are marked `INCOMPLETE.txt`.
+
+Batch export, paired captures, custom view counts and output sizing are available in the extractor. Paired captures must share the same physical camera position; batch mode must be off when using a pair. The supplied video workflows select five location views, so use the extraction-only graph when exploring other pack layouts.
+
+## Update and verify
+
+Replace the installed pack, restart ComfyUI and refresh the browser when updating. Version 0.2 migrates supported older workflows by moving character images into separate inputs and leaving video prompts editable downstream. Check the resulting graph and save it. Internal `osmo360` node and route names remain for compatibility.
+
+Run these commands from the repository root, using a Python environment with the dependencies, PyTorch and aiohttp, plus Node.js for the JavaScript checks:
 
 ```sh
 PYTHONDONTWRITEBYTECODE=1 python -m unittest discover -s custom_nodes/comfyui_osmo360/tests -v
+node custom_nodes/comfyui_osmo360/tests/test_comparison_workflow.mjs workflows/360Location_Seedance25_MiniMaxH3_Compare.json
 node custom_nodes/comfyui_osmo360/tests/test_workflow_migration.mjs
 ```
 
-Fourteen Python checks cover projection, seams, profiles, tensor selection, complete exports, source preservation, confined paths, concurrent previews, cancellation, and the location-only extraction contract. JavaScript migration checks cover independent talent wiring, prompt separation, retained lens values, preview preservation and repeat loads. Seven earlier comparisons against native V3 had mean RGB differences below 0.36/255.
+All 14 backend tests and the comparison and migration checks passed during the README review. No new paid video generation was run for that review.
 
 ## Limits
 
-Tested on Apple Silicon macOS with ComfyUI 0.43.0, frontend 1.57.4 and Python 3.12.16. Other platforms have not been tested. A single panorama is not measured 3D geometry: video camera translations and hidden surfaces remain generative. HDR metadata is not automatically detected; exports are SDR RGB and paired captures do not fuse HDR. Paired captures must share the same physical position. Preview enlargement uses a bounded image rather than decoding the full source in the browser. Partner video generation requires Comfy sign-in, internet access and credits.
+Tested on Apple Silicon macOS with ComfyUI 0.43.0, frontend 1.57.4 and Python 3.12.16. The extractor uses CPU projection. Other platforms have not been tested. This is a local/self-hosted custom pack; importing JSON into Comfy Cloud does not install it there.
+
+A panorama supplies visual references, not measured 3D geometry. Video layout, identity, translated camera views, hidden surfaces and shot timing can vary. HDR metadata is not automatically detected, exports are SDR RGB and paired captures do not fuse HDR. See the [main README](../../README.md#limits-and-licenses) for licenses and media terms.
