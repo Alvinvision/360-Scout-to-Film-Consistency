@@ -22,13 +22,11 @@ You can also make an environment-only video. Disconnect character references fro
 
 ## Demo
 
-64-second captioned walkthrough: the extractor interface, overlapping reference export, ComfyUI workflow wiring, and completed Seedance 2.5 and MiniMax H3 clips.
+58-second narrated explainer: turn a 360° panorama into shared location references for connected AI shots.
 
-https://github.com/user-attachments/assets/2b4903ff-5f03-4450-870f-c5276b74c5e2
+https://github.com/user-attachments/assets/dcf139a5-4235-41dc-b86b-271f78a25c73
 
-[Open the video](https://github.com/user-attachments/assets/2b4903ff-5f03-4450-870f-c5276b74c5e2) · [Download the MP4](https://github.com/Alvinvision/360-Scout-to-Film-Consistency/raw/refs/heads/main/assets/demo.mp4)
-
-The walkthrough and extractor screenshot show the earlier interface. Version 0.2 removes casting and shot controls from the extractor; those now live downstream in the video workflow.
+[Open the video](https://github.com/user-attachments/assets/dcf139a5-4235-41dc-b86b-271f78a25c73) · [Download the MP4](https://github.com/user-attachments/assets/dcf139a5-4235-41dc-b86b-271f78a25c73)
 
 ![Earlier extractor interface](assets/extractor.jpg)
 
