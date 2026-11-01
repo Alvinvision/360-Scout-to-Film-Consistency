@@ -4,6 +4,8 @@ Turn a stitched **2:1 equirectangular (lat-long) panorama** into overlapping per
 
 **Please read the [main README](../../README.md) before running a workflow.** It contains installation steps, the recommended **115° FOV / Natural Wide / edge-stretch reduction 100** settings, and instructions for the local preview and paid video controls. The workflow files may open with different extractor values; apply the recommendations yourself.
 
+[Download the example 2:1 panorama](https://github.com/Alvinvision/360-Scout-to-Film-Consistency/raw/refs/heads/main/assets/CAM_20260924124608_0036_D.JPG) to try the same location as the demo. Upload the JPEG in the panorama input or through **Add panoramas**, then apply the recommended settings. Character images are not supplied. The panorama is provided for trying and evaluating this project; see the repository’s [media notice](../../MEDIA_NOTICE.txt).
+
 ## Install and open
 
 Copy `comfyui_osmo360` into `ComfyUI/custom_nodes/`, install its `requirements.txt` with ComfyUI’s Python, restart ComfyUI and refresh the browser. PyTorch and aiohttp are supplied by ComfyUI. HEIC support depends on pillow-heif and its platform decoder.
