@@ -12,7 +12,7 @@ Built by Alvin Cruz for the Open Source Higgsfield challenge, October 2026.
 
 Start with your own **2:1 lat-long 360 panorama**. It can be photographed, stitched or digitally created. Upload it in the panorama input, then use the [recommended extractor starting settings](#recommended-extractor-starting-settings) below and choose the front direction. The default pack creates **five overlapping location views**. You can adjust the views and output size to suit your project.
 
-The **2:1 ratio applies to the source panorama**, not the extracted perspective references. The recommended output below is **2048 × 1152 (16:9)** per reference. Check each source panorama’s pixel dimensions before importing: its width should be twice its height.
+The **source panorama is 2:1**. With the recommended settings below, the **extracted reference images are 16:9 (2048 × 1152)**.
 
 The extractor handles **only the location image and lens settings**. It does not choose the cast or direct the video. Its outputs are location tiles, a contact sheet, a location/lens reference prompt and a manifest.
 
@@ -34,10 +34,9 @@ Choose your reference pack, then start with these settings in **360 Reference Ex
 | Pitch | **0°** |
 | View count | **5** |
 | Output size per reference | **2048 × 1152 (16:9)** |
+| Show overlap | **On** |
 
-Select **115°** using the FOV quick button or number field. Turn on **Show overlap** to inspect the shared areas between views. Recheck the settings after changing the reference pack or using Reset.
-
-Use this as a starting point, then review the overlapping previews and adjust the front direction, framing and output size for your scene.
+Review the overlapping previews, then adjust the front direction and framing for your scene.
 
 ## Demo
 
