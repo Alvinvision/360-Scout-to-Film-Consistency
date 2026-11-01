@@ -74,7 +74,7 @@ python -m pip install -r custom_nodes/comfyui_osmo360/requirements.txt
 python scripts/make_demo_panorama.py /path/to/ComfyUI/input/osmo360/demo_panorama.png
 ```
 
-6. Drag `workflows/Osmo360_Extraction_Review.json` onto ComfyUI. Run it to extract five views and a contact sheet. Open **360 Reference Extractor** on its extractor node to change camera settings, import your own 2:1 panorama and export a ZIP. This extraction-only graph makes no paid API call.
+6. Drag `workflows/Osmo360_Extraction_Review.json` onto ComfyUI. Open **360 Reference Extractor** on its extractor node to import your own 2:1 panorama and adjust the camera settings. Extract and preview your location references locally. Use **Export references** to download a ZIP if needed. Video generation with Seedance or MiniMax uses Comfy credits.
 
 ## Compare both video models in one workflow
 
