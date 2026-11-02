@@ -1,12 +1,69 @@
 {
-  "id": "fcf993e6-bea2-4036-88c0-85baa17ba351",
+  "id": "d41d0666-1ca2-4009-98f4-8bf9ec5ff290",
   "revision": 0,
-  "last_node_id": 1046,
-  "last_link_id": 17,
+  "last_node_id": 2046,
+  "last_link_id": 202,
   "nodes": [
     {
-      "id": 1010,
-      "type": "ByteDance2ReferenceNodeV2",
+      "id": 2025,
+      "type": "Location360PanoramaInput",
+      "pos": [
+        0,
+        0
+      ],
+      "size": [
+        400,
+        300
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "image",
+          "name": "image",
+          "type": "COMBO",
+          "widget": {
+            "name": "image"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "upload",
+          "name": "upload",
+          "type": "IMAGEUPLOAD",
+          "widget": {
+            "name": "upload"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "panorama_path",
+          "name": "panorama_path",
+          "type": "STRING",
+          "links": [
+            200
+          ]
+        }
+      ],
+      "title": "ORIGINAL 360 / upload or swap panorama",
+      "properties": {
+        "Node name for S&R": "Location360PanoramaInput"
+      },
+      "widgets_values": [
+        "location360/demo_panorama.png",
+        "image"
+      ],
+      "widgets_values_named": {
+        "image": "location360/demo_panorama.png",
+        "upload": "image"
+      }
+    },
+    {
+      "id": 2010,
+      "type": "MinimaxHailuo03ReferenceNode",
       "pos": [
         1180,
         0
@@ -65,33 +122,6 @@
           "link": null
         },
         {
-          "localized_name": "generate_audio",
-          "name": "model.generate_audio",
-          "type": "BOOLEAN",
-          "widget": {
-            "name": "model.generate_audio"
-          },
-          "link": null
-        },
-        {
-          "localized_name": "task_type",
-          "name": "model.task_type",
-          "type": "COMBO",
-          "widget": {
-            "name": "model.task_type"
-          },
-          "link": null
-        },
-        {
-          "localized_name": "output_format",
-          "name": "model.output_format",
-          "type": "COMBO",
-          "widget": {
-            "name": "model.output_format"
-          },
-          "link": null
-        },
-        {
           "localized_name": "image_1",
           "name": "model.reference_images.image_1",
           "shape": 7,
@@ -131,14 +161,14 @@
           "name": "model.reference_images.image_6",
           "shape": 7,
           "type": "IMAGE",
-          "link": 7
+          "link": 201
         },
         {
           "localized_name": "image_7",
           "name": "model.reference_images.image_7",
           "shape": 7,
           "type": "IMAGE",
-          "link": 8
+          "link": 202
         },
         {
           "localized_name": "image_8",
@@ -155,6 +185,13 @@
           "link": null
         },
         {
+          "localized_name": "video_2",
+          "name": "model.reference_videos.video_2",
+          "shape": 7,
+          "type": "VIDEO",
+          "link": null
+        },
+        {
           "localized_name": "audio_1",
           "name": "model.reference_audios.audio_1",
           "shape": 7,
@@ -162,30 +199,10 @@
           "link": null
         },
         {
-          "localized_name": "asset_1",
-          "name": "model.reference_assets.asset_1",
+          "localized_name": "audio_2",
+          "name": "model.reference_audios.audio_2",
           "shape": 7,
-          "type": "STRING",
-          "link": null
-        },
-        {
-          "localized_name": "auto_downscale",
-          "name": "model.auto_downscale",
-          "shape": 7,
-          "type": "BOOLEAN",
-          "widget": {
-            "name": "model.auto_downscale"
-          },
-          "link": null
-        },
-        {
-          "localized_name": "auto_upscale",
-          "name": "model.auto_upscale",
-          "shape": 7,
-          "type": "BOOLEAN",
-          "widget": {
-            "name": "model.auto_upscale"
-          },
+          "type": "AUDIO",
           "link": null
         },
         {
@@ -215,84 +232,68 @@
           "links": [
             9
           ]
-        },
-        {
-          "localized_name": "draft_task_id",
-          "name": "draft_task_id",
-          "type": "STRING",
-          "links": []
         }
       ],
-      "title": "Seedance 2.5 / 4 shots / 10 seconds",
+      "title": "MiniMax H3 / 4 shots / 10 seconds",
       "properties": {
-        "Node name for S&R": "ByteDance2ReferenceNodeV2",
-        "osmo360Managed": true,
-        "osmo360Bindings": {
+        "Node name for S&R": "MinimaxHailuo03ReferenceNode",
+        "location360Managed": true,
+        "location360Bindings": {
           "model.reference_images.image_1": {
-            "node": 1040,
+            "node": 2040,
             "slot": 0
           },
           "model.reference_images.image_2": {
-            "node": 1041,
+            "node": 2041,
             "slot": 0
           },
           "model.reference_images.image_3": {
-            "node": 1042,
+            "node": 2042,
             "slot": 0
           },
           "model.reference_images.image_4": {
-            "node": 1043,
+            "node": 2043,
             "slot": 0
           },
           "model.reference_images.image_5": {
-            "node": 1044,
+            "node": 2044,
             "slot": 0
           },
           "model.reference_images.image_6": {
-            "node": 1045,
+            "node": 2045,
             "slot": 0
           },
           "model.reference_images.image_7": {
-            "node": 1046,
+            "node": 2046,
             "slot": 0
           }
         }
       },
       "widgets_values": [
-        "Seedance 2.5",
+        "MiniMax H3",
         "Create one 10-second cinematic video with exactly four shots and three cuts. Images 1–5 are overlapping directions of one location. Preserve its architecture, vehicles, props and daylight. Image 6 is Talent A and image 7 is Talent B; each identity sheet describes one person. Match their faces and wardrobe. Keep both people on fixed marks facing each other. Shot 1, 0–3s: wide two-person establishing pan. Shot 2, 3–5s: three-quarter over Talent A's shoulder onto Talent B. Shot 3, 5–7s: reverse over Talent B's shoulder onto Talent A. Shot 4, 7–10s: one continuous camera arc across their dialogue axis, ending in a wider environment pan with both people still visible. Keep the same physical location and actor positions through every cut. Full-frame live-action footage, no collage or text.",
-        "720p",
+        "768P",
         "16:9",
         10,
-        false,
-        "reference",
-        "mp4",
-        true,
-        false,
         424242,
-        "randomize",
+        "fixed",
         false
       ],
       "widgets_values_named": {
-        "model": "Seedance 2.5",
+        "model": "MiniMax H3",
         "model.prompt": "Create one 10-second cinematic video with exactly four shots and three cuts. Images 1–5 are overlapping directions of one location. Preserve its architecture, vehicles, props and daylight. Image 6 is Talent A and image 7 is Talent B; each identity sheet describes one person. Match their faces and wardrobe. Keep both people on fixed marks facing each other. Shot 1, 0–3s: wide two-person establishing pan. Shot 2, 3–5s: three-quarter over Talent A's shoulder onto Talent B. Shot 3, 5–7s: reverse over Talent B's shoulder onto Talent A. Shot 4, 7–10s: one continuous camera arc across their dialogue axis, ending in a wider environment pan with both people still visible. Keep the same physical location and actor positions through every cut. Full-frame live-action footage, no collage or text.",
-        "model.resolution": "720p",
+        "model.resolution": "768P",
         "model.ratio": "16:9",
         "model.duration": 10,
-        "model.generate_audio": false,
-        "model.task_type": "reference",
-        "model.output_format": "mp4",
-        "model.auto_downscale": true,
-        "model.auto_upscale": false,
         "seed": 424242,
-        "control_after_generate": "randomize",
+        "control_after_generate": "fixed",
         "watermark": false
       },
       "color": "#432",
       "bgcolor": "#653"
     },
     {
-      "id": 1020,
+      "id": 2020,
       "type": "SaveVideo",
       "pos": [
         1180,
@@ -358,81 +359,24 @@
           "links": []
         }
       ],
-      "title": "FINAL VIDEO / Seedance 2.5 / playback + download",
+      "title": "FINAL VIDEO / MiniMax H3 / playback + download",
       "properties": {},
       "widgets_values": [
-        "osmo360/Demo/seedance25",
+        "location360/video/MiniMaxH3",
         "auto",
         "auto",
         "auto"
       ],
       "widgets_values_named": {
-        "filename_prefix": "osmo360/L001/Osmo360_seedance25_Brais_Noa_4shots_10s",
+        "filename_prefix": "location360/L001/Location360_minimax_h3_Brais_Noa_4shots_10s",
         "format": "auto",
         "format.codec": "auto",
         "codec": "auto"
       }
     },
     {
-      "id": 1025,
-      "type": "Osmo360PanoramaInput",
-      "pos": [
-        0,
-        0
-      ],
-      "size": [
-        400,
-        300
-      ],
-      "flags": {},
-      "order": 0,
-      "mode": 0,
-      "inputs": [
-        {
-          "localized_name": "image",
-          "name": "image",
-          "type": "COMBO",
-          "widget": {
-            "name": "image"
-          },
-          "link": null
-        },
-        {
-          "localized_name": "upload",
-          "name": "upload",
-          "type": "IMAGEUPLOAD",
-          "widget": {
-            "name": "upload"
-          },
-          "link": null
-        }
-      ],
-      "outputs": [
-        {
-          "localized_name": "panorama_path",
-          "name": "panorama_path",
-          "type": "STRING",
-          "links": [
-            10
-          ]
-        }
-      ],
-      "title": "ORIGINAL 360 / upload or swap panorama",
-      "properties": {
-        "Node name for S&R": "Osmo360PanoramaInput"
-      },
-      "widgets_values": [
-        "osmo360/demo_panorama.png",
-        "image"
-      ],
-      "widgets_values_named": {
-        "image": "osmo360/CAM_20260924124608_0036_D.JPG",
-        "upload": "image"
-      }
-    },
-    {
-      "id": 1030,
-      "type": "Osmo360ReferencePack",
+      "id": 2030,
+      "type": "Location360ReferencePack",
       "pos": [
         0,
         350
@@ -452,7 +396,7 @@
           "widget": {
             "name": "panorama"
           },
-          "link": 10
+          "link": 200
         },
         {
           "localized_name": "preset",
@@ -714,11 +658,11 @@
           "shape": 6,
           "type": "IMAGE",
           "links": [
+            10,
             11,
             12,
             13,
-            14,
-            15
+            14
           ]
         },
         {
@@ -745,16 +689,16 @@
       ],
       "title": "360 LOCATION EXTRACTOR / image and lens controls",
       "properties": {
-        "Node name for S&R": "Osmo360ReferencePack"
+        "Node name for S&R": "Location360ReferencePack"
       },
       "widgets_values": [
-        "osmo360/demo_panorama.png",
+        "",
         "Seedance Landscape",
         0,
-        100,
+        115,
         0,
         0,
-        "Rectilinear",
+        "Natural Wide",
         100,
         2048,
         1152,
@@ -775,10 +719,10 @@
         "panorama": "",
         "preset": "Seedance Landscape",
         "yaw_zero": 0,
-        "fov": 100,
+        "fov": 115,
         "pitch": 0,
         "roll": 0,
-        "projection": "Rectilinear",
+        "projection": "Natural Wide",
         "strength": 100,
         "width": 2048,
         "height": 1152,
@@ -793,12 +737,12 @@
         "pair_secondary": "",
         "pair_same_position": false,
         "process_all": false,
-        "queue_json": "[{\"filename\": \"CAM_20260924124608_0036_D.JPG\", \"width\": 15520, \"height\": 7760, \"profile\": \"120MP DETAIL\", \"hdr_status\": \"unknown\", \"hdr_evidence\": null, \"orientation\": 1, \"projection\": \"equirectangular\", \"path\": \"osmo360/CAM_20260924124608_0036_D.JPG\", \"display_name\": \"CAM_20260924124608_0036_D.JPG\", \"yaw_zero\": 0}]"
+        "queue_json": "[]"
       }
     },
     {
-      "id": 1040,
-      "type": "Osmo360SelectView",
+      "id": 2040,
+      "type": "Location360SelectView",
       "pos": [
         480,
         0
@@ -809,6 +753,58 @@
       ],
       "flags": {},
       "order": 2,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "references",
+          "name": "references",
+          "type": "IMAGE",
+          "link": 10
+        },
+        {
+          "localized_name": "view_index",
+          "name": "view_index",
+          "type": "INT",
+          "widget": {
+            "name": "view_index"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "reference_image",
+          "name": "reference_image",
+          "type": "IMAGE",
+          "links": [
+            2
+          ]
+        }
+      ],
+      "title": "TILE 01 / yaw 000°",
+      "properties": {
+        "Node name for S&R": "Location360SelectView"
+      },
+      "widgets_values": [
+        0
+      ],
+      "widgets_values_named": {
+        "view_index": 0
+      }
+    },
+    {
+      "id": 2041,
+      "type": "Location360SelectView",
+      "pos": [
+        820,
+        0
+      ],
+      "size": [
+        320,
+        270
+      ],
+      "flags": {},
+      "order": 3,
       "mode": 0,
       "inputs": [
         {
@@ -833,34 +829,34 @@
           "name": "reference_image",
           "type": "IMAGE",
           "links": [
-            2
+            3
           ]
         }
       ],
-      "title": "TILE 01 / yaw 000°",
+      "title": "TILE 02 / yaw 072°",
       "properties": {
-        "Node name for S&R": "Osmo360SelectView"
+        "Node name for S&R": "Location360SelectView"
       },
       "widgets_values": [
-        0
+        1
       ],
       "widgets_values_named": {
-        "view_index": 0
+        "view_index": 1
       }
     },
     {
-      "id": 1041,
-      "type": "Osmo360SelectView",
+      "id": 2042,
+      "type": "Location360SelectView",
       "pos": [
-        820,
-        0
+        480,
+        290
       ],
       "size": [
         320,
         270
       ],
       "flags": {},
-      "order": 3,
+      "order": 4,
       "mode": 0,
       "inputs": [
         {
@@ -885,26 +881,26 @@
           "name": "reference_image",
           "type": "IMAGE",
           "links": [
-            3
+            4
           ]
         }
       ],
-      "title": "TILE 02 / yaw 072°",
+      "title": "TILE 03 / yaw 144°",
       "properties": {
-        "Node name for S&R": "Osmo360SelectView"
+        "Node name for S&R": "Location360SelectView"
       },
       "widgets_values": [
-        1
+        2
       ],
       "widgets_values_named": {
-        "view_index": 1
+        "view_index": 2
       }
     },
     {
-      "id": 1042,
-      "type": "Osmo360SelectView",
+      "id": 2043,
+      "type": "Location360SelectView",
       "pos": [
-        480,
+        820,
         290
       ],
       "size": [
@@ -912,7 +908,7 @@
         270
       ],
       "flags": {},
-      "order": 4,
+      "order": 5,
       "mode": 0,
       "inputs": [
         {
@@ -937,34 +933,34 @@
           "name": "reference_image",
           "type": "IMAGE",
           "links": [
-            4
+            5
           ]
         }
       ],
-      "title": "TILE 03 / yaw 144°",
+      "title": "TILE 04 / yaw 216°",
       "properties": {
-        "Node name for S&R": "Osmo360SelectView"
+        "Node name for S&R": "Location360SelectView"
       },
       "widgets_values": [
-        2
+        3
       ],
       "widgets_values_named": {
-        "view_index": 2
+        "view_index": 3
       }
     },
     {
-      "id": 1043,
-      "type": "Osmo360SelectView",
+      "id": 2044,
+      "type": "Location360SelectView",
       "pos": [
-        820,
-        290
+        480,
+        580
       ],
       "size": [
         320,
         270
       ],
       "flags": {},
-      "order": 5,
+      "order": 6,
       "mode": 0,
       "inputs": [
         {
@@ -989,65 +985,13 @@
           "name": "reference_image",
           "type": "IMAGE",
           "links": [
-            5
-          ]
-        }
-      ],
-      "title": "TILE 04 / yaw 216°",
-      "properties": {
-        "Node name for S&R": "Osmo360SelectView"
-      },
-      "widgets_values": [
-        3
-      ],
-      "widgets_values_named": {
-        "view_index": 3
-      }
-    },
-    {
-      "id": 1044,
-      "type": "Osmo360SelectView",
-      "pos": [
-        480,
-        580
-      ],
-      "size": [
-        320,
-        270
-      ],
-      "flags": {},
-      "order": 6,
-      "mode": 0,
-      "inputs": [
-        {
-          "localized_name": "references",
-          "name": "references",
-          "type": "IMAGE",
-          "link": 15
-        },
-        {
-          "localized_name": "view_index",
-          "name": "view_index",
-          "type": "INT",
-          "widget": {
-            "name": "view_index"
-          },
-          "link": null
-        }
-      ],
-      "outputs": [
-        {
-          "localized_name": "reference_image",
-          "name": "reference_image",
-          "type": "IMAGE",
-          "links": [
             6
           ]
         }
       ],
       "title": "TILE 05 / yaw 288°",
       "properties": {
-        "Node name for S&R": "Osmo360SelectView"
+        "Node name for S&R": "Location360SelectView"
       },
       "widgets_values": [
         4
@@ -1057,7 +1001,7 @@
       }
     },
     {
-      "id": 1045,
+      "id": 2045,
       "type": "LocationReferenceImage",
       "pos": [
         480,
@@ -1076,7 +1020,7 @@
           "name": "IMAGE",
           "type": "IMAGE",
           "links": [
-            7
+            201
           ]
         },
         {
@@ -1090,15 +1034,15 @@
         "Node name for S&R": "LocationReferenceImage"
       },
       "widgets_values": [
-        "osmo360/Alex friend — Brais.png",
+        "character_A.png",
         "image"
       ],
       "widgets_values_named": {
-        "image": "osmo360/Alex friend — Brais.png"
+        "image": "character_A.png"
       }
     },
     {
-      "id": 1046,
+      "id": 2046,
       "type": "LocationReferenceImage",
       "pos": [
         820,
@@ -1117,7 +1061,7 @@
           "name": "IMAGE",
           "type": "IMAGE",
           "links": [
-            8
+            202
           ]
         },
         {
@@ -1131,125 +1075,125 @@
         "Node name for S&R": "LocationReferenceImage"
       },
       "widgets_values": [
-        "osmo360/Alex friend — Noa.png",
+        "character_B.png",
         "image"
       ],
       "widgets_values_named": {
-        "image": "osmo360/Alex friend — Noa.png"
+        "image": "character_B.png"
       }
     }
   ],
   "links": [
     [
-      2,
-      1040,
-      0,
-      1010,
-      8,
-      "IMAGE"
-    ],
-    [
-      3,
-      1041,
-      0,
-      1010,
-      9,
-      "IMAGE"
-    ],
-    [
-      4,
-      1042,
-      0,
-      1010,
       10,
+      2030,
+      0,
+      2040,
+      0,
       "IMAGE"
     ],
     [
-      5,
-      1043,
-      0,
-      1010,
       11,
+      2030,
+      0,
+      2041,
+      0,
       "IMAGE"
     ],
     [
-      6,
-      1044,
-      0,
-      1010,
       12,
+      2030,
+      0,
+      2042,
+      0,
       "IMAGE"
     ],
     [
-      7,
-      1045,
-      0,
-      1010,
       13,
+      2030,
+      0,
+      2043,
+      0,
       "IMAGE"
     ],
     [
-      8,
-      1046,
-      0,
-      1010,
       14,
+      2030,
+      0,
+      2044,
+      0,
       "IMAGE"
     ],
     [
-      9,
-      1010,
+      200,
+      2025,
       0,
-      1020,
-      0,
-      "VIDEO"
-    ],
-    [
-      10,
-      1025,
-      0,
-      1030,
+      2030,
       0,
       "STRING"
     ],
     [
+      9,
+      2010,
+      0,
+      2020,
+      0,
+      "VIDEO"
+    ],
+    [
+      2,
+      2040,
+      0,
+      2010,
+      5,
+      "IMAGE"
+    ],
+    [
+      3,
+      2041,
+      0,
+      2010,
+      6,
+      "IMAGE"
+    ],
+    [
+      4,
+      2042,
+      0,
+      2010,
+      7,
+      "IMAGE"
+    ],
+    [
+      5,
+      2043,
+      0,
+      2010,
+      8,
+      "IMAGE"
+    ],
+    [
+      6,
+      2044,
+      0,
+      2010,
+      9,
+      "IMAGE"
+    ],
+    [
+      201,
+      2045,
+      0,
+      2010,
+      10,
+      "IMAGE"
+    ],
+    [
+      202,
+      2046,
+      0,
+      2010,
       11,
-      1030,
-      0,
-      1040,
-      0,
-      "IMAGE"
-    ],
-    [
-      12,
-      1030,
-      0,
-      1041,
-      0,
-      "IMAGE"
-    ],
-    [
-      13,
-      1030,
-      0,
-      1042,
-      0,
-      "IMAGE"
-    ],
-    [
-      14,
-      1030,
-      0,
-      1043,
-      0,
-      "IMAGE"
-    ],
-    [
-      15,
-      1030,
-      0,
-      1044,
-      0,
       "IMAGE"
     ]
   ],
@@ -1306,13 +1250,13 @@
   "config": {},
   "extra": {
     "ds": {
-      "scale": 0.55,
+      "scale": 0.42,
       "offset": [
-        100,
-        150
+        240,
+        320
       ]
     },
-    "location_extractor_version": "0.2.0"
+    "location_extractor_version": "0.3.0"
   },
   "version": 0.4
 }

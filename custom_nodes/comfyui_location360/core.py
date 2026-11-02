@@ -118,7 +118,7 @@ def metadata(path):
     path = Path(path)
     with warnings.catch_warnings():
         warnings.simplefilter("ignore", Image.DecompressionBombWarning)
-        # Pillow's default warning threshold is below a valid 120MP Osmo still.
+        # A valid 120-megapixel panorama can exceed Pillow's default warning threshold.
         with Image.open(path) as im:
             width, height = im.size
             if width * height > 200_000_000:

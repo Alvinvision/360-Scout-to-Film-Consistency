@@ -8,8 +8,8 @@ from aiohttp import web
 
 PACK = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(PACK.parent))
-from comfyui_osmo360.core import Settings, metadata
-from comfyui_osmo360.routes import Service, install_routes
+from comfyui_location360.core import Settings, metadata
+from comfyui_location360.routes import Service, install_routes
 
 
 def main():

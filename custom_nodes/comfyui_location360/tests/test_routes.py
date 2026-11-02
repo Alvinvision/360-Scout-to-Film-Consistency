@@ -7,7 +7,7 @@ from pathlib import Path
 from PIL import Image
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
-from comfyui_osmo360.routes import Service
+from comfyui_location360.routes import Service
 
 
 class Request:

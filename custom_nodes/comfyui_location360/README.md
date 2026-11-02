@@ -8,13 +8,13 @@ Turn a stitched **2:1 equirectangular (lat-long) panorama** into overlapping per
 
 ## Install and open
 
-Copy `comfyui_osmo360` into `ComfyUI/custom_nodes/`, install its `requirements.txt` with ComfyUI’s Python, restart ComfyUI and refresh the browser. PyTorch and aiohttp are supplied by ComfyUI. HEIC support depends on pillow-heif and its platform decoder.
+Copy `comfyui_location360` into `ComfyUI/custom_nodes/`, install its `requirements.txt` with ComfyUI’s Python, restart ComfyUI and refresh the browser. PyTorch and aiohttp are supplied by ComfyUI. HEIC support depends on pillow-heif and its platform decoder.
 
 Import a workflow from the repository’s `workflows/` folder. On **360 Location Extractor**, click **Open 360 Reference Extractor** to add a panorama, choose the front direction, adjust lens settings and inspect overlapping previews. The panel can also export reference packs. The original source stays unchanged.
 
 ## Location outputs
 
-`Osmo360ReferencePack` has four outputs:
+`Location360ReferencePack` has four outputs:
 
 | Output | Contents |
 | --- | --- |
@@ -23,7 +23,7 @@ Import a workflow from the repository’s `workflows/` folder. On **360 Location
 | `reference_prompt` | Location viewing directions and lens information as text. |
 | `manifest` | Camera settings, source metadata and view filenames as JSON. |
 
-`Osmo360PanoramaInput` selects and previews the source panorama. `Osmo360SelectView` selects a reference by its zero-based index. `LocationReferenceImage` loads a separate image for the video stage. The optional `Osmo360DialoguePrompt` is a legacy video-prompt helper, not part of the supplied combined workflow.
+`Location360PanoramaInput` selects and previews the source panorama. `Location360SelectView` selects a reference by its zero-based index. `LocationReferenceImage` loads a separate image for the video stage. The optional `Location360DialoguePrompt` is a legacy video-prompt helper, not part of the supplied combined workflow.
 
 The extractor does not choose the cast or direct the video. In the supplied video graphs, five location views connect directly to the video model, followed by two independent character images. A ZIP download is not needed to pass those images downstream. The extractor’s location prompt is available to copy; the video graphs do not automatically include it in their generation prompt.
 
@@ -35,23 +35,23 @@ For the combined workflow, edit **SHARED VIDEO PROMPT** and use **Run Seedance �
 
 ## Exports and advanced options
 
-Packs are saved under ComfyUI’s `output/osmo360/` directory. They contain clean PNGs, a contact sheet, a location/lens prompt, a manifest and optional source copies. Use **Export references** in the panel to create a pack and show its download link. Executing the extractor node also writes a pack to disk. Incomplete exports are marked `INCOMPLETE.txt`.
+Packs are saved under ComfyUI’s `output/location360/` directory. They contain clean PNGs, a contact sheet, a location/lens prompt, a manifest and optional source copies. Use **Export references** in the panel to create a pack and show its download link. Executing the extractor node also writes a pack to disk. Incomplete exports are marked `INCOMPLETE.txt`.
 
 Batch export, paired captures, custom view counts and output sizing are available in the extractor. Paired captures must share the same physical camera position; batch mode must be off when using a pair. The supplied video workflows select five location views, so use the extraction-only graph when exploring other pack layouts.
 
 ## Update and verify
 
-Replace the installed pack, restart ComfyUI and refresh the browser when updating. Version 0.2 migrates supported older workflows by moving character images into separate inputs and leaving video prompts editable downstream. Check the resulting graph and save it. Internal `osmo360` node and route names remain for compatibility.
+Version 0.3 uses package `comfyui_location360`, `Location360` node IDs and `/location360/` routes. Move the previous 360-reference package outside the custom-node directory, install this pack as the only copy, restart ComfyUI and refresh the browser. Use the new workflow files and reselect your inputs; previous internal IDs are not kept as aliases. See the [upgrade guide](../../docs/UPGRADING.md).
 
 Run these commands from the repository root, using a Python environment with the dependencies, PyTorch and aiohttp, plus Node.js for the JavaScript checks:
 
 ```sh
-PYTHONDONTWRITEBYTECODE=1 python -m unittest discover -s custom_nodes/comfyui_osmo360/tests -v
-node custom_nodes/comfyui_osmo360/tests/test_comparison_workflow.mjs workflows/360Location_Seedance25_MiniMaxH3_Compare.json
-node custom_nodes/comfyui_osmo360/tests/test_workflow_migration.mjs
+PYTHONDONTWRITEBYTECODE=1 python -m unittest discover -s custom_nodes/comfyui_location360/tests -v
+node custom_nodes/comfyui_location360/tests/test_comparison_workflow.mjs workflows/360Location_Seedance25_MiniMaxH3_Compare.json
+node custom_nodes/comfyui_location360/tests/test_workflow_migration.mjs
 ```
 
-All 14 backend tests and the comparison and migration checks passed during the README review. No new paid video generation was run for that review.
+All 14 backend tests and the comparison and migration checks pass. The renamed local setup also completed Seedance 2.5 and MiniMax H3 generations and reloaded both saved video players on 2 November 2026. See [verification notes](../../docs/VERIFICATION.md).
 
 ## Limits
 

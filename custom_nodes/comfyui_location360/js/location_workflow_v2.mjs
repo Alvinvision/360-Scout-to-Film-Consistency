@@ -29,7 +29,7 @@ function loadImage(node, filename, links, label) {
 
 export function migrateLocationWorkflow(graph) {
   if (!Array.isArray(graph?.nodes) || !Array.isArray(graph.links)) return graph;
-  const packs = graph.nodes.filter(n => n.type === "Osmo360ReferencePack");
+  const packs = graph.nodes.filter(n => n.type === "Location360ReferencePack");
   if (!packs.length) return graph;
   let nextId = Math.max(Number(graph.last_node_id)||0, ...graph.nodes.map(n=>Number(n.id)||0));
   const removed = new Set(), talentNodes = [];
@@ -47,7 +47,7 @@ export function migrateLocationWorkflow(graph) {
           const input = target.inputs?.[link[4]];
           if (input) {
             input.link = null;
-            delete target.properties?.osmo360Bindings?.[input.name];
+            delete target.properties?.location360Bindings?.[input.name];
             if (input.name === "model.prompt") {
               target.widgets_values ||= [];
               target.widgets_values[1] ||= DEFAULT_VIDEO_PROMPT;
@@ -57,7 +57,7 @@ export function migrateLocationWorkflow(graph) {
           }
         } else if (link[2]===5 || link[2]===6) {
           const index = link[2]-5, filename = talents[index], label = "TALENT " + (index+1) + " / upload identity reference";
-          if (target.type === "Osmo360SelectView") {
+          if (target.type === "Location360SelectView") {
             const outgoing = graph.links.filter(l=>l[1]===target.id).map(l=>l[0]);
             loadImage(target, filename, outgoing, label);
             talentNodes.push(target);
@@ -82,11 +82,10 @@ export function migrateLocationWorkflow(graph) {
   for (const node of graph.nodes) {
     if (node.type === "LoadImage" && /^TALENT [12] \/ upload identity reference$/.test(node.title || ""))
       loadImage(node,node.widgets_values?.[0] || "",node.outputs?.[0]?.links || [],node.title);
-    if (node.title) node.title = node.title.replace(/Osmo\s*360/gi,"360 Location");
     for (const output of node.outputs || []) output.links=[];
-    for (const [name,binding] of Object.entries(node.properties?.osmo360Bindings||{})) {
+    for (const [name,binding] of Object.entries(node.properties?.location360Bindings||{})) {
       if (packs.some(p=>Number(p.id)===Number(binding.node)) && binding.slot>=4)
-        delete node.properties.osmo360Bindings[name];
+        delete node.properties.location360Bindings[name];
     }
   }
   for (const link of graph.links) {
@@ -95,9 +94,9 @@ export function migrateLocationWorkflow(graph) {
     const input=target?.inputs?.[link[4]];
     if(input) {
       input.link=link[0];
-      if(target.properties?.osmo360Bindings &&
-          (input.name.startsWith("model.reference_") || target.properties.osmo360Bindings[input.name]))
-        target.properties.osmo360Bindings[input.name]={node:link[1],slot:link[2]};
+      if(target.properties?.location360Bindings &&
+          (input.name.startsWith("model.reference_") || target.properties.location360Bindings[input.name]))
+        target.properties.location360Bindings[input.name]={node:link[1],slot:link[2]};
     }
   }
   if (talentNodes.length) {
@@ -116,6 +115,6 @@ export function migrateLocationWorkflow(graph) {
   }
   graph.last_node_id=nextId;
   graph.extra ||= {};
-  graph.extra.location_extractor_version="0.2.0";
+  graph.extra.location_extractor_version="0.3.0";
   return graph;
 }

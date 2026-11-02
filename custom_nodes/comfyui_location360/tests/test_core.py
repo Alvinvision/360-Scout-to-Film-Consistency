@@ -14,17 +14,17 @@ import numpy as np
 from PIL import Image
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
-from comfyui_osmo360.core import (
+from comfyui_location360.core import (
     Settings, camera_plan, classify, dialogue_prompt, effective_settings,
     export_pack, metadata, render, source_coordinates,
 )
-from comfyui_osmo360.nodes import Osmo360ReferencePack, Osmo360SelectView, tensor
-from comfyui_osmo360.routes import Service
+from comfyui_location360.nodes import Location360ReferencePack, Location360SelectView, tensor
+from comfyui_location360.routes import Service
 
 
 class GeometryTests(unittest.TestCase):
     def test_extractor_has_only_location_outputs_and_ignores_legacy_casting(self):
-        node = Osmo360ReferencePack()
+        node = Location360ReferencePack()
         self.assertEqual(node.RETURN_NAMES, ("references", "contact_sheet", "reference_prompt", "manifest"))
         self.assertTrue(set(node.INPUT_TYPES()["required"]).isdisjoint(
             {"talent_a", "talent_b", "scene_yaw", "wide_fov", "ots_fov", "camera_height", "cross_fov"}))
@@ -112,7 +112,7 @@ class GeometryTests(unittest.TestCase):
         images = [Image.new("RGB", (64, 32), color) for color in ("red", "blue")]
         batch = tensor(images)
         self.assertEqual(tuple(batch.shape), (2, 32, 64, 3))
-        selected = Osmo360SelectView().select(batch, 1)["result"][0]
+        selected = Location360SelectView().select(batch, 1)["result"][0]
         self.assertEqual(tuple(selected.shape), (1, 32, 64, 3))
         self.assertEqual(float(selected[0, 0, 0, 2]), 1)
 

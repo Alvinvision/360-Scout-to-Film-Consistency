@@ -1,12 +1,12 @@
 {
-  "id": "f4630b36-ad79-4f00-b614-3d2bdcbd73fb",
+  "id": "d41d0666-1ca2-4009-98f4-8bf9ec5ff290",
   "revision": 0,
   "last_node_id": 2046,
   "last_link_id": 202,
   "nodes": [
     {
       "id": 2025,
-      "type": "Osmo360PanoramaInput",
+      "type": "Location360PanoramaInput",
       "pos": [
         0,
         0
@@ -50,14 +50,14 @@
       ],
       "title": "ORIGINAL 360 / upload or swap panorama",
       "properties": {
-        "Node name for S&R": "Osmo360PanoramaInput"
+        "Node name for S&R": "Location360PanoramaInput"
       },
       "widgets_values": [
-        "osmo360/demo_panorama.png",
+        "location360/demo_panorama.png",
         "image"
       ],
       "widgets_values_named": {
-        "image": "osmo360/CAM_20260924124608_0036_D.JPG",
+        "image": "location360/demo_panorama.png",
         "upload": "image"
       }
     },
@@ -237,8 +237,8 @@
       "title": "MiniMax H3 / 4 shots / 10 seconds",
       "properties": {
         "Node name for S&R": "MinimaxHailuo03ReferenceNode",
-        "osmo360Managed": true,
-        "osmo360Bindings": {
+        "location360Managed": true,
+        "location360Bindings": {
           "model.reference_images.image_1": {
             "node": 2040,
             "slot": 0
@@ -362,13 +362,13 @@
       "title": "FINAL VIDEO / MiniMax H3 / playback + download",
       "properties": {},
       "widgets_values": [
-        "osmo360/Demo/minimax_h3",
+        "location360/video/MiniMaxH3",
         "auto",
         "auto",
         "auto"
       ],
       "widgets_values_named": {
-        "filename_prefix": "osmo360/L001/Osmo360_minimax_h3_Brais_Noa_4shots_10s",
+        "filename_prefix": "location360/L001/Location360_minimax_h3_Brais_Noa_4shots_10s",
         "format": "auto",
         "format.codec": "auto",
         "codec": "auto"
@@ -376,7 +376,7 @@
     },
     {
       "id": 2030,
-      "type": "Osmo360ReferencePack",
+      "type": "Location360ReferencePack",
       "pos": [
         0,
         350
@@ -689,13 +689,13 @@
       ],
       "title": "360 LOCATION EXTRACTOR / image and lens controls",
       "properties": {
-        "Node name for S&R": "Osmo360ReferencePack"
+        "Node name for S&R": "Location360ReferencePack"
       },
       "widgets_values": [
-        "osmo360/demo_panorama.png",
+        "",
         "Seedance Landscape",
         0,
-        100,
+        115,
         0,
         0,
         "Natural Wide",
@@ -716,10 +716,10 @@
         "[]"
       ],
       "widgets_values_named": {
-        "panorama": "osmo360/CAM_20260924124608_0036_D.JPG",
+        "panorama": "",
         "preset": "Seedance Landscape",
         "yaw_zero": 0,
-        "fov": 100,
+        "fov": 115,
         "pitch": 0,
         "roll": 0,
         "projection": "Natural Wide",
@@ -737,12 +737,12 @@
         "pair_secondary": "",
         "pair_same_position": false,
         "process_all": false,
-        "queue_json": "[{\"filename\": \"CAM_20260924124608_0036_D.JPG\", \"width\": 15520, \"height\": 7760, \"profile\": \"120MP DETAIL\", \"hdr_status\": \"unknown\", \"hdr_evidence\": null, \"orientation\": 1, \"projection\": \"equirectangular\", \"path\": \"osmo360/CAM_20260924124608_0036_D.JPG\", \"display_name\": \"CAM_20260924124608_0036_D.JPG\", \"yaw_zero\": 0}]"
+        "queue_json": "[]"
       }
     },
     {
       "id": 2040,
-      "type": "Osmo360SelectView",
+      "type": "Location360SelectView",
       "pos": [
         480,
         0
@@ -783,7 +783,7 @@
       ],
       "title": "TILE 01 / yaw 000°",
       "properties": {
-        "Node name for S&R": "Osmo360SelectView"
+        "Node name for S&R": "Location360SelectView"
       },
       "widgets_values": [
         0
@@ -794,7 +794,7 @@
     },
     {
       "id": 2041,
-      "type": "Osmo360SelectView",
+      "type": "Location360SelectView",
       "pos": [
         820,
         0
@@ -835,7 +835,7 @@
       ],
       "title": "TILE 02 / yaw 072°",
       "properties": {
-        "Node name for S&R": "Osmo360SelectView"
+        "Node name for S&R": "Location360SelectView"
       },
       "widgets_values": [
         1
@@ -846,7 +846,7 @@
     },
     {
       "id": 2042,
-      "type": "Osmo360SelectView",
+      "type": "Location360SelectView",
       "pos": [
         480,
         290
@@ -887,7 +887,7 @@
       ],
       "title": "TILE 03 / yaw 144°",
       "properties": {
-        "Node name for S&R": "Osmo360SelectView"
+        "Node name for S&R": "Location360SelectView"
       },
       "widgets_values": [
         2
@@ -898,7 +898,7 @@
     },
     {
       "id": 2043,
-      "type": "Osmo360SelectView",
+      "type": "Location360SelectView",
       "pos": [
         820,
         290
@@ -939,7 +939,7 @@
       ],
       "title": "TILE 04 / yaw 216°",
       "properties": {
-        "Node name for S&R": "Osmo360SelectView"
+        "Node name for S&R": "Location360SelectView"
       },
       "widgets_values": [
         3
@@ -950,7 +950,7 @@
     },
     {
       "id": 2044,
-      "type": "Osmo360SelectView",
+      "type": "Location360SelectView",
       "pos": [
         480,
         580
@@ -991,7 +991,7 @@
       ],
       "title": "TILE 05 / yaw 288°",
       "properties": {
-        "Node name for S&R": "Osmo360SelectView"
+        "Node name for S&R": "Location360SelectView"
       },
       "widgets_values": [
         4
@@ -1034,11 +1034,11 @@
         "Node name for S&R": "LocationReferenceImage"
       },
       "widgets_values": [
-        "osmo360/Alex friend — Brais.png",
+        "character_A.png",
         "image"
       ],
       "widgets_values_named": {
-        "image": "osmo360/Alex friend — Brais.png"
+        "image": "character_A.png"
       }
     },
     {
@@ -1075,11 +1075,11 @@
         "Node name for S&R": "LocationReferenceImage"
       },
       "widgets_values": [
-        "osmo360/Alex friend — Noa.png",
+        "character_B.png",
         "image"
       ],
       "widgets_values_named": {
-        "image": "osmo360/Alex friend — Noa.png"
+        "image": "character_B.png"
       }
     }
   ],
@@ -1250,13 +1250,13 @@
   "config": {},
   "extra": {
     "ds": {
-      "scale": 0.55,
+      "scale": 0.42,
       "offset": [
-        100,
-        150
+        240,
+        320
       ]
     },
-    "location_extractor_version": "0.2.0"
+    "location_extractor_version": "0.3.0"
   },
   "version": 0.4
 }

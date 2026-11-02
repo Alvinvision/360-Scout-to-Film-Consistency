@@ -23,7 +23,7 @@ def tensor(images):
     return torch.from_numpy(np.stack([np.asarray(im.convert("RGB"), dtype=np.float32) / 255 for im in images]))
 
 
-class Osmo360PanoramaInput:
+class Location360PanoramaInput:
     @classmethod
     def INPUT_TYPES(cls):
         import folder_paths
@@ -61,7 +61,7 @@ class LocationReferenceImage:
     """Independent image input for downstream generation, including nested uploads."""
     @classmethod
     def INPUT_TYPES(cls):
-        return Osmo360PanoramaInput.INPUT_TYPES()
+        return Location360PanoramaInput.INPUT_TYPES()
 
     RETURN_TYPES = ("IMAGE", "MASK")
     RETURN_NAMES = ("IMAGE", "MASK")
@@ -76,7 +76,7 @@ class LocationReferenceImage:
         return {"ui": PreviewImage().save_images(images)["ui"], "result": (images, mask)}
 
 
-class Osmo360ReferencePack:
+class Location360ReferencePack:
     @classmethod
     def INPUT_TYPES(cls):
         return {"required": {
@@ -131,7 +131,7 @@ class Osmo360ReferencePack:
                 process_all=False, queue_json="[]", **kwargs):
         import folder_paths
         from comfy.model_management import throw_exception_if_processing_interrupted
-        output = Path(folder_paths.get_output_directory()) / "osmo360"
+        output = Path(folder_paths.get_output_directory()) / "location360"
         jobs = json.loads(queue_json) if process_all else [{"path": panorama, "yaw_zero": kwargs.get("yaw_zero", 0)}]
         if not jobs:
             raise ValueError("Import at least one panorama.")
@@ -157,14 +157,14 @@ class Osmo360ReferencePack:
             prompts.append(prompt)
             manifests.append(json.dumps(manifest, ensure_ascii=False))
             packs.append({"folder": folder.name, "zip": archive.name,
-                          "url": "/osmo360/download/" + folder.name + "/" + archive.name})
+                          "url": "/location360/download/" + folder.name + "/" + archive.name})
             previews.append({"filename":next(folder.glob("*_CONTACTSHEET.jpg")).name,
-                             "subfolder":"osmo360/"+folder.name,"type":"output"})
-        return {"ui": {"osmo360_packs": packs, "images":previews},
+                             "subfolder":"location360/"+folder.name,"type":"output"})
+        return {"ui": {"location360_packs": packs, "images":previews},
                 "result": (refs, sheets, prompts, manifests)}
 
 
-class Osmo360SelectView:
+class Location360SelectView:
     OUTPUT_NODE = True
     @classmethod
     def INPUT_TYPES(cls):
@@ -190,7 +190,7 @@ class Osmo360SelectView:
         return {"ui":{"images":images},"result":(selected,)}
 
 
-class Osmo360DialoguePrompt:
+class Location360DialoguePrompt:
     @classmethod
     def INPUT_TYPES(cls):
         return {"required": {

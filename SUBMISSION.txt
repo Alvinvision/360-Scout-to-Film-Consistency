@@ -11,4 +11,4 @@ Eligible positioning: Best Overall; Most Innovative; MiniMax H3 bonus via its de
 Try-it link: Not publicly deployed. Clone the repository and follow README.md. Localhost links are not judge-accessible.
 
 Draft social post:
-I built Osmo 360 Reference Studio for #OpenSourceHiggsfield: one 360 location capture becomes overlapping, camera-controlled reference views inside ComfyUI. Add two talent references, then direct a multi-shot scene with Seedance 2.5 or MiniMax H3. Open-source nodes, workflows and setup guide. Demo + source: https://github.com/Alvinvision/osmo360-reference-studio
+I built 360 Scout to Film Consistency for #OpenSourceHiggsfield: one 360 location capture becomes overlapping, camera-controlled reference views inside ComfyUI. Add two talent references, then direct a multi-shot scene with Seedance 2.5 or MiniMax H3. Open-source nodes, workflows and setup guide. Demo + source: https://github.com/Alvinvision/360-Scout-to-Film-Consistency

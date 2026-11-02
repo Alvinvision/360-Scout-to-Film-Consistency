@@ -5,12 +5,12 @@ import { mountExtractor } from "./extractor_ui_v3.js";
 import { migrateLocationWorkflow } from "./location_workflow_v2.mjs";
 import { installComparisonControls } from "./comparison_controls_v1.mjs";
 
-async function restoreOsmoBindings(){
+async function restoreLocationBindings(){
     const graph=app.graph;
     for(let pass=0;pass<3;pass++){
       let pending=false;
       for(const node of graph._nodes){
-        for(const [name,binding] of Object.entries(node.properties?.osmo360Bindings||{})){
+        for(const [name,binding] of Object.entries(node.properties?.location360Bindings||{})){
           const index=node.inputs?.findIndex(input=>input.name===name);
           if(index<0){pending=true;continue;}
           if(node.inputs[index].link!=null)continue;
@@ -25,14 +25,14 @@ async function restoreOsmoBindings(){
 }
 
 app.registerExtension({
-  name:"alvin.osmo360.reference-extractor",
+  name:"alvin.location360.reference-extractor",
   beforeConfigureGraph:migrateLocationWorkflow,
-  afterConfigureGraph:restoreOsmoBindings,
+  afterConfigureGraph:restoreLocationBindings,
   async afterLoadGraph(){
-    await restoreOsmoBindings();
+    await restoreLocationBindings();
     const restored={};
     for(const node of app.graph._nodes){
-      const result=node.properties?.osmo360Result;
+      const result=node.properties?.location360Result;
       if(result){restored[String(node.id)]=result;node.onExecuted?.(result);}
     }
     if(Object.keys(restored).length)app.nodeOutputs={...app.nodeOutputs,...restored};
@@ -48,12 +48,12 @@ app.registerExtension({
         this.onExecuted=function(result){
           if(result?.images?.some(item=>item.metadata?.kind==="video" || /\.(mp4|webm|mov|mkv)$/i.test(item.filename||""))){
             this.properties ||= {};
-            this.properties.osmo360Result=result;
+            this.properties.location360Result=result;
           }
           return executed?.apply(this,arguments);
         };
         this.onExecutionStart=function(){
-          const result=this.properties?.osmo360Result;
+          const result=this.properties?.location360Result;
           const returned=started?.apply(this,arguments);
           // A partial run must not blank the other model's completed player.
           if(this.graph?.extra?.location_comparison && result){
@@ -65,12 +65,12 @@ app.registerExtension({
       };
       return;
     }
-    if(["Osmo360SelectView","Osmo360PanoramaInput"].includes(nodeData.name)){
+    if(["Location360SelectView","Location360PanoramaInput"].includes(nodeData.name)){
       const created=nodeType.prototype.onNodeCreated;
-      nodeType.prototype.onNodeCreated=function(){created?.apply(this,arguments);this.setSize(nodeData.name==="Osmo360PanoramaInput"?[450,360]:[320,270]);};
+      nodeType.prototype.onNodeCreated=function(){created?.apply(this,arguments);this.setSize(nodeData.name==="Location360PanoramaInput"?[450,360]:[320,270]);};
       return;
     }
-    if(nodeData.name!=="Osmo360ReferencePack")return;
+    if(nodeData.name!=="Location360ReferencePack")return;
     const previous=nodeType.prototype.onNodeCreated;
     nodeType.prototype.onNodeCreated=function(){
       previous?.apply(this,arguments);
@@ -80,10 +80,10 @@ app.registerExtension({
         const input=node.inputs?.find(input=>input.name==="panorama");
         const link=node.graph?.links.get(input?.link);
         const source=link&&node.graph.getNodeById(link.origin_id);
-        return source?.type==="Osmo360PanoramaInput"?source.widgets?.find(widget=>widget.name==="image"):null;
+        return source?.type==="Location360PanoramaInput"?source.widgets?.find(widget=>widget.name==="image"):null;
       }
       const adapter={
-        get(){const values=Object.fromEntries((node.widgets||[]).filter(w=>w.name!=="osmo360_panel").map(w=>[w.name,w.value]));const source=sourceWidget();if(source)values.panorama=source.value;return values;},
+        get(){const values=Object.fromEntries((node.widgets||[]).filter(w=>w.name!=="location360_panel").map(w=>[w.name,w.value]));const source=sourceWidget();if(source)values.panorama=source.value;return values;},
         set(values){for(const [key,value]of Object.entries(values)){const widget=node.widgets?.find(w=>w.name===key);if(widget)widget.value=value;if(key==="panorama"&&sourceWidget())sourceWidget().value=value;}app.graph?.setDirtyCanvas(true,true);},
         getQueue(){let queue=[];try{queue=JSON.parse(node.widgets?.find(w=>w.name==="queue_json")?.value||"[]");}catch{}const source=sourceWidget();if(source&&!queue.some(item=>item.path===source.value))queue.unshift({path:source.value,display_name:source.value.split("/").pop(),profile:"Panorama",yaw_zero:0});return queue;},
         setQueue(queue){const widget=node.widgets?.find(w=>w.name==="queue_json");if(widget)widget.value=JSON.stringify(queue);},
@@ -107,13 +107,13 @@ app.registerExtension({
         refresh.disabled=true;
         try{
           const graph=node.graph;
-          const targets=graph._nodes.filter(item=>item.type==="Osmo360SelectView"&&item.inputs?.some(input=>{const link=graph.links.get(input.link);return link?.origin_id===node.id;})).map(item=>String(item.id));
+          const targets=graph._nodes.filter(item=>item.type==="Location360SelectView"&&item.inputs?.some(input=>{const link=graph.links.get(input.link);return link?.origin_id===node.id;})).map(item=>String(item.id));
           await app.queuePrompt(0,1,{queueNodeIds:[String(node.id),...targets]});
         }finally{refresh.disabled=false;}
       };
       summary.append(refresh);
       const hint=document.createElement("div");hint.textContent="360 panorama → location reference tiles · image processing only";hint.style.cssText="font:12px system-ui;color:#a7bed7;padding:8px 0";summary.append(hint);
-      node.addDOMWidget("osmo360_panel","osmo360",summary,{serialize:false});
+      node.addDOMWidget("location360_panel","location360",summary,{serialize:false});
       node.setSize([Math.max(node.size[0],400),Math.max(node.size[1],780)]);
       const oldRemoved=node.onRemoved;node.onRemoved=function(){ui?.dispose();panel?.remove();oldRemoved?.apply(this,arguments);};
     };

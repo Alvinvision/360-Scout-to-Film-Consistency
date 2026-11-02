@@ -1,12 +1,12 @@
 {
-  "id": "9db0ffa5-16a6-421f-82a8-ecb69a3cd8bb",
+  "id": "c29405d8-1c79-4695-85f4-1dde0f4b6e75",
   "revision": 0,
   "last_node_id": 60,
   "last_link_id": 120,
   "nodes": [
     {
       "id": 30,
-      "type": "Osmo360ReferencePack",
+      "type": "Location360ReferencePack",
       "pos": [
         0,
         0
@@ -52,16 +52,16 @@
         }
       ],
       "properties": {
-        "Node name for S&R": "Osmo360ReferencePack"
+        "Node name for S&R": "Location360ReferencePack"
       },
       "widgets_values": [
-        "osmo360/demo_panorama.png",
+        "location360/demo_panorama.png",
         "Seedance Landscape",
         0,
-        100,
+        115,
         0,
         0,
-        "Rectilinear",
+        "Natural Wide",
         100,
         2048,
         1152,
@@ -79,13 +79,13 @@
         "[]"
       ],
       "widgets_values_named": {
-        "panorama": "osmo360/demo_panorama.png",
+        "panorama": "location360/demo_panorama.png",
         "preset": "Seedance Landscape",
         "yaw_zero": 0,
-        "fov": 100,
+        "fov": 115,
         "pitch": 0,
         "roll": 0,
-        "projection": "Rectilinear",
+        "projection": "Natural Wide",
         "strength": 100,
         "width": 2048,
         "height": 1152,
@@ -146,14 +146,14 @@
   "config": {},
   "extra": {
     "ds": {
-      "scale": 0.65,
+      "scale": 0.42,
       "offset": [
-        80,
-        80
+        240,
+        320
       ]
     },
     "frontendVersion": "1.57.4",
-    "location_extractor_version": "0.2.0"
+    "location_extractor_version": "0.3.0"
   },
   "version": 0.4
 }

@@ -23,7 +23,7 @@ class CancelledExport(Exception):
 class Service:
     def __init__(self, input_root, output_root):
         self.input_root = Path(input_root).resolve()
-        self.output_root = Path(output_root).resolve() / "osmo360"
+        self.output_root = Path(output_root).resolve() / "location360"
         self.jobs = {}
         self.preview_slots = None
 
@@ -46,7 +46,7 @@ class Service:
         item = await reader.next()
         if not item or item.name != "file" or not item.filename:
             raise ValueError("Choose a panorama file.")
-        folder = self.input_root / "osmo360"
+        folder = self.input_root / "location360"
         folder.mkdir(parents=True, exist_ok=True)
         name = uuid.uuid4().hex[:12] + "_" + safe_name(Path(item.filename).name)
         path = folder / name
@@ -126,7 +126,7 @@ class Service:
                     completed += len(paths) * config.view_count
                     state["packs"].append({
                         "name": folder.name,
-                        "url": "/osmo360/download/" + folder.name + "/" + archive.name})
+                        "url": "/location360/download/" + folder.name + "/" + archive.name})
                 state["status"] = "completed"
             except CancelledExport:
                 state["status"] = "cancelled"
@@ -169,15 +169,15 @@ def install_routes(router, service):
                 return web.json_response({"error": str(error)}, status=400)
             except Exception:
                 import logging
-                logging.getLogger(__name__).exception("Osmo360 request failed")
+                logging.getLogger(__name__).exception("Location360 request failed")
                 return web.json_response({"error": "The extractor service failed. See the Comfy server log."}, status=500)
         return route
-    router.post("/osmo360/upload")(wrap(service.upload))
-    router.post("/osmo360/preview")(wrap(service.preview))
-    router.post("/osmo360/export")(wrap(service.export))
-    router.get("/osmo360/jobs/{job}")(wrap(service.status))
-    router.post("/osmo360/jobs/{job}/cancel")(wrap(service.cancel))
-    router.get("/osmo360/download/{folder}/{name}")(wrap(service.download))
+    router.post("/location360/upload")(wrap(service.upload))
+    router.post("/location360/preview")(wrap(service.preview))
+    router.post("/location360/export")(wrap(service.export))
+    router.get("/location360/jobs/{job}")(wrap(service.status))
+    router.post("/location360/jobs/{job}/cancel")(wrap(service.cancel))
+    router.get("/location360/download/{folder}/{name}")(wrap(service.download))
 
 
 def register_routes():

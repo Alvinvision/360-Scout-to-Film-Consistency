@@ -1,8 +1,8 @@
 {
-  "id": "49793252-526f-47f9-9358-c2f791286590",
+  "id": "e945a321-c672-4667-9c9d-5e26400aaa14",
   "revision": 0,
   "last_node_id": 5090,
-  "last_link_id": 30,
+  "last_link_id": 44,
   "nodes": [
     {
       "id": 5010,
@@ -247,8 +247,8 @@
       "title": "Seedance 2.5 / shared images + shared prompt",
       "properties": {
         "Node name for S&R": "ByteDance2ReferenceNodeV2",
-        "osmo360Managed": true,
-        "osmo360Bindings": {
+        "location360Managed": true,
+        "location360Bindings": {
           "model.prompt": {
             "node": 5090,
             "slot": 0
@@ -285,19 +285,34 @@
       },
       "widgets_values": [
         "Seedance 2.5",
-        "Four-shot live-action scene in the supplied location. Images 1–5 are overlapping directions of ONE continuous environment. Preserve its layout, architecture, vehicles, props, plants and lighting across shots. Image 6 is Character A and image 7 is Character B. Match these two identities and their wardrobe; each reference sheet represents ONE person. The two people face each other on fixed marks in the location.\n\nSHOT 1, 0–3 seconds: wide two-person establishing shot. Start with both characters visible. Track sideways and pan to hold them near the middle while revealing the environment.\nSHOT 2, 3–5 seconds: cut to three-quarter behind Character A, over their shoulder onto Character B's face. Show the corresponding location behind Character B.\nSHOT 3, 5–7 seconds: cut to the reverse three-quarter behind Character B, over their shoulder onto Character A's face. Show the correct opposite direction of the same environment.\nSHOT 4, 7–10 seconds: cut to a wide two-shot. In one continuous move, arc across their dialogue axis, then pan and widen to reveal more of the environment while keeping both people clearly visible through the final frame.\n\nExactly four shots and three cuts. Keep the two performers on fixed marks and preserve the location through each cut. Full-frame cinematic realism, natural movement, rigid architecture and stationary props. Silent footage, clean frame.",
+        "",
         "720p",
         "16:9",
-        10,
+        15,
         false,
         "reference",
         "mp4",
         true,
         false,
-        1742454472,
-        "randomize",
+        123814298,
+        "fixed",
         false
       ],
+      "widgets_values_named": {
+        "model": "Seedance 2.5",
+        "model.prompt": "",
+        "model.resolution": "720p",
+        "model.ratio": "16:9",
+        "model.duration": 15,
+        "model.generate_audio": false,
+        "model.task_type": "reference",
+        "model.output_format": "mp4",
+        "model.auto_downscale": true,
+        "model.auto_upscale": false,
+        "seed": 123814298,
+        "control_after_generate": "fixed",
+        "watermark": false
+      },
       "color": "#432",
       "bgcolor": "#653"
     },
@@ -368,18 +383,24 @@
           "links": []
         }
       ],
-      "title": "Seedance 2.5 VIDEO / playback + download",
+      "title": "Seedance25 VIDEO / garage story",
       "properties": {},
       "widgets_values": [
-        "360Location/Compare/Seedance25",
+        "location360/video/Seedance25",
         "auto",
         "auto",
         "auto"
-      ]
+      ],
+      "widgets_values_named": {
+        "filename_prefix": "360Location/GarageStory/Seedance25",
+        "format": "auto",
+        "format.codec": "auto",
+        "codec": "auto"
+      }
     },
     {
       "id": 5025,
-      "type": "Osmo360PanoramaInput",
+      "type": "Location360PanoramaInput",
       "pos": [
         0,
         10
@@ -423,23 +444,27 @@
       ],
       "title": "1 · SOURCE PANORAMA / upload or swap",
       "properties": {
-        "Node name for S&R": "Osmo360PanoramaInput"
+        "Node name for S&R": "Location360PanoramaInput"
       },
       "widgets_values": [
-        "osmo360/demo_panorama.png",
+        "location360/demo_panorama.png",
         "image"
-      ]
+      ],
+      "widgets_values_named": {
+        "image": "location360/demo_panorama.png",
+        "upload": "image"
+      }
     },
     {
       "id": 5030,
-      "type": "Osmo360ReferencePack",
+      "type": "Location360ReferencePack",
       "pos": [
         0,
         390
       ],
       "size": [
         440,
-        910
+        780
       ],
       "flags": {},
       "order": 4,
@@ -682,16 +707,16 @@
       ],
       "title": "360 LOCATION EXTRACTOR / image and lens controls",
       "properties": {
-        "Node name for S&R": "Osmo360ReferencePack"
+        "Node name for S&R": "Location360ReferencePack"
       },
       "widgets_values": [
         "",
         "Seedance Landscape",
         0,
-        100,
+        115,
         0,
         0,
-        "Rectilinear",
+        "Natural Wide",
         100,
         2048,
         1152,
@@ -702,17 +727,42 @@
         "Auto Detect",
         false,
         false,
-        "MyLocation",
+        "L001",
         "",
         false,
         false,
         "[]",
         ""
-      ]
+      ],
+      "widgets_values_named": {
+        "panorama": "",
+        "preset": "Seedance Landscape",
+        "yaw_zero": 0,
+        "fov": 115,
+        "pitch": 0,
+        "roll": 0,
+        "projection": "Natural Wide",
+        "strength": 100,
+        "width": 2048,
+        "height": 1152,
+        "view_count": 5,
+        "spacing": 72,
+        "starting_yaw": 0,
+        "upscale": false,
+        "profile": "Auto Detect",
+        "hdr_capture": false,
+        "include_original": false,
+        "location": "L001",
+        "pair_secondary": "",
+        "pair_same_position": false,
+        "process_all": false,
+        "queue_json": "[]",
+        "location360_panel": ""
+      }
     },
     {
       "id": 5040,
-      "type": "Osmo360SelectView",
+      "type": "Location360SelectView",
       "pos": [
         520,
         10
@@ -754,15 +804,18 @@
       ],
       "title": "VIEW 01 / yaw 000°",
       "properties": {
-        "Node name for S&R": "Osmo360SelectView"
+        "Node name for S&R": "Location360SelectView"
       },
       "widgets_values": [
         0
-      ]
+      ],
+      "widgets_values_named": {
+        "view_index": 0
+      }
     },
     {
       "id": 5041,
-      "type": "Osmo360SelectView",
+      "type": "Location360SelectView",
       "pos": [
         870,
         10
@@ -804,15 +857,18 @@
       ],
       "title": "VIEW 02 / yaw 072°",
       "properties": {
-        "Node name for S&R": "Osmo360SelectView"
+        "Node name for S&R": "Location360SelectView"
       },
       "widgets_values": [
         1
-      ]
+      ],
+      "widgets_values_named": {
+        "view_index": 1
+      }
     },
     {
       "id": 5042,
-      "type": "Osmo360SelectView",
+      "type": "Location360SelectView",
       "pos": [
         520,
         310
@@ -854,15 +910,18 @@
       ],
       "title": "VIEW 03 / yaw 144°",
       "properties": {
-        "Node name for S&R": "Osmo360SelectView"
+        "Node name for S&R": "Location360SelectView"
       },
       "widgets_values": [
         2
-      ]
+      ],
+      "widgets_values_named": {
+        "view_index": 2
+      }
     },
     {
       "id": 5043,
-      "type": "Osmo360SelectView",
+      "type": "Location360SelectView",
       "pos": [
         870,
         310
@@ -904,15 +963,18 @@
       ],
       "title": "VIEW 04 / yaw 216°",
       "properties": {
-        "Node name for S&R": "Osmo360SelectView"
+        "Node name for S&R": "Location360SelectView"
       },
       "widgets_values": [
         3
-      ]
+      ],
+      "widgets_values_named": {
+        "view_index": 3
+      }
     },
     {
       "id": 5044,
-      "type": "Osmo360SelectView",
+      "type": "Location360SelectView",
       "pos": [
         695,
         610
@@ -954,11 +1016,14 @@
       ],
       "title": "VIEW 05 / yaw 288°",
       "properties": {
-        "Node name for S&R": "Osmo360SelectView"
+        "Node name for S&R": "Location360SelectView"
       },
       "widgets_values": [
         4
-      ]
+      ],
+      "widgets_values_named": {
+        "view_index": 4
+      }
     },
     {
       "id": 5045,
@@ -1001,7 +1066,7 @@
           "type": "IMAGE",
           "links": [
             13,
-            29
+            43
           ]
         },
         {
@@ -1018,7 +1083,11 @@
       "widgets_values": [
         "character_A.png",
         "image"
-      ]
+      ],
+      "widgets_values_named": {
+        "image": "character_A.png",
+        "upload": "image"
+      }
     },
     {
       "id": 5046,
@@ -1061,7 +1130,7 @@
           "type": "IMAGE",
           "links": [
             14,
-            30
+            44
           ]
         },
         {
@@ -1078,7 +1147,11 @@
       "widgets_values": [
         "character_B.png",
         "image"
-      ]
+      ],
+      "widgets_values_named": {
+        "image": "character_B.png",
+        "upload": "image"
+      }
     },
     {
       "id": 2010,
@@ -1180,14 +1253,14 @@
           "name": "model.reference_images.image_6",
           "shape": 7,
           "type": "IMAGE",
-          "link": 29
+          "link": 43
         },
         {
           "localized_name": "image_7",
           "name": "model.reference_images.image_7",
           "shape": 7,
           "type": "IMAGE",
-          "link": 30
+          "link": 44
         },
         {
           "localized_name": "image_8",
@@ -1256,8 +1329,8 @@
       "title": "MiniMax H3 / shared images + shared prompt",
       "properties": {
         "Node name for S&R": "MinimaxHailuo03ReferenceNode",
-        "osmo360Managed": true,
-        "osmo360Bindings": {
+        "location360Managed": true,
+        "location360Bindings": {
           "model.prompt": {
             "node": 5090,
             "slot": 0
@@ -1294,14 +1367,24 @@
       },
       "widgets_values": [
         "MiniMax H3",
-        "Four-shot live-action scene in the supplied location. Images 1–5 are overlapping directions of ONE continuous environment. Preserve its layout, architecture, vehicles, props, plants and lighting across shots. Image 6 is Character A and image 7 is Character B. Match these two identities and their wardrobe; each reference sheet represents ONE person. The two people face each other on fixed marks in the location.\n\nSHOT 1, 0–3 seconds: wide two-person establishing shot. Start with both characters visible. Track sideways and pan to hold them near the middle while revealing the environment.\nSHOT 2, 3–5 seconds: cut to three-quarter behind Character A, over their shoulder onto Character B's face. Show the corresponding location behind Character B.\nSHOT 3, 5–7 seconds: cut to the reverse three-quarter behind Character B, over their shoulder onto Character A's face. Show the correct opposite direction of the same environment.\nSHOT 4, 7–10 seconds: cut to a wide two-shot. In one continuous move, arc across their dialogue axis, then pan and widen to reveal more of the environment while keeping both people clearly visible through the final frame.\n\nExactly four shots and three cuts. Keep the two performers on fixed marks and preserve the location through each cut. Full-frame cinematic realism, natural movement, rigid architecture and stationary props. Silent footage, clean frame.",
+        "",
         "768P",
         "16:9",
-        10,
-        2272207264,
-        "randomize",
+        15,
+        123814298,
+        "fixed",
         false
       ],
+      "widgets_values_named": {
+        "model": "MiniMax H3",
+        "model.prompt": "",
+        "model.resolution": "768P",
+        "model.ratio": "16:9",
+        "model.duration": 15,
+        "seed": 123814298,
+        "control_after_generate": "fixed",
+        "watermark": false
+      },
       "color": "#432",
       "bgcolor": "#653"
     },
@@ -1372,14 +1455,20 @@
           "links": []
         }
       ],
-      "title": "MiniMax H3 VIDEO / playback + download",
+      "title": "MiniMaxH3 VIDEO / garage story",
       "properties": {},
       "widgets_values": [
-        "360Location/Compare/MiniMaxH3",
+        "location360/video/MiniMaxH3",
         "auto",
         "auto",
         "auto"
-      ]
+      ],
+      "widgets_values_named": {
+        "filename_prefix": "360Location/GarageStory/MiniMaxH3",
+        "format": "auto",
+        "format.codec": "auto",
+        "codec": "auto"
+      }
     },
     {
       "id": 5090,
@@ -1422,9 +1511,13 @@
         "Node name for S&R": "PrimitiveStringMultiline"
       },
       "widgets_values": [
-        "Four-shot live-action scene in the supplied location. Images 1–5 are overlapping directions of ONE continuous environment. Preserve its layout, architecture, vehicles, props, plants and lighting across shots. Image 6 is Character A and image 7 is Character B. Match these two identities and their wardrobe; each reference sheet represents ONE person. The two people face each other on fixed marks in the location.\n\nSHOT 1, 0–3 seconds: wide two-person establishing shot. Start with both characters visible. Track sideways and pan to hold them near the middle while revealing the environment.\nSHOT 2, 3–5 seconds: cut to three-quarter behind Character A, over their shoulder onto Character B's face. Show the corresponding location behind Character B.\nSHOT 3, 5–7 seconds: cut to the reverse three-quarter behind Character B, over their shoulder onto Character A's face. Show the correct opposite direction of the same environment.\nSHOT 4, 7–10 seconds: cut to a wide two-shot. In one continuous move, arc across their dialogue axis, then pan and widen to reveal more of the environment while keeping both people clearly visible through the final frame.\n\nExactly four shots and three cuts. Keep the two performers on fixed marks and preserve the location through each cut. Full-frame cinematic realism, natural movement, rigid architecture and stationary props. Silent footage, clean frame.",
+        "15-second cinematic live-action scene. EXACTLY FOUR SHOTS, with cuts at 4, 6 and 8 seconds.\n\nREFERENCES: Images 1–5 show ONE continuous location. Image 6 is the dark-haired MAN WITH THE MUSTACHE, the garage owner. Image 7 is the WOMAN WITH VERY SHORT/SHAVED HAIR who has waited for him. Each character sheet represents one person. Preserve their distinct faces, hair, build and referenced clothing. Both people remain visible in all four shots, including the reverse shoulder views.\n\nLOCATION: Stage the ENTIRE scene on the clear concrete apron DIRECTLY IN FRONT OF THE CENTRE OF THE LARGE OPEN GARAGE DOOR, between its two jambs, 1–3 metres outside the threshold. The doorway anchors their position. They never relocate to the street, sidewalk or planting strip.\nThe driveway car and separate street vehicles stay in their EXACT reference positions, angles, shapes, colours and spacing. The car behind/beside the mustached man is a permanent landmark. Retain it across cuts, with recognizable roofline, windows and wheels. Use wider framing and plausible camera offsets to keep part of that SAME car visible behind, beside or at the edge of his composition, including the reverse views. Its screen position changes through parallax; its physical position never changes. Never omit, rotate, duplicate, replace or move a car to compose a shot. All car doors stay closed. Preserve the brick facade, open bay, plants, bins, wall and shipping containers. Off-screen objects remain in place and reappear correctly.\n\nBLOCKING: He begins on the clear apron just outside the open threshold. She approaches from the driveway-car direction and joins him in front of the opening, without interacting with the car. They face each other 1.5 metres apart, their dialogue axis PARALLEL to the facade. Looking towards the garage, he is at the left/loading-bay-jamb end and she is at the right end. Every subsequent step stays within this doorway-centred area. Carry their positions through every cut; no resetting or teleporting.\n\nPERFORMANCE: They know each other well. She is worried and mildly frustrated, never aggressive. He is distracted and nervous, then attentive. Use the actual dialogue, natural mouth movements, listening pauses and restrained expressions. No subtitles or titles.\n\nSHOT 1 — 0–4s: Medium-wide TWO-SHOT showing the apron and open garage door. Both people are visible. He takes a small step towards the opening as she approaches. He stops and turns to her.\nMan: “Hey.”\nHis distracted half-smile fades as he reads her concern.\nCAMERA: From 1.9 metres height, GLIDE LEFT 1 metre, PUSH FORWARD 0.8 metres and BOOM DOWN 0.25 metres simultaneously. A fluid diagonal move produces pavement/door-edge parallax against the pair and garage interior. Establish the open doorway behind them and retain the driveway car off to its correct side.\n\nSHOT 2 — 4–6s: CUT three-quarter behind the mustached man onto the shaved-haired woman's unobstructed face, at least waist-up. His head, shoulder and upper torso remain at a foreground edge. Both stay directly outside the big open door. She briefly touches her temple, lowers her hand and asks:\nWoman: “You could’ve called.”\nA brief listening pause.\nCAMERA: A clearly visible HANDHELD DOLLY MOVE over the full two seconds: GLIDE LATERALLY 1.2 metres, PULL BACK 0.8 metres and BOOM UP 0.15 metres together. Open from the three-quarter shoulder angle into a wider two-person composition, revealing substantially more of the opposite street, wall and containers. The near shoulder and recognizable car edge sweep faster across frame than the people and distant background: strong parallax. Keep both people and part of the same car visible. Natural operator sway accompanies genuine sideways/backward camera travel, not a stationary pan or zoom.\n\nSHOT 3 — 6–8s: CUT to the matching wider reverse, three-quarter behind the shaved-haired woman's shoulder onto the mustached man's clear face. Both remain on the same apron. He fidgets with his jacket edge.\nMan: “I know.”\nHe glances down and pauses.\nMan: “I’m sorry.”\nHis hands briefly come together; he starts a half-step towards the opening.\nCAMERA: An equally dynamic HANDHELD DOLLY APPROACH: TRAVEL SIDEWAYS 1 metre, PUSH FORWARD 0.7 metres and BOOM DOWN 0.15 metres over the two seconds. Begin wide and approach him while her near shoulder shifts faster than his face, the car and distant street. Retain her foreground presence, his full face and a recognizable portion of the SAME car behind/beside him. Leave generous background space for the correct street view. Add gentle operator body sway. The optical centre must change position and distance; do not pivot in place or move any object.\n\nSHOT 4 — 8–15s: CUT to a wide full-body TWO-SHOT of the SAME doorway-centred apron. In the first two seconds she turns away, takes TWO SMALL STEPS within the clear apron parallel to the facade, then faces him again.\nWoman: “Just talk to me.”\nHe stops, turns fully back and pauses. His hands relax.\nMan: “I’m here.”\nHe steps closer and gently touches her forearm. Her expression softens. Keep both full figures visible to the end.\nCAMERA: ONE LARGE, FLUID, CONTINUOUS CRANE TRAVERSE with lateral AND depth travel. Start on the street-facing side with an oblique view towards the garage. Travel 5–6 metres along a sweeping curved path through the clear side of the apron, CROSS THEIR DIALOGUE AXIS and finish on the GARAGE SIDE OF THE PAIR, looking OUT ACROSS THE STREET. Vary distance from the pair from about 3 to 4 metres while BOOMING UP 0.5 metres at low crane height. Gently follow them as the camera physically travels. Finish with both people foregrounded against the street wall, street vehicles, containers and opposite frontage; the main brick building no longer dominates the background. Retain the driveway car at its real location and a frame edge where appropriate. Reveal the opposite view by moving the camera, NEVER by moving people, cars or architecture. Strong depth parallax; no collisions or cut inside this shot.\n\nCAMERA FEEL: Organic human-operated HANDHELD movement, with weight, breathing sway and small responsive reframing layered ON TOP OF substantial dolly/crane translation. Avoid a mechanically perfect robotic glide, violent shake or whip movement. Keep faces readable. Fixed focal length within each shot. No stationary nodal pans, tilt-only moves, zooms, drone flight or rotating-panorama effects. The two middle shots must visibly travel, and the final shot must reveal the OTHER SIDE OF THE ENVIRONMENT. Consistent original daylight, rigid layout and recognizable identities. Exactly four shots, 15 seconds, no titles or subtitles.",
         ""
-      ]
+      ],
+      "widgets_values_named": {
+        "value": "15-second cinematic live-action scene. EXACTLY FOUR SHOTS, with cuts at 4, 6 and 8 seconds.\n\nREFERENCES: Images 1–5 show ONE continuous location. Image 6 is the dark-haired MAN WITH THE MUSTACHE, the garage owner. Image 7 is the WOMAN WITH VERY SHORT/SHAVED HAIR who has waited for him. Each character sheet represents one person. Preserve their distinct faces, hair, build and referenced clothing. Both people remain visible in all four shots, including the reverse shoulder views.\n\nLOCATION: Stage the ENTIRE scene on the clear concrete apron DIRECTLY IN FRONT OF THE CENTRE OF THE LARGE OPEN GARAGE DOOR, between its two jambs, 1–3 metres outside the threshold. The doorway anchors their position. They never relocate to the street, sidewalk or planting strip.\nThe driveway car and separate street vehicles stay in their EXACT reference positions, angles, shapes, colours and spacing. The car behind/beside the mustached man is a permanent landmark. Retain it across cuts, with recognizable roofline, windows and wheels. Use wider framing and plausible camera offsets to keep part of that SAME car visible behind, beside or at the edge of his composition, including the reverse views. Its screen position changes through parallax; its physical position never changes. Never omit, rotate, duplicate, replace or move a car to compose a shot. All car doors stay closed. Preserve the brick facade, open bay, plants, bins, wall and shipping containers. Off-screen objects remain in place and reappear correctly.\n\nBLOCKING: He begins on the clear apron just outside the open threshold. She approaches from the driveway-car direction and joins him in front of the opening, without interacting with the car. They face each other 1.5 metres apart, their dialogue axis PARALLEL to the facade. Looking towards the garage, he is at the left/loading-bay-jamb end and she is at the right end. Every subsequent step stays within this doorway-centred area. Carry their positions through every cut; no resetting or teleporting.\n\nPERFORMANCE: They know each other well. She is worried and mildly frustrated, never aggressive. He is distracted and nervous, then attentive. Use the actual dialogue, natural mouth movements, listening pauses and restrained expressions. No subtitles or titles.\n\nSHOT 1 — 0–4s: Medium-wide TWO-SHOT showing the apron and open garage door. Both people are visible. He takes a small step towards the opening as she approaches. He stops and turns to her.\nMan: “Hey.”\nHis distracted half-smile fades as he reads her concern.\nCAMERA: From 1.9 metres height, GLIDE LEFT 1 metre, PUSH FORWARD 0.8 metres and BOOM DOWN 0.25 metres simultaneously. A fluid diagonal move produces pavement/door-edge parallax against the pair and garage interior. Establish the open doorway behind them and retain the driveway car off to its correct side.\n\nSHOT 2 — 4–6s: CUT three-quarter behind the mustached man onto the shaved-haired woman's unobstructed face, at least waist-up. His head, shoulder and upper torso remain at a foreground edge. Both stay directly outside the big open door. She briefly touches her temple, lowers her hand and asks:\nWoman: “You could’ve called.”\nA brief listening pause.\nCAMERA: A clearly visible HANDHELD DOLLY MOVE over the full two seconds: GLIDE LATERALLY 1.2 metres, PULL BACK 0.8 metres and BOOM UP 0.15 metres together. Open from the three-quarter shoulder angle into a wider two-person composition, revealing substantially more of the opposite street, wall and containers. The near shoulder and recognizable car edge sweep faster across frame than the people and distant background: strong parallax. Keep both people and part of the same car visible. Natural operator sway accompanies genuine sideways/backward camera travel, not a stationary pan or zoom.\n\nSHOT 3 — 6–8s: CUT to the matching wider reverse, three-quarter behind the shaved-haired woman's shoulder onto the mustached man's clear face. Both remain on the same apron. He fidgets with his jacket edge.\nMan: “I know.”\nHe glances down and pauses.\nMan: “I’m sorry.”\nHis hands briefly come together; he starts a half-step towards the opening.\nCAMERA: An equally dynamic HANDHELD DOLLY APPROACH: TRAVEL SIDEWAYS 1 metre, PUSH FORWARD 0.7 metres and BOOM DOWN 0.15 metres over the two seconds. Begin wide and approach him while her near shoulder shifts faster than his face, the car and distant street. Retain her foreground presence, his full face and a recognizable portion of the SAME car behind/beside him. Leave generous background space for the correct street view. Add gentle operator body sway. The optical centre must change position and distance; do not pivot in place or move any object.\n\nSHOT 4 — 8–15s: CUT to a wide full-body TWO-SHOT of the SAME doorway-centred apron. In the first two seconds she turns away, takes TWO SMALL STEPS within the clear apron parallel to the facade, then faces him again.\nWoman: “Just talk to me.”\nHe stops, turns fully back and pauses. His hands relax.\nMan: “I’m here.”\nHe steps closer and gently touches her forearm. Her expression softens. Keep both full figures visible to the end.\nCAMERA: ONE LARGE, FLUID, CONTINUOUS CRANE TRAVERSE with lateral AND depth travel. Start on the street-facing side with an oblique view towards the garage. Travel 5–6 metres along a sweeping curved path through the clear side of the apron, CROSS THEIR DIALOGUE AXIS and finish on the GARAGE SIDE OF THE PAIR, looking OUT ACROSS THE STREET. Vary distance from the pair from about 3 to 4 metres while BOOMING UP 0.5 metres at low crane height. Gently follow them as the camera physically travels. Finish with both people foregrounded against the street wall, street vehicles, containers and opposite frontage; the main brick building no longer dominates the background. Retain the driveway car at its real location and a frame edge where appropriate. Reveal the opposite view by moving the camera, NEVER by moving people, cars or architecture. Strong depth parallax; no collisions or cut inside this shot.\n\nCAMERA FEEL: Organic human-operated HANDHELD movement, with weight, breathing sway and small responsive reframing layered ON TOP OF substantial dolly/crane translation. Avoid a mechanically perfect robotic glide, violent shake or whip movement. Keep faces readable. Fixed focal length within each shot. No stationary nodal pans, tilt-only moves, zooms, drone flight or rotating-panorama effects. The two middle shots must visibly travel, and the final shot must reveal the OTHER SIDE OF THE ENVIRONMENT. Consistent original daylight, rigid layout and recognizable identities. Exactly four shots, 15 seconds, no titles or subtitles.",
+        "location_comparison_controls": ""
+      }
     }
   ],
   "links": [
@@ -1605,7 +1698,7 @@
       "IMAGE"
     ],
     [
-      29,
+      43,
       5045,
       0,
       2010,
@@ -1613,7 +1706,7 @@
       "IMAGE"
     ],
     [
-      30,
+      44,
       5046,
       0,
       2010,
@@ -1704,7 +1797,7 @@
         320
       ]
     },
-    "location_extractor_version": "0.2.0",
+    "location_extractor_version": "0.3.0",
     "location_comparison": {
       "version": 1,
       "prompt_node": 5090,
